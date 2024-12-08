@@ -14,12 +14,12 @@ class barrel
 	char ch = 'O';
 	void draw(char c) const {
 		gotoxy(barrelPos.x, barrelPos.y);
-		pBoard->changePixel(barrelPos, 'O');
 		std::cout << c;
 	}
 public:
+
 	bool checkLadder() {
-		if (pBoard->getChar(barrelPos.x, barrelPos.y) == 'H')
+		if (pBoard->getCharFromOriginalBoard(barrelPos.x, barrelPos.y) == 'H')
 			return true;
 		return false;
 	}
@@ -40,7 +40,14 @@ public:
 		pBoard->changePixel(barrelPos, 'H');
 		draw('H');
 	}
-	void fall();
 	void move();
+	bool isBarrelFalling();
+	void setDirY(int y) {
+		dir.y = y;
+	}
+	void setDirX(int x) {
+		dir.x = x;
+	}
+
 };
 

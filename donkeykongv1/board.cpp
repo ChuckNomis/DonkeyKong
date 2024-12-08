@@ -20,7 +20,7 @@ void board::setGuide() {
 	}
 }
 void board::changePixel(Pos pos,char ch) {
-	currentBoard[pos.y][pos.x] == ch;
+	currentBoard[pos.y][pos.x] = ch;
 }
 void board::print() const {
 	gotoxy(0, 0);

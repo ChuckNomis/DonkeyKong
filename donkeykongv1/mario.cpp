@@ -7,61 +7,65 @@
 #include "mario.h"
 #include "board.h"
 
-void mario::up() {
-	
-	if (pBoard->getChar(marioPos.x, marioPos.y) == 'H') {
-		while (pBoard->getChar(marioPos.x, marioPos.y) == 'H') {
-			eraseOnLadder();
-			marioPos.y -= 1;
-			drawOnLadder();
-			Sleep(SLEEP_DURATION);
-		}
-		erase();
-		draw(pBoard->getChar(marioPos.x, marioPos.y));
-		marioPos.y -= 1;
-		draw();
-		dir = { 0,0 };
+void mario::up(int& jumps, bool& ladder) {
+	if (checkLadder()){
+		dir = { 0,-1 };
+		ladder = true;
 	}
 	else {
-		// Simulate upward motion
-		for (int i = 0; i < JUMP_HEIGHT; ++i) {
-			if (pBoard->getChar(marioPos.x, marioPos.y - 1) == 'W' ||
-				pBoard->getChar(marioPos.x, marioPos.y - 1) == '>' ||
-				pBoard->getChar(marioPos.x, marioPos.y - 1) == '=' ||
-				pBoard->getChar(marioPos.x, marioPos.y - 1) == '<') { // Check if mario hits a ceiling
-				break;
-			}
-			erase();
-			--marioPos.y; // Move up
-			draw();
-			Sleep(SLEEP_DURATION);
+		if (jumps == 0) {
+			dir.y = -1;
 		}
+		jumps++;
 	}
 }
-void mario::fall() {
-	// Falling 
-	while (pBoard->getChar(marioPos.x + dir.x, marioPos.y + 1) != '=' &&
-		pBoard->getChar(marioPos.x + dir.x, marioPos.y + 1) != '>' &&
-		pBoard->getChar(marioPos.x + dir.x, marioPos.y + 1) != 'W' &&
-		pBoard->getChar(marioPos.x + dir.x, marioPos.y + 1) != '<') { // Check if mario hits the ground
-		if (checkLadder()) {
-			eraseOnLadder();
-		}
-		else {
-			erase();
-		}
-		++marioPos.y; // Move down
-		marioPos.x += dir.x;
-		draw();
-		Sleep(SLEEP_DURATION);
-		if (checkLadder()) {
-			eraseOnLadder();
-		}
-		else {
-			erase();
-		}
+
+void mario::down(bool& downLadder, bool& ladder) {
+	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 2) == 'H') {
+		ladder = true;
+		downLadder = true;
+		dir = { 0,1 };
+		erase();
+		marioPos.y += 2;
 	}
 }
+void mario::isMarioOnFirstLadder(bool& downLadder, bool& ladder) {
+	if ((pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) == '>' ||
+		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) == '<' ||
+		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) == '=') &&
+		ladder == true &&
+		downLadder == true) {
+		dir = { 0,0 };
+		ladder = false;
+		downLadder = false;
+	}
+}
+void mario::isMarioOnLastLadder(bool& downLadder, bool& ladder) {
+	if ((pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y - 1) == '>' ||
+		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y - 1) == '<' ||
+		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y - 1) == '=') &&
+		ladder == true &&
+		downLadder == false) {
+		eraseOnLadder();
+		marioPos.y -= 2;
+		dir = { 0,0 };
+		ladder = false;
+	}
+}
+bool mario::isMarioFalling() {
+	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) != '>' &&
+		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) != '<' &&
+		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) != '=') {
+		return  true;
+	}
+	return false;
+}
+bool mario::checkLadder() {
+	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y) == 'H')
+		return true;
+	return false;
+}
+
 void mario::keyPressed(char key) {
 	for (size_t i = 0; i < numKeys; ++i) {
 		if (std::tolower(key) == keys[i]) {
@@ -69,20 +73,24 @@ void mario::keyPressed(char key) {
 			return;
 		}
 	}
-	if (std::tolower(key) == 'w') { // 'w' for jump
-		up();
-	}
 }
+
+bool mario::isMarioHitBarrel() {
+	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y) == 'O') {
+		return true;
+	}
+	return false;
+}
+
 void mario::move() {
-	fall();
 	int newX = marioPos.x + dir.x;
 	int newY = marioPos.y + dir.y;
 	
 	// Check for walls
-	if (pBoard->getChar(newX, newY) == 'W'||
-		pBoard->getChar(newX, newY) == '='||
-		pBoard->getChar(newX, newY) == '>'||
-		pBoard->getChar(newX, newY) == '<') {
+	if (pBoard->getCharFromCurrentBoard(newX, newY) == 'Q'||
+		pBoard->getCharFromCurrentBoard(newX, newY) == '='||
+		pBoard->getCharFromCurrentBoard(newX, newY) == '>'||
+		pBoard->getCharFromCurrentBoard(newX, newY) == '<') {
 		dir = { 0, 0 };
 	}
 	else {
