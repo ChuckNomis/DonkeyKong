@@ -1,4 +1,5 @@
 #pragma once
+#include "barrelGroup.h"
 #include "menu.h"
 #include "mario.h"
 #include "board.h"
@@ -6,9 +7,10 @@
 class mainGame
 {
 	int marioLifes = 3 ;
-	board board;
-	mario mario;
+	board _board;
+	mario _mario;
 	barrel barrel;
+	barrelGroup _BG;
 	
 public:
 	bool isMarioDead() {
@@ -19,7 +21,9 @@ public:
 	}
 
 	void printLifes();
+	void pauseGame();
 	void startGame(); 
 	void gameOver();
+	void gameWin();
 };
 

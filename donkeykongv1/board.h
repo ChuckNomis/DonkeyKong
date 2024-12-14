@@ -1,11 +1,6 @@
 #pragma once
 #include "utils.h"
 class board {
-	static constexpr char WALL_CHAR = 'Q'; //?
-	static constexpr char FLOOR_CHAR = '=';
-	static constexpr char LFLOOR_CHAR = '<';
-	static constexpr char RFLOOR_CHAR = '>';
-	static constexpr char LADDER_CHAR = 'H';
 	static constexpr int MAX_X = 80;
 	static constexpr int MAX_Y = 25;
 	char currentBoard[MAX_Y][MAX_X + 1]; // +1 for null terminator
@@ -22,20 +17,76 @@ class board {
 	  "Q                             H                                                Q", // 8
 	  "Q                             H                                                Q", // 9
 	  "Q                             H                                                Q", // 10
-	  "Q                   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                    Q", // 11
+	  "Q                   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>               Q", // 11
 	  "Q                                                    H                         Q", // 12
 	  "Q                                                    H                         Q", // 13
 	  "Q                                                    H                         Q", // 14
-	  "Q             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<             Q", // 15
+	  "Q             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<        Q", // 15
 	  "Q                      H                                                       Q", // 16
 	  "Q                      H                                                       Q", // 17
 	  "Q                      H                                                       Q", // 18
-	  "Q          >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>      Q", // 19
+	  "Q             >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       Q", // 19
 	  "Q                                                            H                 Q", // 20
 	  "Q                                                            H                 Q", // 21
 	  "Q                                                            H                 Q", // 22
-	  "W==============================================================================Q", // 23
+	  "Q==============================================================================Q", // 23
 	  "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
+	};
+	const char* winBoard[MAX_Y]= {
+   //01234567890123456789012345678901234567890123456789012345678901234567890123456789
+	"QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
+	"Q                                                                              Q", // 1
+	"Q                                                                              Q", // 2
+	"Q                                                                              Q", // 3
+	"Q                                                                              Q", // 4
+	"Q                                                                              Q", // 5
+	"Q                                                                              Q", // 6
+	"Q                               Y O U   W O N !                                Q", // 7
+	"Q                                                                              Q", // 9
+	"Q                                                                              Q", // 9
+	"Q                                                                              Q", // 10
+	"Q                                                                              Q", // 11
+	"Q                       Press ESC to go back to the menu                       Q", // 12
+	"Q                                                                              Q", // 13
+	"Q                                                                              Q", // 14
+	"Q                                                                              Q", // 15
+	"Q                                                                              Q", // 16
+	"Q                                                                              Q", // 17
+	"Q                                                                              Q", // 18
+	"Q                                                                              Q", // 19
+	"Q                                                                              Q", // 20
+	"Q                                                                              Q", // 21
+	"Q                                                                              Q", // 22
+	"Q==============================================================================Q", // 23
+	"QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
+	};
+	const char* loseBoard[MAX_Y] = {
+		//01234567890123456789012345678901234567890123456789012345678901234567890123456789
+		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
+		 "Q                                                                              Q", // 1
+		 "Q                                                                              Q", // 2
+		 "Q                                                                              Q", // 3
+		 "Q                                                                              Q", // 4
+		 "Q                                                                              Q", // 5
+		 "Q                                                                              Q", // 6
+		 "Q                          ||     GAME   OVER     ||                           Q", // 7
+		 "Q                                                                              Q", // 9
+		 "Q                                                                              Q", // 9
+		 "Q                                                                              Q", // 10
+		 "Q                                                                              Q", // 11
+		 "Q                       Press ESC to go back to the menu                       Q", // 12
+		 "Q                                                                              Q", // 13
+		 "Q                                                                              Q", // 14
+		 "Q                                                                              Q", // 15
+		 "Q                                                                              Q", // 16
+		 "Q                                                                              Q", // 17
+		 "Q                                                                              Q", // 18
+		 "Q                                                                              Q", // 19
+		 "Q                                                                              Q", // 20
+		 "Q                                                                              Q", // 21
+		 "Q                                                                              Q", // 22
+		 "Q==============================================================================Q", // 23
+		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
 	};
 	const char* manuBoard[MAX_Y] = {
 		// 01234567890123456789012345678901234567890123456789012345678901234567890123456789
@@ -98,6 +149,8 @@ public:
 	void setMenu();
 	void setGame();
 	void setGuide();
+	void setLose();
+	void setWin();
 	void print() const;
 	char getCharFromCurrentBoard(int x, int y) const {
 		return currentBoard[y][x];

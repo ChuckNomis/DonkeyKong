@@ -19,6 +19,16 @@ void board::setGuide() {
 		memcpy(currentBoard[i], guideBoard[i], MAX_X + 1);
 	}
 }
+void board::setWin() {
+	for (int i = 0; i < MAX_Y; i++) {
+		memcpy(currentBoard[i], winBoard[i], MAX_X + 1);
+	}
+}
+void board::setLose() {
+	for (int i = 0; i < MAX_Y; i++) {
+		memcpy(currentBoard[i], loseBoard[i], MAX_X + 1);
+	}
+}
 void board::changePixel(Pos pos,char ch) {
 	currentBoard[pos.y][pos.x] = ch;
 }

@@ -6,10 +6,10 @@
 
 class barrel
 {
-	const int SLEEP_DURATION = 50; // Duration (in milliseconds) between each step
-	//if w check jump or ladder move acording 
-	Pos barrelPos{ 63,6 };	
-	Direction dir{ 0,0 };
+	int fallCounter = 0;
+	bool exist = false;
+	Pos barrelPos{ 0, 0 };	
+	Direction dir{ 0, 0 };
 	board* pBoard= nullptr;
 	char ch = 'O';
 	void draw(char c) const {
@@ -17,14 +17,30 @@ class barrel
 		std::cout << c;
 	}
 public:
-
+	int getFallCounter () {
+		return fallCounter;
+	}
+	void resetFallCounter() {
+		fallCounter = 0;
+	}
+	void increaseFallCounter() {
+		fallCounter++;
+	}
+	void setExist(bool b) {
+		exist = b;
+	}
+	bool isExist() {
+		return exist;
+	}
 	bool checkLadder() {
 		if (pBoard->getCharFromOriginalBoard(barrelPos.x, barrelPos.y) == 'H')
 			return true;
 		return false;
 	}
-	void setBarrelOnBoard(board& board) {
+	void setBarrelBoard(board& board) {
 		pBoard = &board;
+	}
+	void setBarrelInSpawnPos() {
 		barrelPos.x = 53;
 		barrelPos.y = 6;
 	}
@@ -48,6 +64,7 @@ public:
 	void setDirX(int x) {
 		dir.x = x;
 	}
+	bool explode();
 
 };
 

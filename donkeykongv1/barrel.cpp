@@ -5,6 +5,35 @@
 #include <conio.h>
 #include "board.h"
 
+bool barrel::explode() {
+	bool marioDead = false;
+	setExist(false);
+	resetFallCounter();
+	for (int i = barrelPos.x - 2; i < barrelPos.x + 3; i++) {
+		for (int j = barrelPos.y - 2; j < barrelPos.y + 3; j++) {
+			if ( i > 0 && i < 80 && j < 23) {
+				gotoxy(i, j);
+				std::cout << 'X';
+				if (pBoard->getCharFromCurrentBoard(i, j) == '@')
+					marioDead = true;
+			}
+		}
+	}
+	erase();
+	draw('X');
+	Sleep(15);
+	for (int i = barrelPos.x - 2; i < barrelPos.x + 3; i++) {
+		for (int j = barrelPos.y - 2; j < barrelPos.y + 3; j++) {
+			if (i > 0 && i < 80 && j < 23) {
+				gotoxy(i, j);
+				std::cout << (pBoard->getCharFromCurrentBoard(i, j));
+			}
+		}
+	}
+	return marioDead;
+}
+
+
 bool barrel::isBarrelFalling() {
 	if (pBoard->getCharFromCurrentBoard(barrelPos.x, barrelPos.y + 1) != '>' &&
 		pBoard->getCharFromCurrentBoard(barrelPos.x, barrelPos.y + 1) != '<' &&

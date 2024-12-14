@@ -7,6 +7,13 @@
 #include "mario.h"
 #include "board.h"
 
+
+bool mario::isMarioWin() {
+	if (pBoard->getCharFromOriginalBoard(marioPos.x, marioPos.y) == '$')
+		return true;
+	return false;
+}
+
 void mario::up(int& jumps, bool& ladder) {
 	if (checkLadder()){
 		dir = { 0,-1 };
@@ -20,6 +27,7 @@ void mario::up(int& jumps, bool& ladder) {
 	}
 }
 
+
 void mario::down(bool& downLadder, bool& ladder) {
 	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 2) == 'H') {
 		ladder = true;
@@ -29,6 +37,8 @@ void mario::down(bool& downLadder, bool& ladder) {
 		marioPos.y += 2;
 	}
 }
+
+
 void mario::isMarioOnFirstLadder(bool& downLadder, bool& ladder) {
 	if ((pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) == '>' ||
 		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) == '<' ||
@@ -82,6 +92,7 @@ bool mario::isMarioHitBarrel() {
 	return false;
 }
 
+
 void mario::move() {
 	int newX = marioPos.x + dir.x;
 	int newY = marioPos.y + dir.y;
@@ -90,8 +101,12 @@ void mario::move() {
 	if (pBoard->getCharFromCurrentBoard(newX, newY) == 'Q'||
 		pBoard->getCharFromCurrentBoard(newX, newY) == '='||
 		pBoard->getCharFromCurrentBoard(newX, newY) == '>'||
+		pBoard->getCharFromCurrentBoard(newX, newY) == '&'||
 		pBoard->getCharFromCurrentBoard(newX, newY) == '<') {
-		dir = { 0, 0 };
+		if (dir.y != 0) {
+			marioPos.y = newY;
+		}
+		dir.x = 0;
 	}
 	else {
 		marioPos.x = newX;
