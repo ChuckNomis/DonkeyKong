@@ -1,8 +1,9 @@
 #pragma once
 #include "board.h"
-class Menu{
 
+// Menu class to handle the main menu of the game
+class Menu {
 public:
-	void start();
+    // Starts the menu interaction loop
+    void start();
 };
-

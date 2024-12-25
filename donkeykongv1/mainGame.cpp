@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
@@ -8,7 +7,7 @@
 #include "barrel.h"
 #include "barrelGroup.h"
 
-
+// Main game loop
 void mainGame::startGame() {
 
 	bool marioWin = false;
@@ -32,14 +31,15 @@ void mainGame::startGame() {
 		bool ladder = false;
 		bool downLadder = false;
 
-
 		while (true) {
 
-			//Spawn barrel every 40 iterations
+			// Spawn a new barrel every 40 iterations
 			if (gameIteration % 40 == 0) {
-				_BG.spawnBarrel(barrelSum%10);
+				_BG.spawnBarrel(barrelSum % 10);
 				barrelSum++;
 			}
+
+			// Draw Mario's current state (on ladder or normal)
 			if (_mario.checkLadder()) {
 				_mario.drawOnLadder();
 			}
@@ -48,11 +48,13 @@ void mainGame::startGame() {
 			}
 			_BG.drawBarrels();
 
+			// Check if Mario is hit by a barrel
 			if (_mario.isMarioHitBarrel()) {
 				marioLoseLife();
 				break;
 			}
 
+			// Handle keyboard input
 			if ((_kbhit()) && (jumps == 0) && fall == false && ladder == false) {
 				char key = _getch();
 				if (key == 27) {
@@ -63,26 +65,28 @@ void mainGame::startGame() {
 					_mario.up(jumps, ladder);
 				}
 				if (std::tolower(key) == 'x') {
-					_mario.down(downLadder,ladder);
+					_mario.down(downLadder, ladder);
 				}
 			}
 
-			_mario.isMarioOnLastLadder(downLadder,ladder);
+			// Check Mario's ladder state
+			_mario.isMarioOnLastLadder(downLadder, ladder);
 			_mario.isMarioOnFirstLadder(downLadder, ladder);
 
-
-
-			if (_mario.isMarioFalling() && jumps==0 && ladder == false) {
+			// Handle falling logic
+			if (_mario.isMarioFalling() && jumps == 0 && ladder == false) {
 				fall = true;
 				_mario.setDirY(1);
 				fallCounter++;
 			}
 
+			// Check if barrels are falling
 			if (_BG.barrelsFalling()) {
 				marioLoseLife();
 				break;
 			}
 
+			// Stop falling when Mario lands
 			if (!_mario.isMarioFalling() && fall == true) {
 				_mario.setDirY(0);
 				fall = false;
@@ -93,13 +97,12 @@ void mainGame::startGame() {
 					break;
 				}
 				else {
-				fallCounter = 0;
+					fallCounter = 0;
 				}
 			}
-			Sleep(100); 
+			Sleep(100);
 
-		
-
+			// Erase Mario's previous position
 			if (_mario.checkLadder()) {
 				_mario.eraseOnLadder();
 			}
@@ -107,22 +110,26 @@ void mainGame::startGame() {
 				_mario.erase();
 			}
 
+			// Move Mario
 			_mario.move();
 
+			// Check win condition
 			if (_mario.isMarioWin()) {
 				marioWin = true;
 				break;
-			} 
+			}
 
+			// Check again if Mario is hit by a barrel
 			if (_mario.isMarioHitBarrel()) {
 				marioLoseLife();
 				break;
 			}
 
+			// Move and erase barrels
 			_BG.eraseBarrels();
 			_BG.moveBarrels();
 
-
+			// Handle jumping logic
 			if (jumps == 2) {
 				jumps = 0;
 				_mario.setDirY(0);
@@ -130,22 +137,27 @@ void mainGame::startGame() {
 			if (jumps == 1) {
 				jumps++;
 			}
-			
+
 			gameIteration++;
 		}
 	}
+
+	// End game states
 	if (marioWin) {
 		gameWin();
 	}
 	else {
 		gameOver();
 	}
-
 }
+
+// Display the number of lives left
 void mainGame::printLifes() {
 	gotoxy(12, 2);
-	std::cout << marioLifes;	
+	std::cout << marioLifes;
 }
+
+// Pause the game until ESC is pressed again
 void mainGame::pauseGame() {
 	while (true) {
 		if (_kbhit()) {
@@ -156,6 +168,8 @@ void mainGame::pauseGame() {
 		}
 	}
 }
+
+// Display the win screen
 void mainGame::gameWin() {
 	_board.setWin();
 	_board.print();
@@ -168,6 +182,8 @@ void mainGame::gameWin() {
 		}
 	}
 }
+
+// Display the game over screen
 void mainGame::gameOver() {
 	_board.setLose();
 	_board.print();

@@ -4,17 +4,31 @@
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
+
+// The barrelGroup class manages a collection of barrels and their behavior
 class barrelGroup
 {
-	barrel _barrelGroup[10];
+    barrel _barrelGroup[10]; // Array to hold up to 10 barrels
 
 public:
-	void setBarrelsBoard(board& board);
-	void spawnBarrel(int i);
-	bool barrelsFalling();
-	void eraseBarrels();
-	void moveBarrels();
-	void drawBarrels();
-	void resetAll();
-};
+    // Associates the barrels with the game board
+    void setBarrelsBoard(board& board);
 
+    // Spawns a new barrel at the specified index
+    void spawnBarrel(int i);
+
+    // Checks if any barrels are currently falling
+    bool barrelsFalling();
+
+    // Erases all barrels from the board
+    void eraseBarrels();
+
+    // Moves all barrels according to their current logic
+    void moveBarrels();
+
+    // Draws all barrels on the board
+    void drawBarrels();
+
+    // Resets all barrels to their initial state
+    void resetAll();
+};

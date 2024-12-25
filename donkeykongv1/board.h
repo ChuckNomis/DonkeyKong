@@ -1,8 +1,12 @@
 #pragma once
 #include "utils.h"
+// The `board` class manages the game's visuals, including different game states and rendering.
 class board {
+	// Constants defining the board dimensions
 	static constexpr int MAX_X = 80;
 	static constexpr int MAX_Y = 25;
+
+	// Current board state used for rendering on-screen
 	char currentBoard[MAX_Y][MAX_X + 1]; // +1 for null terminator
 	const char* gameBoard[MAX_Y] = {
 	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789
@@ -122,8 +126,8 @@ class board {
 		  "Q                                                                              Q", // 1
 		  "Q                           ~~~ INSTRUCTIONS ~~~                               Q", // 2
 		  "Q                                                                              Q", // 3
-		  "Q                          How to Play Donkey Kong:                            Q", // 4
-		  "Q                                                                              Q", // 5
+		  "Q                     PRESS ESC TO EXIT THE INSTRUCTIONS                       Q", // 4
+		  "Q                         How to Play Donkey Kong:                             Q", // 5
 		  "Q                                                                              Q", // 6
 		  "Q    - The objective is to navigate your character to the top of the screen,   Q", // 7
 		  "Q      avoiding barrels and other obstacles, to rescue the princess.           Q", // 8
@@ -145,16 +149,33 @@ class board {
 		  "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
 	};
 public:
-	void changePixel(Pos pos,char ch);
+	// Updates a specific position on the board
+	void changePixel(Pos pos, char ch);
+
+	// Sets the current board to the menu state
 	void setMenu();
+
+	// Sets the current board to the game state
 	void setGame();
+
+	// Sets the current board to the guide state
 	void setGuide();
+
+	// Sets the current board to the lose state
 	void setLose();
+
+	// Sets the current board to the win state
 	void setWin();
+
+	// Prints the current board to the console
 	void print() const;
+
+	// Gets a character from the current board
 	char getCharFromCurrentBoard(int x, int y) const {
 		return currentBoard[y][x];
 	}
+
+	// Gets a character from the original game board
 	char getCharFromOriginalBoard(int x, int y) const {
 		return gameBoard[y][x];
 	}

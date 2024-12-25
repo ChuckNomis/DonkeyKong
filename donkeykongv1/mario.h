@@ -4,60 +4,103 @@
 #include <cstring>
 #include "board.h"
 
-
+// Class representing Mario and his interactions with the board
 class mario
 {
-	const int SLEEP_DURATION = 50; // Duration (in milliseconds) between each step
-	//if w check jump or ladder move acording 
-	const int JUMP_HEIGHT = 2; // Define how high mario can jump
-	static constexpr char keys[] = {'a', 'd','s'};
-	static constexpr size_t numKeys = sizeof(keys) / sizeof(keys[0]);
-	// the directions array order is exactly the same as the keys array - must keep it that way
-	static constexpr Direction directions[] = {{-1, 0}, {1, 0},{0, 0}};
-	Pos marioPos{ 0, 0 };
-	Direction dir { 0, 0 } ; // Starting direction: dir.x, dir.y
-	char ch = '@';
-	board* pBoard = nullptr;
-	void draw(char c) const {
-		gotoxy(marioPos.x, marioPos.y);
-		std::cout << c;
-	}
+    // Constants for Mario's behavior
+
+    // Key bindings for Mario's movement ('a' for left, 'd' for right, 's' for stop)
+    static constexpr char keys[] = { 'a', 'd', 's' };
+    static constexpr size_t numKeys = sizeof(keys) / sizeof(keys[0]);
+
+    // Directions corresponding to the keys array
+    static constexpr Direction directions[] = { {-1, 0}, {1, 0}, {0, 0} };
+
+    // Mario's position and direction
+    Pos marioPos{ 30, 22 }; // Initial position of Mario
+    Direction dir{ 0, 0 };  // Starting direction: dir.x, dir.y
+
+    // Character used to represent Mario on the board
+    char ch = '@';
+
+    // Pointer to the game board
+    board* pBoard = nullptr;
+
+    // Draw Mario or other characters on the board at his current position
+    void draw(char c) const {
+        gotoxy(marioPos.x, marioPos.y); 
+        std::cout << c; 
+    }
+
 public:
-	void setDir(int _x, int _y) {
-		dir.x = _x;
-		dir.y = _y;
-	}
-	void setDirY(int y) {
-		dir.y = y;
-	}
-	bool isMarioFalling();
-	void draw() const {
-		pBoard->changePixel(marioPos, '@');
-		draw(ch);
-	}
-	void drawOnLadder() const {
-		pBoard->changePixel(marioPos, 'H');
-		draw('%');
-	}
-	void erase() {
-		pBoard->changePixel(marioPos,' ');
-		draw(' ');
-	}
-	void eraseOnLadder() {
-		pBoard->changePixel(marioPos, 'H');
-		draw('H');
-	}
-	void up(int& jumps, bool& ladder);
-	void down(bool& downLadder, bool& ladder);
-	bool checkLadder();
-	void keyPressed(char key);
-	void move();
-	void setMarioOnBoard(board& board) {
-		pBoard = &board;
-		marioPos = { 30,22 };
-	}
-	void isMarioOnLastLadder(bool& downLadder, bool& ladder);
-	void isMarioOnFirstLadder(bool& downLadder, bool& ladder);
-	bool isMarioHitBarrel();
-	bool isMarioWin();
+    // Set Mario's direction
+    void setDir(int _x, int _y) {
+        dir.x = _x;
+        dir.y = _y;
+    }
+
+    // Set Mario's vertical direction
+    void setDirY(int y) {
+        dir.y = y;
+    }
+
+    // Check if Mario is currently falling
+    bool isMarioFalling();
+
+    // Draw Mario at his current position on the board
+    void draw() const {
+        pBoard->changePixel(marioPos, '@'); 
+        draw(ch);
+    }
+
+    // Draw Mario while on a ladder
+    void drawOnLadder() const {
+        pBoard->changePixel(marioPos, 'H');
+        draw('%'); 
+    }
+
+    // Erase Mario from his current position
+    void erase() {
+        pBoard->changePixel(marioPos, ' '); 
+        draw(' '); 
+    }
+
+    // Erase Mario from a ladder position
+    void eraseOnLadder() {
+        pBoard->changePixel(marioPos, 'H'); 
+        draw('H'); 
+    }
+
+    // Handle Mario moving up (jumping or climbing a ladder)
+    void up(int& jumps, bool& ladder);
+
+    // Handle Mario moving down (falling or descending a ladder)
+    void down(bool& downLadder, bool& ladder);
+
+    // Check if Mario is on a ladder
+    bool checkLadder();
+
+    // Handle input key presses and adjust Mario's direction
+    void keyPressed(char key);
+
+    // Move Mario based on his current direction
+    void move();
+
+    // Set Mario's initial position on the board
+    void setMarioOnBoard(board& board) {
+        pBoard = &board;  
+        marioPos = { 30, 22 };
+    }
+
+    // Check if Mario is on the last rung of a ladder
+    void isMarioOnLastLadder(bool& downLadder, bool& ladder);
+
+    // Check if Mario is on the first rung of a ladder
+    void isMarioOnFirstLadder(bool& downLadder, bool& ladder);
+
+    // Check if Mario is hit by a barrel
+    bool isMarioHitBarrel();
+
+    // Check if Mario has reached the winning condition
+    bool isMarioWin();
 };
