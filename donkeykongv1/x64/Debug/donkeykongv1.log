@@ -1,10 +1,7 @@
 ﻿  barrel.cpp
   barrelGroup.cpp
-  board.cpp
-  main.cpp
   mainGame.cpp
   mario.cpp
   menu.cpp
-  utils.cpp
   Generating Code...
   donkeykongv1.vcxproj -> C:\Users\nadav\Documents\GitHub\DonkeyKong\x64\Debug\donkeykongv1.exe

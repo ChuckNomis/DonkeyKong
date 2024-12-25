@@ -6,12 +6,12 @@
 
 class barrel
 {
-	int fallCounter = 0;
-	bool exist = false;
-	Pos barrelPos{ 0, 0 };
-	Direction dir{ 0, 0 };
-	board* pBoard = nullptr;
-	char ch = 'O';
+	int fallCounter;
+	bool exist;
+	Pos barrelPos;
+	Direction dir;
+	board* pBoard;
+	char ch;
 
 	// Draw the barrel at current position
 	void draw(char c) const {
@@ -20,6 +20,10 @@ class barrel
 	}
 
 public:
+	//Constructor
+	barrel(int fallCounter = 0, bool exist = false, Pos barrelPos = { 0, 0 }, Direction dir = { 0, 0 }, board* pBoard = nullptr, char ch = 'O')
+		: fallCounter(fallCounter), exist(exist), barrelPos(barrelPos), dir(dir), pBoard(pBoard), ch(ch) {
+	}
 	// Get fall counter value
 	int getFallCounter() {
 		return fallCounter;

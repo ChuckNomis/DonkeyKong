@@ -17,14 +17,14 @@ class mario
     static constexpr Direction directions[] = { {-1, 0}, {1, 0}, {0, 0} };
 
     // Mario's position and direction
-    Pos marioPos{ 30, 22 }; // Initial position of Mario
-    Direction dir{ 0, 0 };  // Starting direction: dir.x, dir.y
+    Pos marioPos; // Initial position of Mario
+    Direction dir;  // Starting direction: dir.x, dir.y
 
     // Character used to represent Mario on the board
-    char ch = '@';
+    char ch;
 
     // Pointer to the game board
-    board* pBoard = nullptr;
+    board* pBoard;
 
     // Draw Mario or other characters on the board at his current position
     void draw(char c) const {
@@ -33,6 +33,10 @@ class mario
     }
 
 public:
+    //Constructor
+    mario(Pos marioPos = { 30, 22 }, Direction dir = { 0, 0 }, char ch = '@', board* pBoard = nullptr)
+        : marioPos(marioPos), dir(dir), ch(ch), pBoard(pBoard) {
+    }
     // Set Mario's direction
     void setDir(int _x, int _y) {
         dir.x = _x;
