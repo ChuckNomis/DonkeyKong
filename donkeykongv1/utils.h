@@ -1,6 +1,31 @@
 #pragma once
 #include <windows.h>
 
+// Enumeration for special characters used in the game
+enum SpecialCharacters {
+	LADDER = 'H', // Ladder character
+	FLOOR = '=', // Floor top character
+	FLOOR_RIGHT = '>', // Floor right character
+	FLOOR_LEFT = '<', // Floor left character
+	BARREL = 'O', // Barrel character
+	MARIO = '@', // Mario character
+	KONG = '&', // Kong character
+	PAULINE = '$', // Pauline character
+	SPACE = ' ', // Space character
+	BORDER = 'Q', // Border character
+	EXPLOSION = 'X', // Explosion character
+	MARIO_ON_LADDER = '%' // Mario on ladder character
+};
+// Enumeration for key codes
+enum KeyCode {
+	KEY_UP = 'w',
+	KEY_DOWN = 'x',
+	KEY_LEFT = 'a',
+	KEY_RIGHT = 'd',
+	KEY_STAY = 's',
+	KEY_ESC = 27,
+};
+
 // Moves the cursor to the specified (x, y) position on the console screen
 void gotoxy(int x, int y);
 

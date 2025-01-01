@@ -22,12 +22,12 @@ void Menu::start() {
 			char key = _getch(); // Get the pressed key
 			switch (key) {
 			case '1': // Option 1: Start a new game
-				_game.startGame();  // Start the game
+				_game.startGame(1);  // Start the game
 				_board.setMenu();   // Reset to the menu after the game ends
 				_board.print();     // Reprint the menu
 				break;
 
-			case 27: // Escape key: Reset to the menu
+			case KeyCode::KEY_ESC: // Escape key: Reset to the menu
 				_board.setMenu();   // Reset the menu state
 				_board.print();     // Reprint the menu
 				break;

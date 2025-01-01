@@ -16,7 +16,7 @@ class mainGame
 
 public:
     // Checks if Mario has no remaining lives
-    bool isMarioDead() {
+    bool isMarioDead() const{
         return marioLifes == 0;
     }
 
@@ -26,13 +26,13 @@ public:
     }
 
     // Prints the remaining lives of Mario
-    void printLifes();
+    void printLifes() const;
 
     // Pauses the game until the user resumes
-    void pauseGame();
+    void pauseGame() const;
 
     // Starts the main game loop
-    void startGame();
+    void startGame(int screenNumber);
 
     // Handles the game-over state
     void gameOver();

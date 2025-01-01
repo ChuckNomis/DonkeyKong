@@ -8,7 +8,9 @@
 #include "barrelGroup.h"
 
 // Main game loop
-void mainGame::startGame() {
+void mainGame::startGame(int screenNumber) {
+
+
 
 	bool marioWin = false;
 	marioLifes = 3;
@@ -32,7 +34,6 @@ void mainGame::startGame() {
 		bool downLadder = false;
 
 		while (true) {
-
 			// Spawn a new barrel every 40 iterations
 			if (gameIteration % 40 == 0) {
 				_BG.spawnBarrel(barrelSum % 10);
@@ -57,14 +58,14 @@ void mainGame::startGame() {
 			// Handle keyboard input
 			if ((_kbhit()) && (jumps == 0) && fall == false && ladder == false) {
 				char key = _getch();
-				if (key == 27) {
+				if (key == KeyCode::KEY_ESC) {
 					pauseGame();
 				}
 				_mario.keyPressed(key);
-				if (std::tolower(key) == 'w' && !_mario.isMarioFalling()) {
+				if (std::tolower(key) == KeyCode::KEY_UP && !_mario.isMarioFalling()) {
 					_mario.up(jumps, ladder);
 				}
-				if (std::tolower(key) == 'x') {
+				if (std::tolower(key) == KeyCode::KEY_DOWN) {
 					_mario.down(downLadder, ladder);
 				}
 			}
@@ -152,17 +153,17 @@ void mainGame::startGame() {
 }
 
 // Display the number of lives left
-void mainGame::printLifes() {
+void mainGame::printLifes() const {
 	gotoxy(12, 2);
 	std::cout << marioLifes;
 }
 
 // Pause the game until ESC is pressed again
-void mainGame::pauseGame() {
+void mainGame::pauseGame() const {
 	while (true) {
 		if (_kbhit()) {
 			char Esc = _getch();
-			if (Esc == 27) {
+			if (Esc == KeyCode::KEY_ESC) {
 				break;
 			}
 		}
@@ -176,7 +177,7 @@ void mainGame::gameWin() {
 	while (true) {
 		if (_kbhit()) {
 			char Esc = _getch();
-			if (Esc == 27) {
+			if (Esc == KeyCode::KEY_ESC) {
 				break;
 			}
 		}
@@ -190,7 +191,7 @@ void mainGame::gameOver() {
 	while (true) {
 		if (_kbhit()) {
 			char Esc = _getch();
-			if (Esc == 27) {
+			if (Esc == KeyCode::KEY_ESC) {
 				break;
 			}
 		}

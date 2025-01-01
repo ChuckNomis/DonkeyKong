@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\barrel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|solutionrelative:donkeykongv1\\barrel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\mario.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|solutionrelative:donkeykongv1\\mario.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\utils.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|solutionrelative:donkeykongv1\\utils.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|solutionrelative:donkeykongv1\\menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\barrelGroup.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|solutionrelative:donkeykongv1\\barrelGroup.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\mainGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|solutionrelative:donkeykongv1\\mainGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|solutionrelative:donkeykongv1\\menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\board.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -29,6 +21,22 @@
     {
       "AbsoluteMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\mainGame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|solutionrelative:donkeykongv1\\mainGame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\board.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|solutionrelative:donkeykongv1\\board.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|solutionrelative:donkeykongv1\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\utils.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|solutionrelative:donkeykongv1\\utils.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\utils.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{39158926-435B-4F52-93D8-1CF68B41237B}|donkeykongv1\\donkeykongv1.vcxproj|solutionrelative:donkeykongv1\\utils.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,56 +46,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "utils.h",
-              "DocumentMoniker": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\utils.h",
-              "RelativeDocumentMoniker": "donkeykongv1\\utils.h",
-              "ToolTip": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\utils.h",
-              "RelativeToolTip": "donkeykongv1\\utils.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-25T12:49:31.562Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "menu.h",
               "DocumentMoniker": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\menu.h",
               "RelativeDocumentMoniker": "donkeykongv1\\menu.h",
               "ToolTip": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\menu.h",
               "RelativeToolTip": "donkeykongv1\\menu.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-12-25T12:49:30.991Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "mario.h",
-              "DocumentMoniker": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\mario.h",
-              "RelativeDocumentMoniker": "donkeykongv1\\mario.h",
-              "ToolTip": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\mario.h",
-              "RelativeToolTip": "donkeykongv1\\mario.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwB8AAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-25T12:49:30.19Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "board.h",
               "DocumentMoniker": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\board.h",
               "RelativeDocumentMoniker": "donkeykongv1\\board.h",
               "ToolTip": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\board.h",
               "RelativeToolTip": "donkeykongv1\\board.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAAAKoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-12-25T12:49:26.875Z",
               "EditorCaption": ""
@@ -95,40 +77,98 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "barrelGroup.h",
-              "DocumentMoniker": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\barrelGroup.h",
-              "RelativeDocumentMoniker": "donkeykongv1\\barrelGroup.h",
-              "ToolTip": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\barrelGroup.h",
-              "RelativeToolTip": "donkeykongv1\\barrelGroup.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-25T12:49:26.016Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "barrel.h",
-              "DocumentMoniker": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\barrel.h",
-              "RelativeDocumentMoniker": "donkeykongv1\\barrel.h",
-              "ToolTip": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\barrel.h",
-              "RelativeToolTip": "donkeykongv1\\barrel.h",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-25T12:49:24.927Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "mainGame.h",
               "DocumentMoniker": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\mainGame.h",
               "RelativeDocumentMoniker": "donkeykongv1\\mainGame.h",
               "ToolTip": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\mainGame.h",
               "RelativeToolTip": "donkeykongv1\\mainGame.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-12-25T12:07:38.711Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "menu.cpp",
+              "DocumentMoniker": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\menu.cpp",
+              "RelativeDocumentMoniker": "donkeykongv1\\menu.cpp",
+              "ToolTip": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\menu.cpp",
+              "RelativeToolTip": "donkeykongv1\\menu.cpp",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABYAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-01T13:15:35.984Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\main.cpp",
+              "RelativeDocumentMoniker": "donkeykongv1\\main.cpp",
+              "ToolTip": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\main.cpp",
+              "RelativeToolTip": "donkeykongv1\\main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-01T13:15:07.647Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "board.cpp",
+              "DocumentMoniker": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\board.cpp",
+              "RelativeDocumentMoniker": "donkeykongv1\\board.cpp",
+              "ToolTip": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\board.cpp",
+              "RelativeToolTip": "donkeykongv1\\board.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-01T13:14:55.645Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "mainGame.cpp",
+              "DocumentMoniker": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\mainGame.cpp",
+              "RelativeDocumentMoniker": "donkeykongv1\\mainGame.cpp",
+              "ToolTip": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\mainGame.cpp",
+              "RelativeToolTip": "donkeykongv1\\mainGame.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-01T12:31:48.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "utils.cpp",
+              "DocumentMoniker": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\utils.cpp",
+              "RelativeDocumentMoniker": "donkeykongv1\\utils.cpp",
+              "ToolTip": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\utils.cpp",
+              "RelativeToolTip": "donkeykongv1\\utils.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-01T12:31:04.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "utils.h",
+              "DocumentMoniker": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\utils.h",
+              "RelativeDocumentMoniker": "donkeykongv1\\utils.h",
+              "ToolTip": "C:\\Users\\nadav\\Documents\\GitHub\\DonkeyKong\\donkeykongv1\\utils.h",
+              "RelativeToolTip": "donkeykongv1\\utils.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-25T12:49:31.562Z",
               "EditorCaption": ""
             }
           ]

@@ -2,6 +2,9 @@
 #include <iostream>
 #include "board.h"
 #include "utils.h"
+#include <fstream>
+#include <string>
+#include <sstream>
 
 // Function to set the board to the menu state
 void board::setMenu() {
@@ -10,6 +13,23 @@ void board::setMenu() {
         memcpy(currentBoard[i], manuBoard[i], MAX_X + 1);  // Copy each row with an additional null terminator
     }
 }
+
+
+// Function to set the board to the screen state from a file
+bool board::setScreen(int screenNumber) {
+    std::ostringstream filenameStream;
+    filenameStream << "dkong_" << screenNumber << ".screen";
+    std::string filename = filenameStream.str();
+	std::ifstream file(filename);
+    if (!file.is_open()) {
+        return false;
+    }
+	for (int i = 0; i < MAX_Y; i++) {
+		file.getline(currentScreen[i], MAX_X + 1);
+	}
+    return true;
+}
+
 
 // Function to set the board to the game state
 void board::setGame() {

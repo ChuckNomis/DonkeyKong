@@ -8,6 +8,7 @@ class board {
 
 	// Current board state used for rendering on-screen
 	char currentBoard[MAX_Y][MAX_X + 1]; // +1 for null terminator
+	char currentScreen[MAX_Y][MAX_X + 1]; // +1 for null terminator
 	const char* gameBoard[MAX_Y] = {
 	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789
 	  "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
@@ -166,6 +167,8 @@ public:
 
 	// Sets the current board to the win state
 	void setWin();
+
+	bool setScreen(int i);
 
 	// Prints the current board to the console
 	void print() const;

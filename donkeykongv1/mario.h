@@ -10,7 +10,7 @@ class mario
     // Constants for Mario's behavior
 
     // Key bindings for Mario's movement ('a' for left, 'd' for right, 's' for stop)
-    static constexpr char keys[] = { 'a', 'd', 's' };
+    static constexpr char keys[] = { KeyCode::KEY_LEFT, KeyCode::KEY_RIGHT, KeyCode::KEY_STAY };
     static constexpr size_t numKeys = sizeof(keys) / sizeof(keys[0]);
 
     // Directions corresponding to the keys array
@@ -34,7 +34,7 @@ class mario
 
 public:
     //Constructor
-    mario(Pos marioPos = { 30, 22 }, Direction dir = { 0, 0 }, char ch = '@', board* pBoard = nullptr)
+    mario(Pos marioPos = { 30, 22 }, Direction dir = { 0, 0 }, char ch = SpecialCharacters::MARIO, board* pBoard = nullptr)
         : marioPos(marioPos), dir(dir), ch(ch), pBoard(pBoard) {
     }
     // Set Mario's direction
@@ -49,30 +49,30 @@ public:
     }
 
     // Check if Mario is currently falling
-    bool isMarioFalling();
+    bool isMarioFalling() const;
 
     // Draw Mario at his current position on the board
     void draw() const {
-        pBoard->changePixel(marioPos, '@'); 
+        pBoard->changePixel(marioPos, SpecialCharacters::MARIO);
         draw(ch);
     }
 
     // Draw Mario while on a ladder
     void drawOnLadder() const {
-        pBoard->changePixel(marioPos, 'H');
-        draw('%'); 
+        pBoard->changePixel(marioPos, SpecialCharacters::LADDER);
+        draw(SpecialCharacters::MARIO_ON_LADDER);
     }
 
     // Erase Mario from his current position
     void erase() {
-        pBoard->changePixel(marioPos, ' '); 
-        draw(' '); 
+        pBoard->changePixel(marioPos, SpecialCharacters::SPACE);
+        draw(SpecialCharacters::SPACE);
     }
 
     // Erase Mario from a ladder position
     void eraseOnLadder() {
-        pBoard->changePixel(marioPos, 'H'); 
-        draw('H'); 
+        pBoard->changePixel(marioPos, SpecialCharacters::LADDER);
+        draw(SpecialCharacters::LADDER);
     }
 
     // Handle Mario moving up (jumping or climbing a ladder)
@@ -82,7 +82,7 @@ public:
     void down(bool& downLadder, bool& ladder);
 
     // Check if Mario is on a ladder
-    bool checkLadder();
+    bool checkLadder() const;
 
     // Handle input key presses and adjust Mario's direction
     void keyPressed(char key);
@@ -103,8 +103,8 @@ public:
     void isMarioOnFirstLadder(bool& downLadder, bool& ladder);
 
     // Check if Mario is hit by a barrel
-    bool isMarioHitBarrel();
+    bool isMarioHitBarrel() const;
 
     // Check if Mario has reached the winning condition
-    bool isMarioWin();
+    bool isMarioWin() const;
 };

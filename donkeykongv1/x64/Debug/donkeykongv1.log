@@ -1,5 +1,7 @@
 ﻿  barrel.cpp
   barrelGroup.cpp
+  board.cpp
+  main.cpp
   mainGame.cpp
   mario.cpp
   menu.cpp

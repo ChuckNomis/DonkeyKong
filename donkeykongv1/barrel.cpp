@@ -16,17 +16,17 @@ bool barrel::explode() {
 		for (int j = barrelPos.y - 2; j < barrelPos.y + 3; j++) {
 			if (i > 0 && i < 80 && j < 23) {
 				gotoxy(i, j);
-				std::cout << 'X';
+				std::cout << static_cast<char>(SpecialCharacters::EXPLOSION);
 
 				// Check if Mario is hit by the explosion
-				if (pBoard->getCharFromCurrentBoard(i, j) == '@')
+				if (pBoard->getCharFromCurrentBoard(i, j) == SpecialCharacters::MARIO)
 					marioDead = true;
 			}
 		}
 	}
 
 	erase(); // Erase the barrel
-	draw('X'); // Draw explosion character
+	draw(SpecialCharacters::EXPLOSION); // Draw explosion character
 	Sleep(15);
 
 	// Restore the board to its previous state
@@ -43,9 +43,9 @@ bool barrel::explode() {
 
 // Checks if the barrel is in a falling state
 bool barrel::isBarrelFalling() {
-	if (pBoard->getCharFromCurrentBoard(barrelPos.x, barrelPos.y + 1) != '>' &&
-		pBoard->getCharFromCurrentBoard(barrelPos.x, barrelPos.y + 1) != '<' &&
-		pBoard->getCharFromCurrentBoard(barrelPos.x, barrelPos.y + 1) != '=') {
+	if (pBoard->getCharFromCurrentBoard(barrelPos.x, barrelPos.y + 1) != SpecialCharacters::FLOOR_RIGHT &&
+		pBoard->getCharFromCurrentBoard(barrelPos.x, barrelPos.y + 1) != SpecialCharacters::FLOOR_LEFT &&
+		pBoard->getCharFromCurrentBoard(barrelPos.x, barrelPos.y + 1) != SpecialCharacters::FLOOR) {
 		return true;
 	}
 	return false;
@@ -54,21 +54,21 @@ bool barrel::isBarrelFalling() {
 // Moves the barrel based on its direction and interactions with the board
 void barrel::move() {
 	// Determine horizontal direction based on board indicators
-	if (pBoard->getCharFromCurrentBoard(barrelPos.x, barrelPos.y + 1) == '<')
+	if (pBoard->getCharFromCurrentBoard(barrelPos.x, barrelPos.y + 1) == SpecialCharacters::FLOOR_LEFT)
 		dir.x = -1;
-	else if (pBoard->getCharFromCurrentBoard(barrelPos.x, barrelPos.y + 1) == '>')
+	else if (pBoard->getCharFromCurrentBoard(barrelPos.x, barrelPos.y + 1) == SpecialCharacters::FLOOR_RIGHT)
 		dir.x = 1;
 
 	int newX = barrelPos.x + dir.x;
 	int newY = barrelPos.y + dir.y;
 
 	// Check for obstacles
-	if (pBoard->getCharFromCurrentBoard(newX, newY) == 'Q' ||
-		pBoard->getCharFromCurrentBoard(newX, newY) == '>' ||
-		pBoard->getCharFromCurrentBoard(newX, newY) == '<') {
+	if (pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::BORDER ||
+		pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR_RIGHT ||
+		pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR_LEFT) {
 		dir = { 0, 0 }; // Stop movement
 	}
-	else if (pBoard->getCharFromCurrentBoard(newX, newY) == '=') {
+	else if (pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR) {
 		dir.y = 0; // Stop vertical movement
 	}
 	else {

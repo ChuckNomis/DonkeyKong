@@ -21,11 +21,11 @@ class barrel
 
 public:
 	//Constructor
-	barrel(int fallCounter = 0, bool exist = false, Pos barrelPos = { 0, 0 }, Direction dir = { 0, 0 }, board* pBoard = nullptr, char ch = 'O')
+	barrel(int fallCounter = 0, bool exist = false, Pos barrelPos = { 0, 0 }, Direction dir = { 0, 0 }, board* pBoard = nullptr, char ch = SpecialCharacters::BARREL)
 		: fallCounter(fallCounter), exist(exist), barrelPos(barrelPos), dir(dir), pBoard(pBoard), ch(ch) {
 	}
 	// Get fall counter value
-	int getFallCounter() {
+	int getFallCounter() const {
 		return fallCounter;
 	}
 
@@ -45,13 +45,13 @@ public:
 	}
 
 	// Check if the barrel exists
-	bool isExist() {
+	bool isExist() const {
 		return exist;
 	}
 
 	// Check if the barrel is on a ladder
-	bool checkLadder() {
-		if (pBoard->getCharFromOriginalBoard(barrelPos.x, barrelPos.y) == 'H')
+	bool checkLadder() const {
+		if (pBoard->getCharFromOriginalBoard(barrelPos.x, barrelPos.y) == SpecialCharacters::LADDER)
 			return true;
 		return false;
 	}
@@ -69,20 +69,20 @@ public:
 
 	// Erase the barrel from the board
 	void erase() {
-		pBoard->changePixel(barrelPos, ' ');
-		draw(' ');
+		pBoard->changePixel(barrelPos, SpecialCharacters::SPACE);
+		draw(SpecialCharacters::SPACE);
 	}
 
 	// Draw the barrel on the board
-	void draw() const {
-		pBoard->changePixel(barrelPos, 'O');
+	void draw() {
+		pBoard->changePixel(barrelPos, SpecialCharacters::BARREL);
 		draw(ch);
 	}
 
 	// Erase the barrel from the ladder
 	void eraseOnLadder() {
-		pBoard->changePixel(barrelPos, 'H');
-		draw('H');
+		pBoard->changePixel(barrelPos, SpecialCharacters::LADDER);
+		draw(SpecialCharacters::LADDER);
 	}
 
 	// Move the barrel

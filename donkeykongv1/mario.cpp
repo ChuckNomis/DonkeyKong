@@ -6,8 +6,8 @@
 #include "board.h"
 
 // Check if Mario reaches the goal
-bool mario::isMarioWin() {
-	if (pBoard->getCharFromOriginalBoard(marioPos.x, marioPos.y) == '$')
+bool mario::isMarioWin() const {
+	if (pBoard->getCharFromOriginalBoard(marioPos.x, marioPos.y) == SpecialCharacters::PAULINE)
 		return true;
 	return false;
 }
@@ -28,7 +28,7 @@ void mario::up(int& jumps, bool& ladder) {
 
 // Handles downward movement for Mario, either descending a ladder or moving down
 void mario::down(bool& downLadder, bool& ladder) {
-	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 2) == 'H') { // Descend a ladder
+	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 2) == SpecialCharacters::LADDER) { // Descend a ladder
 		ladder = true;
 		downLadder = true;
 		dir = { 0, 1 };
@@ -39,9 +39,9 @@ void mario::down(bool& downLadder, bool& ladder) {
 
 // Check if Mario leaves the first ladder and stops descending
 void mario::isMarioOnFirstLadder(bool& downLadder, bool& ladder) {
-	if ((pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) == '>' ||
-		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) == '<' ||
-		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) == '=') &&
+	if ((pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) == SpecialCharacters::FLOOR_RIGHT ||
+		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) == SpecialCharacters::FLOOR_LEFT ||
+		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) == SpecialCharacters::FLOOR) &&
 		ladder == true && downLadder == true) {
 		dir = { 0, 0 }; // Stop movement
 		ladder = false;
@@ -51,9 +51,9 @@ void mario::isMarioOnFirstLadder(bool& downLadder, bool& ladder) {
 
 // Check if Mario leaves the last ladder and stops climbing
 void mario::isMarioOnLastLadder(bool& downLadder, bool& ladder) {
-	if ((pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y - 1) == '>' ||
-		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y - 1) == '<' ||
-		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y - 1) == '=') &&
+	if ((pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y - 1) == SpecialCharacters::FLOOR_RIGHT ||
+		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y - 1) == SpecialCharacters::FLOOR_LEFT ||
+		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y - 1) == SpecialCharacters::FLOOR) &&
 		ladder == true && downLadder == false) {
 		eraseOnLadder(); // Erase Mario's position on the ladder
 		marioPos.y -= 2; // Move Mario up 2 spaces
@@ -63,18 +63,18 @@ void mario::isMarioOnLastLadder(bool& downLadder, bool& ladder) {
 }
 
 // Check if Mario is in a falling state
-bool mario::isMarioFalling() {
-	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) != '>' &&
-		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) != '<' &&
-		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) != '=') {
+bool mario::isMarioFalling() const {
+	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) != SpecialCharacters::FLOOR_RIGHT &&
+		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) != SpecialCharacters::FLOOR_LEFT &&
+		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y + 1) != SpecialCharacters::FLOOR) {
 		return true;
 	}
 	return false;
 }
 
 // Check if Mario is currently on a ladder
-bool mario::checkLadder() {
-	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y) == 'H')
+bool mario::checkLadder() const {
+	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y) == SpecialCharacters::LADDER)
 		return true;
 	return false;
 }
@@ -90,8 +90,8 @@ void mario::keyPressed(char key) {
 }
 
 // Check if Mario collides with a barrel
-bool mario::isMarioHitBarrel() {
-	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y) == 'O') {
+bool mario::isMarioHitBarrel() const {
+	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y) == SpecialCharacters::BARREL) {
 		return true;
 	}
 	return false;
@@ -103,11 +103,11 @@ void mario::move() {
 	int newY = marioPos.y + dir.y;
 
 	// Check for obstacles that block movement
-	if (pBoard->getCharFromCurrentBoard(newX, newY) == 'Q' ||
-		pBoard->getCharFromCurrentBoard(newX, newY) == '=' ||
-		pBoard->getCharFromCurrentBoard(newX, newY) == '>' ||
-		pBoard->getCharFromCurrentBoard(newX, newY) == '&' ||
-		pBoard->getCharFromCurrentBoard(newX, newY) == '<') {
+	if (pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::BORDER ||
+		pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR ||
+		pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR_RIGHT ||
+		pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR_LEFT ||
+		pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::KONG) {
 		if (dir.y != 0) {
 			marioPos.y = newY; // Allow vertical movement
 		}
