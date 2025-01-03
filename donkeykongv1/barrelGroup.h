@@ -8,11 +8,12 @@
 // The barrelGroup class manages a collection of barrels and their behavior
 class barrelGroup
 {
+	Pos _barrelSpawnPos; // Position of the barrel
     barrel _barrelGroup[10]; // Array to hold up to 10 barrels
 
 public:
     // Associates the barrels with the game board
-    void setBarrelsBoard(board& board);
+    void setBarrelsBoard(board& board,Pos newPos);
 
     // Spawns a new barrel at the specified index
     void spawnBarrel(int i);

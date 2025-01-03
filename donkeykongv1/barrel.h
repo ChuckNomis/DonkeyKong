@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
-#include "utils.h"
-#include <cstring>
+#include "utils.h" 
 #include "board.h"
 
 class barrel
@@ -9,6 +8,7 @@ class barrel
 	int fallCounter;
 	bool exist;
 	Pos barrelPos;
+	Pos spawnPos;
 	Direction dir;
 	board* pBoard;
 	char ch;
@@ -24,6 +24,7 @@ public:
 	barrel(int fallCounter = 0, bool exist = false, Pos barrelPos = { 0, 0 }, Direction dir = { 0, 0 }, board* pBoard = nullptr, char ch = SpecialCharacters::BARREL)
 		: fallCounter(fallCounter), exist(exist), barrelPos(barrelPos), dir(dir), pBoard(pBoard), ch(ch) {
 	}
+
 	// Get fall counter value
 	int getFallCounter() const {
 		return fallCounter;
@@ -51,20 +52,27 @@ public:
 
 	// Check if the barrel is on a ladder
 	bool checkLadder() const {
-		if (pBoard->getCharFromOriginalBoard(barrelPos.x, barrelPos.y) == SpecialCharacters::LADDER)
+		if (pBoard->getCharFromOriginalScreen(barrelPos.x, barrelPos.y) == SpecialCharacters::LADDER)
+			return true;
+		return false;
+	}
+
+	bool checkDkong() const {
+		if (pBoard->getCharFromOriginalScreen(barrelPos.x, barrelPos.y) == SpecialCharacters::KONG)
 			return true;
 		return false;
 	}
 
 	// Set the board pointer for the barrel
-	void setBarrelBoard(board& board) {
+	void setBarrelBoard(board& board, Pos newPos) {
 		pBoard = &board;
+		spawnPos = newPos;
+		barrelPos = newPos;
 	}
 
 	// Set barrel to spawn position
 	void setBarrelInSpawnPos() {
-		barrelPos.x = 53;
-		barrelPos.y = 6;
+		barrelPos = spawnPos;
 	}
 
 	// Erase the barrel from the board
@@ -83,6 +91,11 @@ public:
 	void eraseOnLadder() {
 		pBoard->changePixel(barrelPos, SpecialCharacters::LADDER);
 		draw(SpecialCharacters::LADDER);
+	}
+	// Erase the barrel from the donkey kong
+	void ereaseOnDkong() {
+		pBoard->changePixel(barrelPos, SpecialCharacters::KONG);
+		draw(SpecialCharacters::KONG);
 	}
 
 	// Move the barrel

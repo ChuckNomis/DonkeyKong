@@ -34,7 +34,7 @@ class mario
 
 public:
     //Constructor
-    mario(Pos marioPos = { 30, 22 }, Direction dir = { 0, 0 }, char ch = SpecialCharacters::MARIO, board* pBoard = nullptr)
+    mario(Pos marioPos = { 0, 0 }, Direction dir = { 0, 0 }, char ch = SpecialCharacters::MARIO, board* pBoard = nullptr)
         : marioPos(marioPos), dir(dir), ch(ch), pBoard(pBoard) {
     }
     // Set Mario's direction
@@ -91,9 +91,9 @@ public:
     void move();
 
     // Set Mario's initial position on the board
-    void setMarioOnBoard(board& board) {
+    void setMarioOnBoard(board& board,Pos newMarioPos) {
         pBoard = &board;  
-        marioPos = { 30, 22 };
+        marioPos = newMarioPos;
     }
 
     // Check if Mario is on the last rung of a ladder

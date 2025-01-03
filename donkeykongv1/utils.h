@@ -18,6 +18,7 @@ enum SpecialCharacters {
 };
 // Enumeration for key codes
 enum KeyCode {
+	KEY_ENTER = 13,
 	KEY_UP = 'w',
 	KEY_DOWN = 'x',
 	KEY_LEFT = 'a',

@@ -7,7 +7,7 @@
 
 // Check if Mario reaches the goal
 bool mario::isMarioWin() const {
-	if (pBoard->getCharFromOriginalBoard(marioPos.x, marioPos.y) == SpecialCharacters::PAULINE)
+	if (pBoard->getCharFromOriginalScreen(marioPos.x, marioPos.y) == SpecialCharacters::PAULINE)
 		return true;
 	return false;
 }

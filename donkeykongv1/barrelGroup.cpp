@@ -37,6 +37,9 @@ void barrelGroup::eraseBarrels() {
 			if (b.checkLadder()) {
 				b.eraseOnLadder();
 			}
+			else if (b.checkDkong()) {
+				b.ereaseOnDkong();
+			}
 			else {
 				b.erase();
 			}
@@ -63,9 +66,9 @@ void barrelGroup::drawBarrels() {
 }
 
 // Sets the board for each barrel
-void barrelGroup::setBarrelsBoard(board& board) {
+void barrelGroup::setBarrelsBoard(board& board,Pos newPos) {
 	for (barrel& b : _barrelGroup) {
-		b.setBarrelBoard(board);
+		b.setBarrelBoard(board,newPos);
 	}
 }
 

@@ -6,12 +6,20 @@
 #include "menu.h"
 #include "board.h"
 #include "mainGame.h"
+#include <vector>
+#include <filesystem>
+
+
 
 // Method to initialize and handle the menu interactions
 void Menu::start() {
+
 	board _board;       // Instance of the board to manage menu and guide displays
 	mainGame _game;     // Instance of the game to handle gameplay logic
 
+	std::vector<std::string> FileNames; // Vector to store file names
+	int sumOfFiles = getAllBoardFileNames(FileNames); // Get all the file names in the screens folder
+	
 	_board.setMenu();   // Set the board to display the main menu
 	_board.print();     // Print the menu to the console
 
@@ -22,11 +30,19 @@ void Menu::start() {
 			char key = _getch(); // Get the pressed key
 			switch (key) {
 			case '1': // Option 1: Start a new game
-				_game.startGame(1);  // Start the game
+				_game.startGame(1,sumOfFiles);  // Start the game
 				_board.setMenu();   // Reset to the menu after the game ends
 				_board.print();     // Reprint the menu
 				break;
 
+			/*case '2':
+				_board.setChooseScreen();
+				_board.print();
+				_board.chooseScreen(FileNames,sumOfFiles);
+				_board.setMenu();   // Reset to the menu after the game ends
+				_board.print();     // Reprint the menu
+				break;
+				*/
 			case KeyCode::KEY_ESC: // Escape key: Reset to the menu
 				_board.setMenu();   // Reset the menu state
 				_board.print();     // Reprint the menu
@@ -38,7 +54,7 @@ void Menu::start() {
 				while (true) {
 					if (_kbhit()) {
 						char Esc = _getch();
-						if (Esc == 27) {
+						if (Esc == KeyCode::KEY_ESC) {
 							break;
 						}
 					}
@@ -57,3 +73,18 @@ void Menu::start() {
 		}
 	}
 }
+
+// Method to get all the file names in the screens folder
+int Menu::getAllBoardFileNames(std::vector<std::string>& vec_to_fill) {
+	int count = 0;
+	std::string folderPath = "screens"; // Path to the folder
+	namespace fs = std::filesystem;
+	for (const auto& entry : fs::directory_iterator(folderPath)) {
+		count++;
+		if (entry.is_regular_file() && entry.path().extension() == ".txt") {
+			vec_to_fill.push_back(entry.path().filename().string()); // Add file name to the vector
+		}
+	}
+	return count;
+}
+

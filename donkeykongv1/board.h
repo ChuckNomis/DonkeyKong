@@ -1,5 +1,13 @@
 #pragma once
-#include "utils.h"
+#include <iostream>
+#include <windows.h>
+#include <conio.h>
+#include <vector>
+#include <cstring>
+#include "utils.h" 
+
+
+
 // The `board` class manages the game's visuals, including different game states and rendering.
 class board {
 	// Constants defining the board dimensions
@@ -40,7 +48,7 @@ class board {
 	const char* winBoard[MAX_Y]= {
    //01234567890123456789012345678901234567890123456789012345678901234567890123456789
 	"QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
-	"Q                                                                              Q", // 1
+	"Q==============================================================================Q", // 1
 	"Q                                                                              Q", // 2
 	"Q                                                                              Q", // 3
 	"Q                                                                              Q", // 4
@@ -65,10 +73,38 @@ class board {
 	"Q==============================================================================Q", // 23
 	"QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
 	};
+	const char* screenErrorBoard[MAX_Y] = {
+		//01234567890123456789012345678901234567890123456789012345678901234567890123456789
+		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
+		 "Q==============================================================================Q", // 1
+		 "Q                                                                              Q", // 2
+		 "Q                                                                              Q", // 3
+		 "Q                                                                              Q", // 4
+		 "Q                                                                              Q", // 5
+		 "Q                                                                              Q", // 6
+		 "Q                            Screen # is not good                              Q", // 7
+		 "Q                                                                              Q", // 9
+		 "Q                                                                              Q", // 9
+		 "Q                                                                              Q", // 10
+		 "Q                                                                              Q", // 11
+		 "Q                      Press ENTER to go to the next stage                     Q", // 12
+		 "Q                                                                              Q", // 13
+		 "Q                                                                              Q", // 14
+		 "Q                                                                              Q", // 15
+		 "Q                                                                              Q", // 16
+		 "Q                                                                              Q", // 17
+		 "Q                                                                              Q", // 18
+		 "Q                                                                              Q", // 19
+		 "Q                                                                              Q", // 20
+		 "Q                                                                              Q", // 21
+		 "Q                                                                              Q", // 22
+		 "Q==============================================================================Q", // 23
+		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
+	};
 	const char* loseBoard[MAX_Y] = {
 		//01234567890123456789012345678901234567890123456789012345678901234567890123456789
 		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
-		 "Q                                                                              Q", // 1
+		 "Q==============================================================================Q", // 1
 		 "Q                                                                              Q", // 2
 		 "Q                                                                              Q", // 3
 		 "Q                                                                              Q", // 4
@@ -96,7 +132,7 @@ class board {
 	const char* manuBoard[MAX_Y] = {
 		// 01234567890123456789012345678901234567890123456789012345678901234567890123456789
 		  "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
-		  "Q                                                                              Q", // 1
+		  "Q==============================================================================Q", // 1
 		  "Q                                                                              Q", // 2
 		  "Q                              ***   Manu   ***                                Q", // 3
 		  "Q                                                                              Q", // 4
@@ -118,7 +154,7 @@ class board {
 		  "Q                                                                              Q", // 20
 		  "Q                                                                              Q", // 21
 		  "Q                                                                              Q", // 22
-		  "Q                                                                              Q", // 23
+		  "Q==============================================================================Q", // 23
 		  "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
 	};
 	const char* guideBoard[MAX_Y] = {
@@ -149,7 +185,42 @@ class board {
 		  "Q                          Good luck and have fun!                             Q", // 23
 		  "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
 	};
+	const char* chooseScreenBoard[MAX_Y] = {
+		//01234567890123456789012345678901234567890123456789012345678901234567890123456789
+		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
+		 "Q==============================================================================Q", // 1
+		 "Q                                                                              Q", // 2
+		 "Q         ----   Choose a Screen by pressing the screen number   ----          Q", // 3
+		 "Q                                                                              Q", // 4
+		 "Q                                                                              Q", // 5
+		 "Q                                                                              Q", // 6
+		 "Q                                                                              Q", // 7
+		 "Q                                                                              Q", // 9
+		 "Q                                                                              Q", // 9
+		 "Q                                                                              Q", // 10
+		 "Q                                                                              Q", // 11
+		 "Q                                                                              Q", // 12
+		 "Q                                                                              Q", // 13
+		 "Q                                                                              Q", // 14
+		 "Q                                                                              Q", // 15
+		 "Q                                                                              Q", // 16
+		 "Q                                                                              Q", // 17
+		 "Q                                                                              Q", // 18
+		 "Q                                                                              Q", // 19
+		 "Q                                                                              Q", // 20
+		 "Q                                                                              Q", // 21
+		 "Q                                                                              Q", // 22
+		 "Q==============================================================================Q", // 23
+		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
+	};
 public:
+	
+	void chooseScreen(std::vector<std::string> const, const int sumOfFiles) {
+		int screenNumber = 0;
+		gotoxy(36, 7);
+		
+	}
+
 	// Updates a specific position on the board
 	void changePixel(Pos pos, char ch);
 
@@ -168,7 +239,13 @@ public:
 	// Sets the current board to the win state
 	void setWin();
 
+	void setChooseScreen();
+
+	void setScreenError();
+
 	bool setScreen(int i);
+
+	bool isScreenOk(int i);
 
 	// Prints the current board to the console
 	void print() const;
@@ -179,8 +256,15 @@ public:
 	}
 
 	// Gets a character from the original game board
-	char getCharFromOriginalBoard(int x, int y) const {
-		return gameBoard[y][x];
+	char getCharFromOriginalScreen(int x, int y) const {
+		return currentScreen[y][x];
 	}
+	// Searches for a specific character on the board
+	Pos searchChar(char ch) const;
+
+	void fixBoard();
+
+	void fixChar(char c);
+
 };
 
