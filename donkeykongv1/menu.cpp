@@ -14,6 +14,7 @@
 // Method to initialize and handle the menu interactions
 void Menu::start() {
 
+	int screenNumber = 1;
 	board _board;       // Instance of the board to manage menu and guide displays
 	mainGame _game;     // Instance of the game to handle gameplay logic
 
@@ -30,19 +31,37 @@ void Menu::start() {
 			char key = _getch(); // Get the pressed key
 			switch (key) {
 			case '1': // Option 1: Start a new game
+				if (sumOfFiles == 0) {
+					_board.setNoFilesError(); // Set the board to display the no files error
+					_board.print();           // Print the error message
+					while (true) {
+						if (_kbhit()) {
+							char Esc = _getch();
+							if (Esc == KeyCode::KEY_ESC) {
+								break;
+							}
+						}
+					}
+					_board.setMenu();   // Reset to the menu after the game ends
+					_board.print();     // Reprint the menu
+					break;
+				}
 				_game.startGame(1,sumOfFiles);  // Start the game
 				_board.setMenu();   // Reset to the menu after the game ends
 				_board.print();     // Reprint the menu
 				break;
 
-			/*case '2':
+			case '2':
 				_board.setChooseScreen();
 				_board.print();
-				_board.chooseScreen(FileNames,sumOfFiles);
+				screenNumber = _board.chooseScreen(FileNames,sumOfFiles);
+				if (screenNumber != 0) {
+					_game.startGame(screenNumber, sumOfFiles);
+				}
 				_board.setMenu();   // Reset to the menu after the game ends
 				_board.print();     // Reprint the menu
 				break;
-				*/
+
 			case KeyCode::KEY_ESC: // Escape key: Reset to the menu
 				_board.setMenu();   // Reset the menu state
 				_board.print();     // Reprint the menu

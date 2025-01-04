@@ -140,7 +140,7 @@ class board {
 		  "Q                                                                              Q", // 6
 		  "Q                         Press 1 - Start a new game                           Q", // 7
 		  "Q                                                                              Q", // 8
-		  "Q                                                                              Q", // 9
+		  "Q                         Press 2 - Level selection                            Q", // 9
 		  "Q                                                                              Q", // 10
 		  "Q                                                                              Q", // 11
 		  "Q                                                                              Q", // 12
@@ -148,9 +148,9 @@ class board {
 		  "Q                                                                              Q", // 14
 		  "Q                                                                              Q", // 15
 		  "Q                                                                              Q", // 16
-		  "Q                    Press 8 - Present instructions and keys                   Q", // 17
-		  "Q                               Press 9 - EXIT                                 Q", // 18
-		  "Q                                                                              Q", // 19
+		  "Q                   Press 8 - Present instructions and keys                    Q", // 17
+		  "Q                                                                              Q", // 18
+		  "Q                              Press 9 - EXIT                                  Q", // 19
 		  "Q                                                                              Q", // 20
 		  "Q                                                                              Q", // 21
 		  "Q                                                                              Q", // 22
@@ -208,6 +208,34 @@ class board {
 		 "Q                                                                              Q", // 18
 		 "Q                                                                              Q", // 19
 		 "Q                                                                              Q", // 20
+		 "Q                       Press ESC to return to the Menu                        Q", // 21
+		 "Q                                                                              Q", // 22
+		 "Q==============================================================================Q", // 23
+		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
+	};
+	const char* noFilesErrorBoard[MAX_Y] = {
+		//01234567890123456789012345678901234567890123456789012345678901234567890123456789
+		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
+		 "Q==============================================================================Q", // 1
+		 "Q                                                                              Q", // 2
+		 "Q                                                                              Q", // 3
+		 "Q                                                                              Q", // 4
+		 "Q                                                                              Q", // 5
+		 "Q                                                                              Q", // 6
+		 "Q                      ||    Screen File is empty    ||                        Q", // 7
+		 "Q                                                                              Q", // 9
+		 "Q                         Add files in order to play                           Q", // 9
+		 "Q                                                                              Q", // 10
+		 "Q                                                                              Q", // 11
+		 "Q                                                                              Q", // 12
+		 "Q                                                                              Q", // 13
+		 "Q                                                                              Q", // 14
+		 "Q                                                                              Q", // 15
+		 "Q                                                                              Q", // 16
+		 "Q                                                                              Q", // 17
+		 "Q                        Press ESC to return to the Menu                       Q", // 18
+		 "Q                                                                              Q", // 19
+		 "Q                                                                              Q", // 20
 		 "Q                                                                              Q", // 21
 		 "Q                                                                              Q", // 22
 		 "Q==============================================================================Q", // 23
@@ -215,11 +243,9 @@ class board {
 	};
 public:
 	
-	void chooseScreen(std::vector<std::string> const, const int sumOfFiles) {
-		int screenNumber = 0;
-		gotoxy(36, 7);
-		
-	}
+	// choose screen
+	int chooseScreen(std::vector<std::string> const, const int sumOfFiles);
+
 
 	// Updates a specific position on the board
 	void changePixel(Pos pos, char ch);
@@ -242,6 +268,8 @@ public:
 	void setChooseScreen();
 
 	void setScreenError();
+
+	void setNoFilesError();
 
 	bool setScreen(int i);
 
