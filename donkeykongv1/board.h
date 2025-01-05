@@ -82,7 +82,7 @@ class board {
 		 "Q                                                                              Q", // 4
 		 "Q                                                                              Q", // 5
 		 "Q                                                                              Q", // 6
-		 "Q                            Screen # is not good                              Q", // 7
+		 "Q                            Screen #  is not good                             Q", // 7
 		 "Q                                                                              Q", // 9
 		 "Q                                                                              Q", // 9
 		 "Q                                                                              Q", // 10
@@ -190,7 +190,7 @@ class board {
 		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
 		 "Q==============================================================================Q", // 1
 		 "Q                                                                              Q", // 2
-		 "Q         ----   Choose a Screen by pressing the screen number   ----          Q", // 3
+		 "Q         ----   Choose a Screen by Entering the screen number   ----          Q", // 3
 		 "Q                                                                              Q", // 4
 		 "Q                                                                              Q", // 5
 		 "Q                                                                              Q", // 6
@@ -208,7 +208,7 @@ class board {
 		 "Q                                                                              Q", // 18
 		 "Q                                                                              Q", // 19
 		 "Q                                                                              Q", // 20
-		 "Q                       Press ESC to return to the Menu                        Q", // 21
+		 "Q                       Enter 0 to go back to the Menu                         Q", // 21
 		 "Q                                                                              Q", // 22
 		 "Q==============================================================================Q", // 23
 		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24

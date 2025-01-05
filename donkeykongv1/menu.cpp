@@ -1,3 +1,4 @@
+
 #include <cstring>
 #include <iostream>
 #include <windows.h>
@@ -7,8 +8,10 @@
 #include "board.h"
 #include "mainGame.h"
 #include <vector>
-#include <filesystem>
-
+#include <filesystem>  // For working with the file system
+#include <algorithm>   // For std::sort
+#include <regex>       // For extracting numbers from filenames
+#include <string>      // For string operations
 
 
 // Method to initialize and handle the menu interactions
@@ -98,12 +101,27 @@ int Menu::getAllBoardFileNames(std::vector<std::string>& vec_to_fill) {
 	int count = 0;
 	std::string folderPath = "screens"; // Path to the folder
 	namespace fs = std::filesystem;
+
+	// Collect all filenames with the .txt extension
 	for (const auto& entry : fs::directory_iterator(folderPath)) {
-		count++;
 		if (entry.is_regular_file() && entry.path().extension() == ".txt") {
-			vec_to_fill.push_back(entry.path().filename().string()); // Add file name to the vector
+			vec_to_fill.push_back(entry.path().filename().string());
+			count++;
 		}
 	}
+
+	// Natural sorting: extract numbers from filenames and sort accordingly
+	std::sort(vec_to_fill.begin(), vec_to_fill.end(), [](const std::string& a, const std::string& b) {
+		std::regex numberRegex(R"_(\d+)_");
+		std::smatch matchA, matchB;
+		std::string::const_iterator searchStartA(a.cbegin()), searchStartB(b.cbegin());
+
+		if (std::regex_search(searchStartA, a.cend(), matchA, numberRegex) &&
+			std::regex_search(searchStartB, b.cend(), matchB, numberRegex)) {
+			return std::stoi(matchA.str()) < std::stoi(matchB.str());
+		}
+		return a < b; // Default to lexicographical if no numbers are found
+		});
+
 	return count;
 }
-

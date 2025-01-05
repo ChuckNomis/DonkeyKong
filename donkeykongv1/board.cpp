@@ -10,24 +10,32 @@
 // Function to choose a screen from a list of files
 int board::chooseScreen(std::vector<std::string> const FileNames, const int sumOfFiles) {
     int screenNumber = 1;
-    gotoxy(28, 7);
+	int result = 0;
+	int line = 0, row = 0;
+    gotoxy(3 + row, 5 + line);
     for (std::string name : FileNames) {
         std::cout << screenNumber << ". " << name << std::endl;
         screenNumber++;
-        gotoxy(28, 7 +screenNumber-1);
+		if (line == 8) {
+			line = 0;
+			row += 25;
+		}
+		else {
+			line += 1;
+		}
+        gotoxy(3 + row, 5 + line);
     }
 
-    while (true) {
-        if (_kbhit()) {
-            char key = _getch();
-            if (key == KeyCode::KEY_ESC) {
-                return 0;
-            }
-            else if (key >= '1' && key <= '0' + sumOfFiles) {
-                return key - '0';
-            }
-        }
-    }
+	gotoxy(34,19);
+	std::cout << "Screen : ";
+	std::cin >> result;
+
+	if (result > 0 && result <= sumOfFiles) {
+		return result;
+	}
+	else {
+		return 0;
+	}
 }
 
 
