@@ -65,7 +65,9 @@ void barrel::move() {
 	// Check for obstacles
 	if (pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::BORDER ||
 		pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR_RIGHT ||
-		pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR_LEFT) {
+		pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR_LEFT ||
+		newX == 0 || newX == 79 || newY == 24 || newY == 0)
+	{
 		dir = { 0, 0 }; // Stop movement
 	}
 	else if (pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR) {

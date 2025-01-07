@@ -182,7 +182,6 @@ void board::fixChar(char c) {
 // Function to search for a specific character on the board and return its position (if found)
 Pos board::searchChar(char c) const {
 	// Loop through all rows and columns to find the character c
-	bool found = false;
     Pos res = { -1,-1 };
 	for (int y = 0; y < MAX_Y; y++) {
 		for (int x = 0; x < MAX_X; x++) {

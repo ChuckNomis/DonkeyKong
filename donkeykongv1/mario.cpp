@@ -107,7 +107,8 @@ void mario::move() {
 		pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR ||
 		pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR_RIGHT ||
 		pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR_LEFT ||
-		pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::KONG) {
+		pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::KONG||
+		newX == 0 || newX == 79 || newY == 24 || newY == 0) {
 		if (dir.y != 0) {
 			marioPos.y = newY; // Allow vertical movement
 		}

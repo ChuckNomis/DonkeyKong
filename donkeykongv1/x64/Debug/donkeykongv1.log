@@ -1,10 +1,4 @@
 ﻿  barrel.cpp
-  barrelGroup.cpp
-  board.cpp
-  main.cpp
-  mainGame.cpp
   mario.cpp
-  menu.cpp
   Generating Code...
-C:\Users\nadav\Documents\GitHub\DonkeyKong\donkeykongv1\mainGame.cpp(251,1): warning C4715: 'mainGame::setALL': not all control paths return a value
   donkeykongv1.vcxproj -> C:\Users\nadav\Documents\GitHub\DonkeyKong\x64\Debug\donkeykongv1.exe
