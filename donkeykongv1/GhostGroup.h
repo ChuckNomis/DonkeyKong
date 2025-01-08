@@ -24,5 +24,7 @@ public:
 	void moveGhosts();
 	void drawGhosts();
 	void eraseGhosts();
+	void hammerHitGG(Pos marioPos, int dirX);
+
 };
 

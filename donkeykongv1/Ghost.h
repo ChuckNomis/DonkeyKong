@@ -7,7 +7,7 @@
 
 class Ghost
 {
-
+	
 	Pos _ghostPos;
 	Direction _ghostDir;
 	board* _pBoard;
@@ -16,11 +16,15 @@ class Ghost
 		gotoxy(_ghostPos.x, _ghostPos.y);
 		std::cout << c;
 	}
+
 public:
 	//Constructor
 	Ghost(Direction newDir,Pos newPos, board* Board): _ghostDir(newDir), _pBoard(Board),_ghostPos(newPos) {}
-
+	
 	void move();
+
+	bool hammerHitG(Pos marioPos, int dirX);
+
 	void draw() {
 		_pBoard->changePixel(_ghostPos, SpecialCharacters::GHOST);
 		draw(SpecialCharacters::GHOST);

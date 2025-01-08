@@ -25,6 +25,8 @@ public:
 		: fallCounter(fallCounter), exist(exist), barrelPos(barrelPos), dir(dir), pBoard(pBoard), ch(ch) {
 	}
 
+	bool hammerHitB(Pos marioPos,int dirX);
+
 	// Get fall counter value
 	int getFallCounter() const {
 		return fallCounter;

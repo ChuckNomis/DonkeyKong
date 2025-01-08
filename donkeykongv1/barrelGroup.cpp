@@ -30,6 +30,14 @@ bool barrelGroup::barrelsFalling() {
 	return deadMario;
 }
 
+void barrelGroup::hammerHitBG(Pos marioPos,int dirX) {
+	for (barrel& b : _barrelGroup) {
+		if (b.isExist()) {
+			b.hammerHitB(marioPos, dirX);
+		}
+	}
+}
+
 // Erases barrels from the board
 void barrelGroup::eraseBarrels() {
 	for (barrel& b : _barrelGroup) {

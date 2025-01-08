@@ -45,4 +45,6 @@ public:
 	void errorScreenNotGood(int screenNumber);
 
 	bool setALL();
+
+    void itsHammerTime();
 };

@@ -74,6 +74,9 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 						if (key == KeyCode::KEY_ESC) {
 							pauseGame();
 						}
+						if (std::tolower(key) == KeyCode::KEY_HAMMER && _mario.isHammerTime()) {
+							itsHammerTime();
+						}
 						_mario.keyPressed(key);
 						if (std::tolower(key) == KeyCode::KEY_UP && !_mario.isMarioFalling()) {
 							_mario.up(jumps, ladder);
@@ -127,6 +130,8 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 
 					// Move Mario
 					_mario.move();
+
+					_mario.checkHammer();
 
 					// Check win condition
 					if (_mario.isMarioWin()) {
@@ -268,4 +273,11 @@ bool mainGame::setALL() {
 	for (Pos pos : ghostPos) {
 		_GG.setGhostOnBoard(_board, pos);
 	}
+}
+
+
+// its Hammer Time !!!
+void mainGame::itsHammerTime() {
+	_BG.hammerHitBG(_mario.getMarioPos(),_mario.getDirX());
+	_GG.hammerHitGG(_mario.getMarioPos(), _mario.getDirX());
 }

@@ -15,10 +15,12 @@ enum SpecialCharacters {
 	BORDER = 'Q', // Border character
 	EXPLOSION = 'X', // Explosion character
 	MARIO_ON_LADDER = '%', // Mario on ladder character
-	GHOST = 'x' // Ghost character
+	GHOST = 'x', // Ghost character
+	HAMMER = 'p' // Hammer character 
 };
 // Enumeration for key codes
 enum KeyCode {
+	KEY_HAMMER = 'p',
 	KEY_ENTER = 13,
 	KEY_UP = 'w',
 	KEY_DOWN = 'x',

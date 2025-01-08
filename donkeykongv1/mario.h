@@ -17,11 +17,14 @@ class mario
     static constexpr Direction directions[] = { {-1, 0}, {1, 0}, {0, 0} };
 
     // Mario's position and direction
-    Pos marioPos; // Initial position of Mario
-    Direction dir;  // Starting direction: dir.x, dir.y
+    Pos marioPos;
+    Direction dir;  
 
     // Character used to represent Mario on the board
     char ch;
+
+    //Indicates if mario has the hammer 
+    bool hammerTime = false;
 
     // Pointer to the game board
     board* pBoard;
@@ -33,19 +36,41 @@ class mario
     }
 
 public:
-    //Constructor
+
+    // Constructor
     mario(Pos marioPos = { 0, 0 }, Direction dir = { 0, 0 }, char ch = SpecialCharacters::MARIO, board* pBoard = nullptr)
         : marioPos(marioPos), dir(dir), ch(ch), pBoard(pBoard) {
     }
+
     // Set Mario's direction
     void setDir(int _x, int _y) {
         dir.x = _x;
         dir.y = _y;
     }
 
+    // Check if mario picked up the hammer
+    bool isHammerTime() {
+        return hammerTime;
+    }
+    // Check if mario is on Hammer
+    void checkHammer() {
+        if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y) == SpecialCharacters::HAMMER) {
+            hammerTime = true;
+        }
+    }
+
+    Pos getMarioPos() {
+        return marioPos;
+    }
+
+
     // Set Mario's vertical direction
     void setDirY(int y) {
         dir.y = y;
+    }
+
+    int getDirX(){
+        return dir.x;
     }
 
     // Check if Mario is currently falling
@@ -94,6 +119,7 @@ public:
     void setMarioOnBoard(board& board,Pos newMarioPos) {
         pBoard = &board;  
         marioPos = newMarioPos;
+        hammerTime = false;
     }
 
     // Check if Mario is on the last rung of a ladder

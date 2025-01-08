@@ -264,6 +264,7 @@ public:
 	// Sets the current board to the win state
 	void setWin();
 
+	
 	void setChooseScreen();
 
 	void setScreenError();

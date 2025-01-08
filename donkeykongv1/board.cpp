@@ -7,6 +7,7 @@
 #include <sstream>
 
 
+//Get the locations of all the ghosts on the screen
 std::vector<Pos> board::getGhostsLocations() {
 	std::vector<Pos> ghostPos;
 	for (int i = 0; i < MAX_Y; i++) {
@@ -50,14 +51,13 @@ int board::chooseScreen(std::vector<std::string> const FileNames, const int sumO
 	}
 }
 
-
-
 // Function to set the board to the menu state
 void board::setMenu() {
     for (int i = 0; i < MAX_Y; i++) {
         memcpy(currentBoard[i], manuBoard[i], MAX_X + 1); 
     }
 }
+
 // Function to check if a screen file is valid (contains Mario and Donkey Kong)
 bool board::isScreenOk(int screenNumber) {
 	std::ostringstream filenameStream;
@@ -80,6 +80,7 @@ bool board::isScreenOk(int screenNumber) {
     }
 
 }
+
 // Function to set the board to the screen state from a file
 bool board::setScreen(int screenNumber) {
     std::ostringstream filenameStream;
@@ -99,6 +100,7 @@ bool board::setScreen(int screenNumber) {
     return true;
 }
 
+// Fix Ghosts on the screen (delete any flying ghosts)
 void board::fixGhosts() {
     for (int y = 0; y < MAX_Y; y++) {
         for (int x = 0; x < MAX_X; x++) {
@@ -119,12 +121,14 @@ void board::fixBoard() {
 		strncpy_s(currentBoard[i], currentScreen[i], MAX_X + 1);
 	}
 }
+
 // Function to set the board to the no files error state
 void board::setNoFilesError() {
 	for (int i = 0; i < MAX_Y; i++) {
 		memcpy(currentBoard[i], noFilesErrorBoard[i], MAX_X + 1);
 	}
 }
+
 // Function to set the board to the game state
 void board::setGame() {
     // Loop through all rows and copy the game board to the current board
@@ -132,6 +136,7 @@ void board::setGame() {
         memcpy(currentBoard[i], gameBoard[i], MAX_X + 1);  // Copy each row with an additional null terminator
     }
 }
+
 // Function to set the board to the guide state
 void board::setGuide() {
     // Loop through all rows and copy the guide board to the current board
@@ -139,6 +144,7 @@ void board::setGuide() {
         memcpy(currentBoard[i], guideBoard[i], MAX_X + 1);  // Copy each row with an additional null terminator
     }
 }
+
 // Function to set the board to the choose screen state
 void board::setChooseScreen() {
 	// Loop through all rows and copy the guide board to the current board
@@ -146,6 +152,7 @@ void board::setChooseScreen() {
 		memcpy(currentBoard[i], chooseScreenBoard[i], MAX_X + 1);  // Copy each row with an additional null terminator
 	}
 }
+
 // Function to set the board to the Error screen state
 void board::setScreenError() {
 	// Loop through all rows and copy the guide board to the current board
@@ -153,6 +160,7 @@ void board::setScreenError() {
 		memcpy(currentBoard[i], screenErrorBoard[i], MAX_X + 1);  // Copy each row with an additional null terminator
 	}
 }
+
 // Function to set the board to the win state
 void board::setWin() {
     // Loop through all rows and copy the win board to the current board
@@ -160,6 +168,7 @@ void board::setWin() {
         memcpy(currentBoard[i], winBoard[i], MAX_X + 1);  // Copy each row with an additional null terminator
     }
 }
+
 // Function to set the board to the lose state
 void board::setLose() {
     // Loop through all rows and copy the lose board to the current board
@@ -167,11 +176,13 @@ void board::setLose() {
         memcpy(currentBoard[i], loseBoard[i], MAX_X + 1);  // Copy each row with an additional null terminator
     }
 }
+
 // Function to change the pixel at a specific position on the current board
 void board::changePixel(Pos pos, char ch) {
     // Modify the character at the given position (x, y) in the current board
     currentBoard[pos.y][pos.x] = ch;
 }
+
 // Function to print the current board to the console
 void board::print() const {
     // Move the cursor to the top-left corner
@@ -186,6 +197,7 @@ void board::print() const {
     // Print the last row without a newline after it
     std::cout << currentBoard[MAX_Y - 1];
 }
+
 // Function to search for a specific character on the board delete if there are duplicates
 void board::fixChar(char c) {
     bool found = false;
@@ -207,6 +219,7 @@ void board::fixChar(char c) {
         }
     }
 }
+
 // Function to search for a specific character on the board and return its position (if found)
 Pos board::searchChar(char c) const {
 	// Loop through all rows and columns to find the character c

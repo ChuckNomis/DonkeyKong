@@ -1,6 +1,2 @@
-﻿  Ghost.cpp
-  board.cpp
-  mainGame.cpp
-  Generating Code...
-C:\Users\nadav\Documents\GitHub\DonkeyKong\donkeykongv1\mainGame.cpp(271,1): warning C4715: 'mainGame::setALL': not all control paths return a value
+﻿  barrel.cpp
   donkeykongv1.vcxproj -> C:\Users\nadav\Documents\GitHub\DonkeyKong\x64\Debug\donkeykongv1.exe

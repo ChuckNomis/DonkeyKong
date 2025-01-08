@@ -1,5 +1,4 @@
 #include "Ghost.h"
-
 // Moves the ghost based on its direction and interactions with the board
 void Ghost::move(){
 
@@ -30,3 +29,37 @@ int Ghost::chooseBiasedRandomDir() {
 		return -1;
 	}
 }
+//Check if Hammer hit this ghost
+bool Ghost::hammerHitG(Pos marioPos, int dirX) {
+	if (dirX == -1) {
+		if (_pBoard->getCharFromCurrentBoard(_ghostPos.x + 1, _ghostPos.y) == SpecialCharacters::MARIO ||
+			_pBoard->getCharFromCurrentBoard(_ghostPos.x + 1, _ghostPos.y) == SpecialCharacters::MARIO_ON_LADDER ||
+			_pBoard->getCharFromCurrentBoard(_ghostPos.x + 2, _ghostPos.y) == SpecialCharacters::MARIO ||
+			_pBoard->getCharFromCurrentBoard(_ghostPos.x + 2, _ghostPos.y) == SpecialCharacters::MARIO_ON_LADDER) {
+			if (checkLadder()) {
+				eraseOnLadder();
+			}
+			else {
+				erase();
+			}
+			return true;
+		}
+	}
+	else if (dirX == 1) {
+		if (_pBoard->getCharFromCurrentBoard(_ghostPos.x - 1, _ghostPos.y) == SpecialCharacters::MARIO ||
+			_pBoard->getCharFromCurrentBoard(_ghostPos.x - 1, _ghostPos.y) == SpecialCharacters::MARIO_ON_LADDER ||
+			_pBoard->getCharFromCurrentBoard(_ghostPos.x - 2, _ghostPos.y) == SpecialCharacters::MARIO ||
+			_pBoard->getCharFromCurrentBoard(_ghostPos.x - 2, _ghostPos.y) == SpecialCharacters::MARIO_ON_LADDER) {
+			if (checkLadder()) {
+				eraseOnLadder();
+			}
+			else {
+				erase();
+			}
+			return true;
+		}
+	}
+	return false;
+
+}
+

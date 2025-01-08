@@ -5,6 +5,45 @@
 #include <conio.h>
 #include "board.h"
 
+
+//Check if Hammer hit this barrel
+bool barrel::hammerHitB(Pos marioPos, int dirX) {
+	if (dirX == -1) {
+		if (pBoard->getCharFromCurrentBoard(barrelPos.x + 1, barrelPos.y) == SpecialCharacters::MARIO ||
+			pBoard->getCharFromCurrentBoard(barrelPos.x + 1, barrelPos.y) == SpecialCharacters::MARIO_ON_LADDER ||
+			pBoard->getCharFromCurrentBoard(barrelPos.x + 2, barrelPos.y) == SpecialCharacters::MARIO ||
+			pBoard->getCharFromCurrentBoard(barrelPos.x + 2, barrelPos.y) == SpecialCharacters::MARIO_ON_LADDER) {
+			setExist(false);
+			resetFallCounter();
+			if (checkLadder()) {
+				eraseOnLadder();
+			}
+			else {
+				erase();
+			}
+			return true;
+		}
+	}
+	else if (dirX == 1) {
+		if (pBoard->getCharFromCurrentBoard(barrelPos.x - 1, barrelPos.y) == SpecialCharacters::MARIO ||
+			pBoard->getCharFromCurrentBoard(barrelPos.x - 1, barrelPos.y) == SpecialCharacters::MARIO_ON_LADDER ||
+			pBoard->getCharFromCurrentBoard(barrelPos.x - 2, barrelPos.y) == SpecialCharacters::MARIO ||
+			pBoard->getCharFromCurrentBoard(barrelPos.x - 2, barrelPos.y) == SpecialCharacters::MARIO_ON_LADDER) {
+			setExist(false);
+			resetFallCounter();
+			if (checkLadder()) {
+				eraseOnLadder();
+			}
+			else {
+				erase();
+			}
+			return true;
+		}
+	}
+	return false;
+
+}
+
 // Handles the explosion of the barrel and checks if Mario is within the explosion radius
 bool barrel::explode() {
 	bool marioDead = false;
