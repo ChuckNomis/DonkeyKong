@@ -2,11 +2,15 @@
 
 // Moves the ghost based on its direction and interactions with the board
 void Ghost::move(){
+
+
 	_ghostDir.x *= chooseBiasedRandomDir();
 	int newX = _ghostPos.x + _ghostDir.x;
 	int newY = _ghostPos.y + _ghostDir.y;
-
-	if (_pBoard->getCharFromCurrentBoard(newX, newY+1) == SpecialCharacters::SPACE) {
+	if (_pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::GHOST){
+		flipDir();
+	}
+	else if (_pBoard->getCharFromCurrentBoard(newX, newY+1) == SpecialCharacters::SPACE) {
 		flipDir();
 		_ghostPos.x += _ghostDir.x;
 		_ghostPos.y += _ghostDir.y;

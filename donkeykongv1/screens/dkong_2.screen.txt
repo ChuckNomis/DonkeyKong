@@ -12,14 +12,14 @@ Q                             H                   x                            Q
 Q                   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>               Q
 Q                                                    H                         Q
 Q                                                    H                         Q
-Q                                           x        H                         Q
+Q                                      x    x        H                         Q
 Q             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<        Q
 Q                      H                                                       Q
 Q                      H                                                       Q
 Q                      H                                                       Q
 Q             >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       Q
-                                                             H                 Q
-                                                             H                 Q
-                                                $            H                 Q
+Q                                                            H                 Q
+Q                                                            H                 Q
+Q                                                $           H                 Q
 ===============================================================================Q
 QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ

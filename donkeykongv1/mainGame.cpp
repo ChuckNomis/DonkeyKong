@@ -1,5 +1,4 @@
 
-
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
@@ -8,8 +7,6 @@
 #include "utils.h"
 #include "barrel.h"
 #include "barrelGroup.h"
-
-
 
 // Main game loop
 void mainGame::startGame(int screenNumber, int numOfFiles) {
@@ -188,6 +185,7 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 
 }
 
+//Switch to error screen 
 void mainGame::errorScreenNotGood(int screenNumber) {
 	_board.setScreenError();
 	_board.print();
