@@ -4,6 +4,7 @@
 #include "mario.h"
 #include "board.h"
 #include "barrel.h"
+#include "GhostGroup.h"
 
 // The mainGame class manages the overall game logic and states
 class mainGame
@@ -11,8 +12,8 @@ class mainGame
     int marioLives = 3;        // Tracks Mario's remaining lives
     board _board;              // Game board object
     mario _mario;              // Mario character object
-    barrel barrel;             // Single barrel object
     barrelGroup _BG;           // Group of barrels to manage barrel logic
+	GhostGroup _GG;            // Group of ghosts to manage ghost logic
 
 public:
     // Checks if Mario has no remaining lives

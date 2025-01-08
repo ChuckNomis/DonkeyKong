@@ -246,7 +246,6 @@ public:
 	// choose screen
 	int chooseScreen(std::vector<std::string> const, const int sumOfFiles);
 
-
 	// Updates a specific position on the board
 	void changePixel(Pos pos, char ch);
 
@@ -293,6 +292,10 @@ public:
 	void fixBoard();
 
 	void fixChar(char c);
+
+	void fixGhosts();
+
+	std::vector<Pos> getGhostsLocations();
 
 };
 

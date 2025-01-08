@@ -26,8 +26,10 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 			filesToLoad--;
 		}
 		else {
+
 			marioWin = false;
 			while (marioLives > 0 && !marioWin) {
+
 				setALL();
 				_board.setScreen(screenNumber);
 				_board.print();
@@ -56,9 +58,15 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 						_mario.draw();
 					}
 					_BG.drawBarrels();
+					_GG.drawGhosts();
 
 					// Check if Mario is hit by a barrel
 					if (_mario.isMarioHitBarrel()) {
+						marioLoseLife();
+						break;
+					}
+					// Check if mario is hit by a ghost
+					if (_mario.isMarioHitGhost()) {
 						marioLoseLife();
 						break;
 					}
@@ -134,10 +142,17 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 						marioLoseLife();
 						break;
 					}
+					// Check again if Mario is hit by a ghost
+					if (_mario.isMarioHitGhost()) {
+						marioLoseLife();
+						break;
+					}
 
 					// Move and erase barrels
 					_BG.eraseBarrels();
+					_GG.eraseGhosts();
 					_BG.moveBarrels();
+					_GG.moveGhosts();
 
 					// Handle jumping logic
 					if (jumps == 2) {
@@ -234,18 +249,25 @@ void mainGame::gameOver() {
 	}
 }
 
-
+// Set all game objects on the board
 bool mainGame::setALL() {
-	Pos donkeyKongPos = _board.searchChar('&');
+	Pos donkeyKongPos = _board.searchChar(SpecialCharacters::KONG);
 	if (donkeyKongPos.x == -1 || donkeyKongPos.y == -1) {
 		return false;
 	}
 	_BG.resetAll();
 	_BG.setBarrelsBoard(_board , donkeyKongPos);
-	Pos marioPos = _board.searchChar('@');
+
+	Pos marioPos = _board.searchChar(SpecialCharacters::MARIO);
 	if (marioPos.x == -1 || marioPos.y == -1) {
 		return false;
 	}
 	_mario.setMarioOnBoard(_board, marioPos);
 	_mario.setDir(0, 0);
+
+	std::vector<Pos> ghostPos = _board.getGhostsLocations();
+	_GG.clearAll();
+	for (Pos pos : ghostPos) {
+		_GG.setGhostOnBoard(_board, pos);
+	}
 }

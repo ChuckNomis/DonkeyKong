@@ -7,6 +7,18 @@
 #include <sstream>
 
 
+std::vector<Pos> board::getGhostsLocations() {
+	std::vector<Pos> ghostPos;
+	for (int i = 0; i < MAX_Y; i++) {
+		for (int j = 0; j < MAX_X; j++) {
+			if (currentScreen[i][j] == SpecialCharacters::GHOST) {
+				ghostPos.push_back({ j,i });
+			}
+		}
+	}
+	return ghostPos;
+}
+
 // Function to choose a screen from a list of files
 int board::chooseScreen(std::vector<std::string> const FileNames, const int sumOfFiles) {
     int screenNumber = 1;
@@ -81,10 +93,26 @@ bool board::setScreen(int screenNumber) {
 		file.getline(currentBoard[i], MAX_X + 1);
         strncpy_s(currentScreen[i], currentBoard[i], MAX_X + 1);
 	}
-	fixChar('@');
-	fixChar('&');
+	fixChar(SpecialCharacters::MARIO);
+	fixChar(SpecialCharacters::KONG);
+    fixGhosts();
     return true;
 }
+
+void board::fixGhosts() {
+    for (int y = 0; y < MAX_Y; y++) {
+        for (int x = 0; x < MAX_X; x++) {
+            if (currentScreen[y][x] == SpecialCharacters::GHOST &&
+                currentScreen[y+1][x] == SpecialCharacters::SPACE) {
+                currentScreen[y][x] = SpecialCharacters::SPACE;
+                currentBoard[y][x] = SpecialCharacters::SPACE;
+            }
+
+        }
+    }
+    
+}
+
 // Function to set the board to the screen state from a file
 void board::fixBoard() {
 	for (int i = 0; i < MAX_Y; i++) {

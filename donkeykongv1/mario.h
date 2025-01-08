@@ -105,6 +105,9 @@ public:
     // Check if Mario is hit by a barrel
     bool isMarioHitBarrel() const;
 
+    // Check if Mario is hit by a ghost
+    bool isMarioHitGhost() const;
+
     // Check if Mario has reached the winning condition
     bool isMarioWin() const;
 };

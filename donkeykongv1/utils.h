@@ -14,7 +14,8 @@ enum SpecialCharacters {
 	SPACE = ' ', // Space character
 	BORDER = 'Q', // Border character
 	EXPLOSION = 'X', // Explosion character
-	MARIO_ON_LADDER = '%' // Mario on ladder character
+	MARIO_ON_LADDER = '%', // Mario on ladder character
+	GHOST = 'x' // Ghost character
 };
 // Enumeration for key codes
 enum KeyCode {

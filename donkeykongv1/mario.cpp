@@ -96,7 +96,12 @@ bool mario::isMarioHitBarrel() const {
 	}
 	return false;
 }
-
+bool mario::isMarioHitGhost() const {
+	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y) == SpecialCharacters::GHOST) {
+		return true;
+	}
+	return false;
+}
 // Move Mario based on the current direction and interact with the board
 void mario::move() {
 	int newX = marioPos.x + dir.x;
