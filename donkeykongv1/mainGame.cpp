@@ -43,7 +43,7 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 				while (true) {
 					// Spawn a new barrel every 40 iterations
 					if (gameIteration % 40 == 0) {
-						_BG.spawnBarrel(barrelSum % 10);
+						_enemy.spawnBarrel(barrelSum % 10);
 						barrelSum++;
 					}
 
@@ -54,8 +54,7 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 					else {
 						_mario.draw();
 					}
-					_BG.drawBarrels();
-					_GG.drawGhosts();
+					_enemy.drawEnemies();
 
 					// Check if Mario is hit by a barrel
 					if (_mario.isMarioHitBarrel()) {
@@ -99,7 +98,7 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 					}
 
 					// Check if barrels are falling
-					if (_BG.barrelsFalling()) {
+					if (_enemy.barrelsFalling()) {
 						marioLoseLife();
 						break;
 					}
@@ -151,10 +150,8 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 					}
 
 					// Move and erase barrels
-					_BG.eraseBarrels();
-					_GG.eraseGhosts();
-					_BG.moveBarrels();
-					_GG.moveGhosts();
+					_enemy.eraseEnemies();
+					_enemy.moveEnemies();
 
 					// Handle jumping logic
 					if (jumps == 2) {
@@ -258,8 +255,8 @@ bool mainGame::setALL() {
 	if (donkeyKongPos.x == -1 || donkeyKongPos.y == -1) {
 		return false;
 	}
-	_BG.resetAll();
-	_BG.setBarrelsBoard(_board , donkeyKongPos);
+	_enemy.resetAll();
+	_enemy.setBarrelsBoard(_board , donkeyKongPos);
 
 	Pos marioPos = _board.searchChar(SpecialCharacters::MARIO);
 	if (marioPos.x == -1 || marioPos.y == -1) {
@@ -269,15 +266,14 @@ bool mainGame::setALL() {
 	_mario.setDir(0, 0);
 
 	std::vector<Pos> ghostPos = _board.getGhostsLocations();
-	_GG.clearAll();
+	_enemy.clearAll();
 	for (Pos pos : ghostPos) {
-		_GG.setGhostOnBoard(_board, pos);
+		_enemy.setGhostOnBoard(_board, pos);
 	}
 }
 
 
 // its Hammer Time !!!
 void mainGame::itsHammerTime() {
-	_BG.hammerHitBG(_mario.getMarioPos(),_mario.getDirX());
-	_GG.hammerHitGG(_mario.getMarioPos(), _mario.getDirX());
+	_enemy.handleHammerHit(_mario.getMarioPos(),_mario.getDirX());
 }
