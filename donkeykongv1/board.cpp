@@ -65,12 +65,16 @@ bool board::isScreenOk(int screenNumber) {
 	std::string filename = filenameStream.str();
     std::ifstream file("screens/" + filename);
     if (file.is_open()) {
-        Pos donkeyKongPos = searchChar('&');
+        Pos donkeyKongPos = searchChar(SpecialCharacters::KONG);
         if (donkeyKongPos.x == -1 || donkeyKongPos.y == -1) {
             return false;
         }
-        Pos marioPos = searchChar('@');
+        Pos marioPos = searchChar(SpecialCharacters::MARIO);
         if (marioPos.x == -1 || marioPos.y == -1) {
+            return false;
+        }
+        Pos paulinePos = searchChar(SpecialCharacters::PAULINE);
+        if (paulinePos.x == -1 || paulinePos.y == -1) {
             return false;
         }
 		return true;
