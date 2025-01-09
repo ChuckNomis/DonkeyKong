@@ -31,7 +31,13 @@ void GhostGroup::eraseGhosts() {
 		if (ghost.checkLadder()) {
 			ghost.eraseOnLadder();
 		}
-		else{
+		else if(ghost.checkHammer()){
+			ghost.eraseOnHammer();
+		}
+		else if (ghost.checkPauline()) {
+			ghost.eraseOnPauline();
+		}
+		else {
 			ghost.erase();
 		}
 	}

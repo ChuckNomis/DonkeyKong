@@ -48,6 +48,12 @@ void barrelGroup::eraseBarrels() {
 			else if (b.checkDkong()) {
 				b.ereaseOnDkong();
 			}
+			else if (b.checkHammer()) {
+				b.eraseOnHammer();
+			}
+			else if (b.checkPauline()) {
+				b.eraseOnPauline();
+			}
 			else {
 				b.erase();
 			}

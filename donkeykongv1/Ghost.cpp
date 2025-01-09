@@ -1,8 +1,6 @@
 #include "Ghost.h"
 // Moves the ghost based on its direction and interactions with the board
 void Ghost::move(){
-
-
 	_ghostDir.x *= chooseBiasedRandomDir();
 	int newX = _ghostPos.x + _ghostDir.x;
 	int newY = _ghostPos.y + _ghostDir.y;
@@ -39,6 +37,12 @@ bool Ghost::hammerHitG(Pos marioPos, int dirX) {
 			if (checkLadder()) {
 				eraseOnLadder();
 			}
+			else if (checkHammer()) {
+				eraseOnHammer();
+			}
+			else if (checkPauline()) {
+				eraseOnPauline();
+			}
 			else {
 				erase();
 			}
@@ -52,6 +56,12 @@ bool Ghost::hammerHitG(Pos marioPos, int dirX) {
 			_pBoard->getCharFromCurrentBoard(_ghostPos.x - 2, _ghostPos.y) == SpecialCharacters::MARIO_ON_LADDER) {
 			if (checkLadder()) {
 				eraseOnLadder();
+			}
+			else if (checkHammer()) {
+				eraseOnHammer();
+			}
+			else if (checkPauline()) {
+				eraseOnPauline();
 			}
 			else {
 				erase();

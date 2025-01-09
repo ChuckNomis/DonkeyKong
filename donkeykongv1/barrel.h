@@ -22,8 +22,7 @@ class barrel
 public:
 	//Constructor
 	barrel(int fallCounter = 0, bool exist = false, Pos barrelPos = { 0, 0 }, Direction dir = { 0, 0 }, board* pBoard = nullptr, char ch = SpecialCharacters::BARREL)
-		: fallCounter(fallCounter), exist(exist), barrelPos(barrelPos), dir(dir), pBoard(pBoard), ch(ch) {
-	}
+		: fallCounter(fallCounter), exist(exist), barrelPos(barrelPos), dir(dir), pBoard(pBoard), ch(ch) {}
 
 	bool hammerHitB(Pos marioPos,int dirX);
 
@@ -58,9 +57,18 @@ public:
 			return true;
 		return false;
 	}
-
+	bool checkHammer() const {
+		if (pBoard->getCharFromOriginalScreen(barrelPos.x, barrelPos.y) == SpecialCharacters::HAMMER)
+			return true;
+		return false;
+	}
 	bool checkDkong() const {
 		if (pBoard->getCharFromOriginalScreen(barrelPos.x, barrelPos.y) == SpecialCharacters::KONG)
+			return true;
+		return false;
+	}
+	bool checkPauline() const {
+		if (pBoard->getCharFromOriginalScreen(barrelPos.x, barrelPos.y) == SpecialCharacters::PAULINE)
 			return true;
 		return false;
 	}
@@ -94,6 +102,17 @@ public:
 		pBoard->changePixel(barrelPos, SpecialCharacters::LADDER);
 		draw(SpecialCharacters::LADDER);
 	}
+	// Erase the barrel from Pauline
+	void eraseOnPauline() {
+		pBoard->changePixel(barrelPos, SpecialCharacters::PAULINE);
+		draw(SpecialCharacters::PAULINE);
+	}
+	// Erase the barrel from the hammer
+	void eraseOnHammer() {
+		pBoard->changePixel(barrelPos, SpecialCharacters::HAMMER);
+		draw(SpecialCharacters::HAMMER);
+	}
+
 	// Erase the barrel from the donkey kong
 	void ereaseOnDkong() {
 		pBoard->changePixel(barrelPos, SpecialCharacters::KONG);

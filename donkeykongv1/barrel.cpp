@@ -18,6 +18,12 @@ bool barrel::hammerHitB(Pos marioPos, int dirX) {
 			if (checkLadder()) {
 				eraseOnLadder();
 			}
+			else if (checkHammer()) {
+				eraseOnHammer();
+			}
+			else if (checkPauline()) {
+				eraseOnPauline();
+			}
 			else {
 				erase();
 			}
@@ -33,6 +39,12 @@ bool barrel::hammerHitB(Pos marioPos, int dirX) {
 			resetFallCounter();
 			if (checkLadder()) {
 				eraseOnLadder();
+			}
+			else if (checkHammer()) {
+				eraseOnHammer();
+			}
+			else if (checkPauline()) {
+				eraseOnPauline();
 			}
 			else {
 				erase();
