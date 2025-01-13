@@ -43,7 +43,7 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 				while (true) {
 					// Spawn a new barrel every 40 iterations
 					if (gameIteration % 40 == 0) {
-						_enemy.spawnBarrel(barrelSum % 10);
+						_BG.spawnBarrel(barrelSum % 10);
 						barrelSum++;
 					}
 
@@ -54,7 +54,8 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 					else {
 						_mario.draw();
 					}
-					_enemy.drawEnemies();
+					_BG.drawBarrels();
+					_GG.drawGhosts();
 
 					// Check if Mario is hit by a barrel
 					if (_mario.isMarioHitBarrel()) {
@@ -98,7 +99,7 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 					}
 
 					// Check if barrels are falling
-					if (_enemy.barrelsFalling()) {
+					if (_BG.barrelsFalling()) {
 						marioLoseLife();
 						break;
 					}
@@ -150,9 +151,10 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 					}
 
 					// Move and erase barrels
-					_enemy.eraseEnemies();
-					_enemy.moveEnemies();
-
+					_BG.eraseBarrels();
+					_GG.eraseGhosts();
+					_BG.moveBarrels();
+					_GG.moveGhosts();
 					// Handle jumping logic
 					if (jumps == 2) {
 						jumps = 0;
@@ -255,8 +257,8 @@ bool mainGame::setALL() {
 	if (donkeyKongPos.x == -1 || donkeyKongPos.y == -1) {
 		return false;
 	}
-	_enemy.resetAll();
-	_enemy.setBarrelsBoard(_board , donkeyKongPos);
+	_BG.resetAll();
+	_BG.setBarrelsBoard(_board, donkeyKongPos);
 
 	Pos marioPos = _board.searchChar(SpecialCharacters::MARIO);
 	if (marioPos.x == -1 || marioPos.y == -1) {
@@ -266,14 +268,15 @@ bool mainGame::setALL() {
 	_mario.setDir(0, 0);
 
 	std::vector<Pos> ghostPos = _board.getGhostsLocations();
-	_enemy.clearAll();
+	_GG.clearAll();
 	for (Pos pos : ghostPos) {
-		_enemy.setGhostOnBoard(_board, pos);
+		_GG.setGhostOnBoard(_board, pos);
 	}
 }
 
 
 // its Hammer Time !!!
 void mainGame::itsHammerTime() {
-	_enemy.handleHammerHit(_mario.getMarioPos(),_mario.getDirX());
+	_BG.hammerHitBG(_mario.getMarioPos(), _mario.getDirX());
+	_GG.hammerHitGG(_mario.getMarioPos(), _mario.getDirX());
 }

@@ -1,7 +1,7 @@
 ﻿  Enemy.cpp
-  board.cpp
   mainGame.cpp
   menu.cpp
   Generating Code...
-C:\Users\nadav\Documents\GitHub\DonkeyKong\donkeykongv1\mainGame.cpp(273,1): warning C4715: 'mainGame::setALL': not all control paths return a value
+C:\Users\nadav\Documents\GitHub\DonkeyKong\donkeykongv1\mainGame.cpp(275,1): warning C4715: 'mainGame::setALL': not all control paths return a value
+  LINK : C:\Users\nadav\Documents\GitHub\DonkeyKong\x64\Debug\donkeykongv1.exe not found or not built by the last incremental link; performing full link
   donkeykongv1.vcxproj -> C:\Users\nadav\Documents\GitHub\DonkeyKong\x64\Debug\donkeykongv1.exe
