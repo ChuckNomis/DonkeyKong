@@ -46,7 +46,7 @@ void barrelGroup::eraseBarrels() {
 				b.eraseOnLadder();
 			}
 			else if (b.checkDkong()) {
-				b.ereaseOnDkong();
+				b.eraseOnKong();
 			}
 			else if (b.checkHammer()) {
 				b.eraseOnHammer();

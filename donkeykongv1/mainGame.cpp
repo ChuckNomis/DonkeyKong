@@ -155,6 +155,7 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 					_GG.eraseGhosts();
 					_BG.moveBarrels();
 					_GG.moveGhosts();
+
 					// Handle jumping logic
 					if (jumps == 2) {
 						jumps = 0;

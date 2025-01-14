@@ -181,11 +181,6 @@ void board::setLose() {
     }
 }
 
-// Function to change the pixel at a specific position on the current board
-void board::changePixel(Pos pos, char ch) {
-    // Modify the character at the given position (x, y) in the current board
-    currentBoard[pos.y][pos.x] = ch;
-}
 
 // Function to print the current board to the console
 void board::print() const {

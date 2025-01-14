@@ -246,9 +246,16 @@ public:
 	// choose screen
 	int chooseScreen(std::vector<std::string> const, const int sumOfFiles);
 
-	// Updates a specific position on the board
-	void changePixel(Pos pos, char ch);
-
+	// Function to change the pixel at a specific position on the current board
+	void changePixelInCurrBoard(Pos pos, char ch) {
+		// Modify the character at the given position (x, y) in the current board
+		currentBoard[pos.y][pos.x] = ch;
+	}
+	// Function to change the pixel at a specific position on the current screen
+	void changePixelInScreen(Pos pos, char ch) {
+		// Modify the character at the given position (x, y) in the current board
+		currentScreen[pos.y][pos.x] = ch;
+	}
 	// Sets the current board to the menu state
 	void setMenu();
 

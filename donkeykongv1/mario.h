@@ -56,6 +56,8 @@ public:
     void checkHammer() {
         if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y) == SpecialCharacters::HAMMER) {
             hammerTime = true;
+            pBoard->changePixelInScreen(marioPos, SpecialCharacters::SPACE);
+            
         }
     }
 
@@ -78,25 +80,25 @@ public:
 
     // Draw Mario at his current position on the board
     void draw() const {
-        pBoard->changePixel(marioPos, SpecialCharacters::MARIO);
+        pBoard->changePixelInCurrBoard(marioPos, SpecialCharacters::MARIO);
         draw(ch);
     }
 
     // Draw Mario while on a ladder
     void drawOnLadder() const {
-        pBoard->changePixel(marioPos, SpecialCharacters::LADDER);
+        pBoard->changePixelInCurrBoard(marioPos, SpecialCharacters::LADDER);
         draw(SpecialCharacters::MARIO_ON_LADDER);
     }
 
     // Erase Mario from his current position
     void erase() {
-        pBoard->changePixel(marioPos, SpecialCharacters::SPACE);
+        pBoard->changePixelInCurrBoard(marioPos, SpecialCharacters::SPACE);
         draw(SpecialCharacters::SPACE);
     }
 
     // Erase Mario from a ladder position
     void eraseOnLadder() {
-        pBoard->changePixel(marioPos, SpecialCharacters::LADDER);
+        pBoard->changePixelInCurrBoard(marioPos, SpecialCharacters::LADDER);
         draw(SpecialCharacters::LADDER);
     }
 
@@ -108,6 +110,7 @@ public:
 
     // Check if Mario is on a ladder
     bool checkLadder() const;
+
 
     // Handle input key presses and adjust Mario's direction
     void keyPressed(char key);

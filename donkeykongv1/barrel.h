@@ -2,29 +2,22 @@
 #include <iostream>
 #include "utils.h" 
 #include "board.h"
+#include "Enemy.h"
 
-class barrel
+class barrel: public Enemy
 {
 	int fallCounter;
 	bool exist;
-	Pos barrelPos;
 	Pos spawnPos;
-	Direction dir;
-	board* pBoard;
-	char ch;
 
-	// Draw the barrel at current position
-	void draw(char c) const {
-		gotoxy(barrelPos.x, barrelPos.y);
-		std::cout << c;
-	}
 
 public:
 	//Constructor
-	barrel(int fallCounter = 0, bool exist = false, Pos barrelPos = { 0, 0 }, Direction dir = { 0, 0 }, board* pBoard = nullptr, char ch = SpecialCharacters::BARREL)
-		: fallCounter(fallCounter), exist(exist), barrelPos(barrelPos), dir(dir), pBoard(pBoard), ch(ch) {}
+	barrel(int fallCounter = 0, bool exist = false, Pos newPos = { 0, 0 }, Direction newDir = { 0, 0 }, board* Board = nullptr)
+		: fallCounter(fallCounter), exist(exist), Enemy(newDir, newPos, Board, SpecialCharacters::BARREL) {
+	}
 
-	bool hammerHitB(Pos marioPos,int dirX);
+	bool hammerHitB(Pos marioPos, int dirX);
 
 	// Get fall counter value
 	int getFallCounter() const {
@@ -51,73 +44,19 @@ public:
 		return exist;
 	}
 
-	// Check if the barrel is on a ladder
-	bool checkLadder() const {
-		if (pBoard->getCharFromOriginalScreen(barrelPos.x, barrelPos.y) == SpecialCharacters::LADDER)
-			return true;
-		return false;
-	}
-	bool checkHammer() const {
-		if (pBoard->getCharFromOriginalScreen(barrelPos.x, barrelPos.y) == SpecialCharacters::HAMMER)
-			return true;
-		return false;
-	}
-	bool checkDkong() const {
-		if (pBoard->getCharFromOriginalScreen(barrelPos.x, barrelPos.y) == SpecialCharacters::KONG)
-			return true;
-		return false;
-	}
-	bool checkPauline() const {
-		if (pBoard->getCharFromOriginalScreen(barrelPos.x, barrelPos.y) == SpecialCharacters::PAULINE)
-			return true;
-		return false;
-	}
-
+	
 	// Set the board pointer for the barrel
 	void setBarrelBoard(board& board, Pos newPos) {
-		pBoard = &board;
+		_pBoard = &board;
 		spawnPos = newPos;
-		barrelPos = newPos;
+		_pos = newPos;
 	}
 
 	// Set barrel to spawn position
 	void setBarrelInSpawnPos() {
-		barrelPos = spawnPos;
+		_pos = spawnPos;
 	}
 
-	// Erase the barrel from the board
-	void erase() {
-		pBoard->changePixel(barrelPos, SpecialCharacters::SPACE);
-		draw(SpecialCharacters::SPACE);
-	}
-
-	// Draw the barrel on the board
-	void draw() {
-		pBoard->changePixel(barrelPos, SpecialCharacters::BARREL);
-		draw(ch);
-	}
-
-	// Erase the barrel from the ladder
-	void eraseOnLadder() {
-		pBoard->changePixel(barrelPos, SpecialCharacters::LADDER);
-		draw(SpecialCharacters::LADDER);
-	}
-	// Erase the barrel from Pauline
-	void eraseOnPauline() {
-		pBoard->changePixel(barrelPos, SpecialCharacters::PAULINE);
-		draw(SpecialCharacters::PAULINE);
-	}
-	// Erase the barrel from the hammer
-	void eraseOnHammer() {
-		pBoard->changePixel(barrelPos, SpecialCharacters::HAMMER);
-		draw(SpecialCharacters::HAMMER);
-	}
-
-	// Erase the barrel from the donkey kong
-	void ereaseOnDkong() {
-		pBoard->changePixel(barrelPos, SpecialCharacters::KONG);
-		draw(SpecialCharacters::KONG);
-	}
 
 	// Move the barrel
 	void move();
@@ -127,12 +66,12 @@ public:
 
 	// Set vertical direction of the barrel
 	void setDirY(int y) {
-		dir.y = y;
+		_dir.y = y;
 	}
 
 	// Set horizontal direction of the barrel
 	void setDirX(int x) {
-		dir.x = x;
+		_dir.x = x;
 	}
 
 	// Handle barrel explosion

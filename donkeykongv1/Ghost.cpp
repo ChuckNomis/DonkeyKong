@@ -1,20 +1,20 @@
 #include "Ghost.h"
 // Moves the ghost based on its direction and interactions with the board
 void Ghost::move(){
-	_ghostDir.x *= chooseBiasedRandomDir();
-	int newX = _ghostPos.x + _ghostDir.x;
-	int newY = _ghostPos.y + _ghostDir.y;
+	_dir.x *= chooseBiasedRandomDir();
+	int newX = _pos.x + _dir.x;
+	int newY = _pos.y + _dir.y;
 	if (_pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::GHOST){
 		flipDir();
 	}
 	else if (_pBoard->getCharFromCurrentBoard(newX, newY+1) == SpecialCharacters::SPACE) {
 		flipDir();
-		_ghostPos.x += _ghostDir.x;
-		_ghostPos.y += _ghostDir.y;
+		_pos.x += _dir.x;
+		_pos.y += _dir.y;
 	}
 	else {
-		_ghostPos.x += _ghostDir.x;
-		_ghostPos.y += _ghostDir.y;
+		_pos.x += _dir.x;
+		_pos.y += _dir.y;
 	}
 }
 // Chooses a biased random direction for the ghost
@@ -30,10 +30,12 @@ int Ghost::chooseBiasedRandomDir() {
 //Check if Hammer hit this ghost
 bool Ghost::hammerHitG(Pos marioPos, int dirX) {
 	if (dirX == -1) {
-		if (_pBoard->getCharFromCurrentBoard(_ghostPos.x + 1, _ghostPos.y) == SpecialCharacters::MARIO ||
-			_pBoard->getCharFromCurrentBoard(_ghostPos.x + 1, _ghostPos.y) == SpecialCharacters::MARIO_ON_LADDER ||
-			_pBoard->getCharFromCurrentBoard(_ghostPos.x + 2, _ghostPos.y) == SpecialCharacters::MARIO ||
-			_pBoard->getCharFromCurrentBoard(_ghostPos.x + 2, _ghostPos.y) == SpecialCharacters::MARIO_ON_LADDER) {
+		if (_pBoard->getCharFromCurrentBoard(_pos.x + 1, _pos.y) == SpecialCharacters::MARIO ||
+			_pBoard->getCharFromCurrentBoard(_pos.x + 1, _pos.y) == SpecialCharacters::MARIO_ON_LADDER ||
+			_pBoard->getCharFromCurrentBoard(_pos.x + 2, _pos.y) == SpecialCharacters::MARIO ||
+			_pBoard->getCharFromCurrentBoard(_pos.x + 2, _pos.y) == SpecialCharacters::MARIO_ON_LADDER) {
+
+
 			if (checkLadder()) {
 				eraseOnLadder();
 			}
@@ -50,10 +52,10 @@ bool Ghost::hammerHitG(Pos marioPos, int dirX) {
 		}
 	}
 	else if (dirX == 1) {
-		if (_pBoard->getCharFromCurrentBoard(_ghostPos.x - 1, _ghostPos.y) == SpecialCharacters::MARIO ||
-			_pBoard->getCharFromCurrentBoard(_ghostPos.x - 1, _ghostPos.y) == SpecialCharacters::MARIO_ON_LADDER ||
-			_pBoard->getCharFromCurrentBoard(_ghostPos.x - 2, _ghostPos.y) == SpecialCharacters::MARIO ||
-			_pBoard->getCharFromCurrentBoard(_ghostPos.x - 2, _ghostPos.y) == SpecialCharacters::MARIO_ON_LADDER) {
+		if (_pBoard->getCharFromCurrentBoard(_pos.x - 1, _pos.y) == SpecialCharacters::MARIO ||
+			_pBoard->getCharFromCurrentBoard(_pos.x - 1, _pos.y) == SpecialCharacters::MARIO_ON_LADDER ||
+			_pBoard->getCharFromCurrentBoard(_pos.x - 2, _pos.y) == SpecialCharacters::MARIO ||
+			_pBoard->getCharFromCurrentBoard(_pos.x - 2, _pos.y) == SpecialCharacters::MARIO_ON_LADDER) {
 			if (checkLadder()) {
 				eraseOnLadder();
 			}

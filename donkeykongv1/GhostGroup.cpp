@@ -34,6 +34,9 @@ void GhostGroup::eraseGhosts() {
 		else if(ghost.checkHammer()){
 			ghost.eraseOnHammer();
 		}
+		else if (ghost.checkDkong()) {
+			ghost.eraseOnKong();
+		}
 		else if (ghost.checkPauline()) {
 			ghost.eraseOnPauline();
 		}
