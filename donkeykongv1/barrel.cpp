@@ -10,7 +10,7 @@
 // Handles the explosion of the barrel and checks if Mario is within the explosion radius
 
 //Check if Hammer hit this barrel
-bool barrel::hammerHitB(Pos marioPos, int dirX) {
+bool barrel::hammerHitB(Pos marioPos, int dirX, int& gameScore) {
 	if (dirX == -1) {
 		if (_pBoard->getCharFromCurrentBoard(_pos.x + 1, _pos.y) == SpecialCharacters::MARIO ||
 			_pBoard->getCharFromCurrentBoard(_pos.x + 1, _pos.y) == SpecialCharacters::MARIO_ON_LADDER ||
@@ -19,7 +19,7 @@ bool barrel::hammerHitB(Pos marioPos, int dirX) {
 
 			setExist(false);
 			resetFallCounter();
-
+			gameScore += 100;
 			if (checkLadder()) {
 				eraseOnLadder();
 			}
@@ -43,6 +43,7 @@ bool barrel::hammerHitB(Pos marioPos, int dirX) {
 
 			setExist(false);
 			resetFallCounter();
+			gameScore += 100;
 
 			if (checkLadder()) {
 				eraseOnLadder();
@@ -125,6 +126,9 @@ void barrel::move() {
 		newX == 0 || newX == 79 || newY == 24 || newY == 0)
 	{
 		_dir = { 0, 0 }; // Stop movement
+		setExist(false);
+		resetFallCounter();
+		erase();
 	}
 	else if (_pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR) {
 		_dir.y = 0; // Stop vertical movement

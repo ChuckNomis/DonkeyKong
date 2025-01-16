@@ -30,7 +30,7 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 				setALL();
 				_board.setScreen(screenNumber);
 				_board.print();
-				printLives();
+				legendsNeverDie(&_board);
 
 				int gameIteration = 0;
 				int barrelSum = 0;
@@ -75,7 +75,7 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 							pauseGame();
 						}
 						if (std::tolower(key) == KeyCode::KEY_HAMMER && _mario.isHammerTime()) {
-							itsHammerTime();
+							itsHammerTime(gameScore);
 						}
 						_mario.keyPressed(key);
 						if (std::tolower(key) == KeyCode::KEY_UP && !_mario.isMarioFalling()) {
@@ -172,6 +172,7 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 			if (marioWin) {
 				screenNumber++;
 				filesToLoad--;
+				gameScore += 500;
 			}
 			else {
 				isGameOver = true;
@@ -182,10 +183,12 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 
 	// End game states
 	if (isGameOver) {
-		gameOver();
+		gameOver(gameScore);
+		gameScore = 0;
 	}
 	else {
-		gameWin();
+		gameWin(gameScore);
+		gameScore = 0;
 	}
 
 }
@@ -225,9 +228,11 @@ void mainGame::pauseGame() const {
 }
 
 // Display the win screen
-void mainGame::gameWin() {
+void mainGame::gameWin(int const gameScore) {
 	_board.setWin();
 	_board.print();
+	gotoxy(43, 9);
+	std::cout << gameScore;
 	while (true) {
 		if (_kbhit()) {
 			char Esc = _getch();
@@ -239,9 +244,11 @@ void mainGame::gameWin() {
 }
 
 // Display the game over screen
-void mainGame::gameOver() {
+void mainGame::gameOver(int const gameScore) {
 	_board.setLose();
 	_board.print();
+	gotoxy(44, 9);
+	std::cout << gameScore;
 	while (true) {
 		if (_kbhit()) {
 			char Esc = _getch();
@@ -277,7 +284,25 @@ bool mainGame::setALL() {
 
 
 // its Hammer Time !!!
-void mainGame::itsHammerTime() {
-	_BG.hammerHitBG(_mario.getMarioPos(), _mario.getDirX());
-	_GG.hammerHitGG(_mario.getMarioPos(), _mario.getDirX());
+void mainGame::itsHammerTime(int& gameScore) {
+	if (_BG.hammerHitBG(_mario.getMarioPos(), _mario.getDirX(), gameScore)){
+		updateLegend();
+	}
+	if(_GG.hammerHitGG(_mario.getMarioPos(), _mario.getDirX(), gameScore)){
+		updateLegend();
+	}
+}
+
+void mainGame::legendsNeverDie(board* _pBoard) {
+	Pos lPos = _pBoard->searchChar(SpecialCharacters::LEGEND);
+	gotoxy(lPos.x, lPos.y);
+	std::cout << ' ';
+	lPos.y++;
+	gotoxy(lPos.x, lPos.y);
+	legendPos = lPos;
+	std::cout << "Lives:" << marioLives << " Score:" << gameScore;
+}
+void mainGame::updateLegend() {
+	gotoxy(legendPos.x, legendPos.y);
+	std::cout << "Lives:" << marioLives << " Score:" << gameScore;
 }

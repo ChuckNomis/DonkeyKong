@@ -14,10 +14,9 @@ class barrel: public Enemy
 public:
 	//Constructor
 	barrel(int fallCounter = 0, bool exist = false, Pos newPos = { 0, 0 }, Direction newDir = { 0, 0 }, board* Board = nullptr)
-		: fallCounter(fallCounter), exist(exist), Enemy(newDir, newPos, Board, SpecialCharacters::BARREL) {
-	}
+		: fallCounter(fallCounter), exist(exist), Enemy(newDir, newPos, Board, SpecialCharacters::BARREL) {}
 
-	bool hammerHitB(Pos marioPos, int dirX);
+	bool hammerHitB(Pos marioPos, int dirX, int& gameScore);
 
 	// Get fall counter value
 	int getFallCounter() const {
@@ -44,7 +43,6 @@ public:
 		return exist;
 	}
 
-	
 	// Set the board pointer for the barrel
 	void setBarrelBoard(board& board, Pos newPos) {
 		_pBoard = &board;
@@ -56,7 +54,6 @@ public:
 	void setBarrelInSpawnPos() {
 		_pos = spawnPos;
 	}
-
 
 	// Move the barrel
 	void move();

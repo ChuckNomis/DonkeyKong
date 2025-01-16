@@ -33,5 +33,5 @@ public:
     // Resets all barrels to their initial state
     void resetAll();
 
-    void hammerHitBG(Pos marioPos,int dirX);
+    bool hammerHitBG(Pos marioPos,int dirX, int& gameScore);
 };

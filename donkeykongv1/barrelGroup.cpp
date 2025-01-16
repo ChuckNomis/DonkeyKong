@@ -30,10 +30,12 @@ bool barrelGroup::barrelsFalling() {
 	return deadMario;
 }
 
-void barrelGroup::hammerHitBG(Pos marioPos,int dirX) {
+bool barrelGroup::hammerHitBG(Pos marioPos,int dirX,int& gameScore) {
 	for (barrel& b : _barrelGroup) {
 		if (b.isExist()) {
-			b.hammerHitB(marioPos, dirX);
+			if (b.hammerHitB(marioPos, dirX, gameScore)) {
+				return true;
+			}
 		}
 	}
 }

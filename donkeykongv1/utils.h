@@ -16,7 +16,8 @@ enum SpecialCharacters {
 	EXPLOSION = 'X', // Explosion character
 	MARIO_ON_LADDER = '%', // Mario on ladder character
 	GHOST = 'x', // Ghost character
-	HAMMER = 'p' // Hammer character 
+	HAMMER = 'p', // Hammer character 
+	LEGEND = 'L'
 };
 // Enumeration for key codes
 enum KeyCode {

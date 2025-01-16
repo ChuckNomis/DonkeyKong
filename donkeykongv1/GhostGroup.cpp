@@ -45,10 +45,12 @@ void GhostGroup::eraseGhosts() {
 		}
 	}
 }
-void GhostGroup::hammerHitGG(Pos marioPos, int dirX) {
+bool GhostGroup::hammerHitGG(Pos marioPos, int dirX, int& gameScore) {
 	for (auto it = _ghostGroup.begin(); it != _ghostGroup.end(); ) {
 		if (it->hammerHitG(marioPos, dirX)) {
 			it = _ghostGroup.erase(it); // Erase and get the next valid iterator
+			gameScore += 300;
+			return true;
 		}
 		else {
 			++it; // Move to the next element only if not erased

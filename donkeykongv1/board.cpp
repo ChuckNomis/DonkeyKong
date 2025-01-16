@@ -25,7 +25,7 @@ int board::chooseScreen(std::vector<std::string> const FileNames, const int sumO
     int screenNumber = 1;
 	int result = 0;
 	int line = 0, row = 0;
-    gotoxy(3 + row, 5 + line);
+    gotoxy(3 + row, 6 + line);
     for (std::string name : FileNames) {
         std::cout << screenNumber << ". " << name << std::endl;
         screenNumber++;
@@ -36,7 +36,7 @@ int board::chooseScreen(std::vector<std::string> const FileNames, const int sumO
 		else {
 			line += 1;
 		}
-        gotoxy(3 + row, 5 + line);
+        gotoxy(3 + row, 6 + line);
     }
 
 	gotoxy(34,19);
@@ -75,6 +75,10 @@ bool board::isScreenOk(int screenNumber) {
         }
         Pos paulinePos = searchChar(SpecialCharacters::PAULINE);
         if (paulinePos.x == -1 || paulinePos.y == -1) {
+            return false;
+        }
+        Pos legendPos = searchChar(SpecialCharacters::LEGEND);
+        if (legendPos.x == -1 || legendPos.y == -1) {
             return false;
         }
 		return true;

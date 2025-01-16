@@ -53,13 +53,13 @@ class board {
 	"Q                                                                              Q", // 3
 	"Q                                                                              Q", // 4
 	"Q                                                                              Q", // 5
-	"Q                                                                              Q", // 6
-	"Q                               Y O U   W O N !                                Q", // 7
+	"Q                   ||    You Completed all the stages     ||                  Q", // 6
+	"Q                                                                              Q", // 7
 	"Q                                                                              Q", // 9
-	"Q                                                                              Q", // 9
+	"Q                              Your Score:                                     Q", // 9
 	"Q                                                                              Q", // 10
 	"Q                                                                              Q", // 11
-	"Q                       Press ESC to go back to the menu                       Q", // 12
+	"Q                                                                              Q", // 12
 	"Q                                                                              Q", // 13
 	"Q                                                                              Q", // 14
 	"Q                                                                              Q", // 15
@@ -68,7 +68,7 @@ class board {
 	"Q                                                                              Q", // 18
 	"Q                                                                              Q", // 19
 	"Q                                                                              Q", // 20
-	"Q                                                                              Q", // 21
+	"Q                        Press ESC to go back to the menu                      Q", // 21
 	"Q                                                                              Q", // 22
 	"Q==============================================================================Q", // 23
 	"QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
@@ -109,13 +109,13 @@ class board {
 		 "Q                                                                              Q", // 3
 		 "Q                                                                              Q", // 4
 		 "Q                                                                              Q", // 5
-		 "Q                                                                              Q", // 6
-		 "Q                          ||     GAME   OVER     ||                           Q", // 7
+		 "Q                          ||     GAME   OVER     ||                           Q", // 6
+		 "Q                                                                              Q", // 7
 		 "Q                                                                              Q", // 9
-		 "Q                                                                              Q", // 9
+		 "Q                              Your Score:                                     Q", // 9
 		 "Q                                                                              Q", // 10
 		 "Q                                                                              Q", // 11
-		 "Q                       Press ESC to go back to the menu                       Q", // 12
+		 "Q                                                                              Q", // 12
 		 "Q                                                                              Q", // 13
 		 "Q                                                                              Q", // 14
 		 "Q                                                                              Q", // 15
@@ -124,7 +124,7 @@ class board {
 		 "Q                                                                              Q", // 18
 		 "Q                                                                              Q", // 19
 		 "Q                                                                              Q", // 20
-		 "Q                                                                              Q", // 21
+		 "Q                        Press ESC to go back to the menu                      Q", // 21
 		 "Q                                                                              Q", // 22
 		 "Q==============================================================================Q", // 23
 		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
@@ -190,8 +190,8 @@ class board {
 		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
 		 "Q==============================================================================Q", // 1
 		 "Q                                                                              Q", // 2
-		 "Q         ----   Choose a Screen by Entering the screen number   ----          Q", // 3
-		 "Q                                                                              Q", // 4
+		 "Q          ----   Choose a Screen by Typing the screen number   ----           Q", // 3
+		 "Q                         And then pressing ENTER                              Q", // 4
 		 "Q                                                                              Q", // 5
 		 "Q                                                                              Q", // 6
 		 "Q                                                                              Q", // 7
