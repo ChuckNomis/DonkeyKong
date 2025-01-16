@@ -40,7 +40,7 @@ public:
     void pauseGame() const;
 
     // Starts the main game loop
-    void startGame(int screenNumber,int numOfFiles);
+    int startGame(int screenNumber,int numOfFiles);
 
     // Handles the game-over state
     void gameOver(int const gameScore);

@@ -51,6 +51,12 @@ int board::chooseScreen(std::vector<std::string> const FileNames, const int sumO
 	}
 }
 
+void board::setScoreBoard() {
+    for (int i = 0; i < MAX_Y; i++) {
+        memcpy(currentBoard[i], scoreBoard[i], MAX_X + 1);
+    }
+}
+
 // Function to set the board to the menu state
 void board::setMenu() {
     for (int i = 0; i < MAX_Y; i++) {

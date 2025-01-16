@@ -73,6 +73,34 @@ class board {
 	"Q==============================================================================Q", // 23
 	"QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
 	};
+	const char* scoreBoard[MAX_Y] = {
+		//01234567890123456789012345678901234567890123456789012345678901234567890123456789
+		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
+		 "Q==============================================================================Q", // 1
+		 "Q                                                                              Q", // 2
+		 "Q                                                                              Q", // 3
+		 "Q                            ||  SCORE BOARD  ||                               Q", // 4
+		 "Q                                                                              Q", // 5
+		 "Q                                                                              Q", // 6
+		 "Q                                                                              Q", // 7
+		 "Q                                                                              Q", // 9
+		 "Q                                                                              Q", // 9
+		 "Q                                                                              Q", // 10
+		 "Q                                                                              Q", // 11
+		 "Q                                                                              Q", // 12
+		 "Q                                                                              Q", // 13
+		 "Q                                                                              Q", // 14
+		 "Q                                                                              Q", // 15
+		 "Q                                                                              Q", // 16
+		 "Q                                                                              Q", // 17
+		 "Q                                                                              Q", // 18
+		 "Q                                                                              Q", // 19
+		 "Q                                                                              Q", // 20
+		 "Q                        Press ESC to go back to the menu                      Q", // 21
+		 "Q                                                                              Q", // 22
+		 "Q==============================================================================Q", // 23
+		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
+	};
 	const char* screenErrorBoard[MAX_Y] = {
 		//01234567890123456789012345678901234567890123456789012345678901234567890123456789
 		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
@@ -140,9 +168,9 @@ class board {
 		  "Q                                                                              Q", // 6
 		  "Q                         Press 1 - Start a new game                           Q", // 7
 		  "Q                                                                              Q", // 8
-		  "Q                         Press 2 - Level selection                            Q", // 9
+		  "Q                          Press 2 - Level selection                           Q", // 9
 		  "Q                                                                              Q", // 10
-		  "Q                                                                              Q", // 11
+		  "Q                           Press 3 - Score Board                              Q", // 11
 		  "Q                                                                              Q", // 12
 		  "Q                                                                              Q", // 13
 		  "Q                                                                              Q", // 14
@@ -243,6 +271,9 @@ class board {
 	};
 public:
 	
+
+	void setScoreBoard();
+
 	// choose screen
 	int chooseScreen(std::vector<std::string> const, const int sumOfFiles);
 

@@ -18,14 +18,18 @@
 void Menu::start() {
 
 	int screenNumber = 1;
+	int currScore;
 	board _board;       // Instance of the board to manage menu and guide displays
 	mainGame _game;     // Instance of the game to handle gameplay logic
+
+	std::vector<int> gameScores;// Vector to store all the gameScores
 
 	std::vector<std::string> FileNames; // Vector to store file names
 	int sumOfFiles = getAllBoardFileNames(FileNames); // Get all the file names in the screens folder
 	
 	_board.setMenu();   // Set the board to display the main menu
 	_board.print();     // Print the menu to the console
+	int i = 1;
 
 	bool isRunning = true; // Flag to control the menu loop
 
@@ -49,7 +53,8 @@ void Menu::start() {
 					_board.print();     // Reprint the menu
 					break;
 				}
-				_game.startGame(1,sumOfFiles);  // Start the game
+				currScore = _game.startGame(1,sumOfFiles);  // Start the game
+				gameScores.push_back(currScore);
 				_board.setMenu();   // Reset to the menu after the game ends
 				_board.print();     // Reprint the menu
 				break;
@@ -60,6 +65,30 @@ void Menu::start() {
 				screenNumber = _board.chooseScreen(FileNames,sumOfFiles);
 				if (screenNumber != 0) {
 					_game.startGame(screenNumber, sumOfFiles);
+				}
+				_board.setMenu();   // Reset to the menu after the game ends
+				_board.print();     // Reprint the menu
+				break;
+
+			case '3':
+				// Sort in descending order
+				std::sort(gameScores.begin(), gameScores.end(), std::greater<int>());
+				_board.setScoreBoard();
+				_board.print();
+				gotoxy(35, 7);
+				for (int score : gameScores) {
+					std::cout << i << ". " << score;
+					gotoxy(35, 7 + i);
+					i++;
+				}
+				i = 1;
+				while (true) {
+					if (_kbhit()) {
+						char Esc = _getch();
+						if (Esc == KeyCode::KEY_ESC) {
+							break;
+						}
+					}
 				}
 				_board.setMenu();   // Reset to the menu after the game ends
 				_board.print();     // Reprint the menu

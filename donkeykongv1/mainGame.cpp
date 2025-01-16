@@ -9,7 +9,7 @@
 #include "barrelGroup.h"
 
 // Main game loop
-void mainGame::startGame(int screenNumber, int numOfFiles) {
+int mainGame::startGame(int screenNumber, int numOfFiles) {
 	int filesToLoad = numOfFiles - screenNumber + 1;
 	bool marioWin = false;
 	bool isGameOver = false;
@@ -180,15 +180,19 @@ void mainGame::startGame(int screenNumber, int numOfFiles) {
 		}
 		
 	}
-
+	int tempScore;
 	// End game states
 	if (isGameOver) {
 		gameOver(gameScore);
+		tempScore = gameScore;
 		gameScore = 0;
+		return tempScore;
 	}
 	else {
 		gameWin(gameScore);
+		tempScore = gameScore;
 		gameScore = 0;
+		return tempScore;
 	}
 
 }

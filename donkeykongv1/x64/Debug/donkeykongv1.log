@@ -1,9 +1,2 @@
-﻿  GhostGroup.cpp
-  barrel.cpp
-  board.cpp
-  mainGame.cpp
-  menu.cpp
-  Generating Code...
-C:\Users\nadav\Documents\GitHub\DonkeyKong\donkeykongv1\mainGame.cpp(283,1): warning C4715: 'mainGame::setALL': not all control paths return a value
-C:\Users\nadav\Documents\GitHub\DonkeyKong\donkeykongv1\GhostGroup.cpp(59,1): warning C4715: 'GhostGroup::hammerHitGG': not all control paths return a value
+﻿  menu.cpp
   donkeykongv1.vcxproj -> C:\Users\nadav\Documents\GitHub\DonkeyKong\x64\Debug\donkeykongv1.exe
