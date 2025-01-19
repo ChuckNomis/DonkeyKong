@@ -17,8 +17,8 @@
 // Method to initialize and handle the menu interactions
 void Menu::start() {
 
-	int screenNumber = 1;
-	int currScore;
+	int screenNumber = 1;   // Current screen number
+	int currScore;          // Current score
 	board _board;       // Instance of the board to manage menu and guide displays
 	mainGame _game;     // Instance of the game to handle gameplay logic
 

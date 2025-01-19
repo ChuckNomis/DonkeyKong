@@ -9,17 +9,19 @@
 class Ghost : public Enemy
 {
 public:
-	//Constructor
+	// Constructor
 	Ghost(Direction newDir, Pos newPos, board* Board) : Enemy(newDir, newPos, Board, SpecialCharacters::GHOST) {}
-	
+	// Move func
 	void move();
 
+	// Checks if Hammer hit this ghost
 	bool hammerHitG(Pos marioPos, int dirX);
 
+	// Flips the diraction of the ghost
 	void flipDir() {
 		_dir.x *= -1;
 	}
-	
+	// Choose a Random number between 
 	int chooseBiasedRandomDir();
 };
 

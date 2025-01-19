@@ -6,68 +6,82 @@
 #include <conio.h>
 
 class Enemy {
-
-
 protected:
+    Pos _pos;                 // Position of the enemy
+    Direction _dir;           // Direction of movement
+    board* _pBoard;           // Pointer to the game board
+    char c;                   // Character representing the enemy
 
-	Pos _pos;
-	Direction _dir;
-	board* _pBoard;
-	char c;
-	void draw(char c) const {
-		gotoxy(_pos.x, _pos.y);
-		std::cout << c;
-	}
+    // Draw the enemy at its current position
+    void draw(char c) const {
+        gotoxy(_pos.x, _pos.y);
+        std::cout << c;
+    }
+
 public:
+    // Constructor: Initializes the enemy with position, direction, board pointer, and character
+    Enemy(Direction newDir, Pos newPos, board* Board, char ch)
+        : _dir(newDir), _pos(newPos), _pBoard(Board), c(ch) {
+    }
 
-	Enemy(Direction newDir, Pos newPos, board* Board, char ch) :_dir(newDir), _pos(newPos), _pBoard(Board) { c = ch; }
+    // Draw the enemy on the board
+    void draw() {
+        _pBoard->changePixelInCurrBoard(_pos, c);
+        draw(c);
+    }
 
-	void draw() {
-		_pBoard->changePixelInCurrBoard(_pos, c);
-		draw(c);
-	}
-	void erase() {
-		_pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::SPACE);
-		draw(SpecialCharacters::SPACE);
-	}
-	void eraseOnLadder() {
-		_pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::LADDER);
-		draw(SpecialCharacters::LADDER);
-	}
-	void eraseOnHammer() {
-		_pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::HAMMER);
-		draw(SpecialCharacters::HAMMER);
-	}
-	void eraseOnKong() {
-		_pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::KONG);
-		draw(SpecialCharacters::KONG);
-	}
-	void eraseOnPauline() {
-		_pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::PAULINE);
-		draw(SpecialCharacters::PAULINE);
+    // Erase the enemy from the board
+    void erase() {
+        _pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::SPACE);
+        draw(SpecialCharacters::SPACE);
+    }
 
-	}
-	Pos getPos() {
-		return _pos;
-	}
-	bool checkLadder() {
-		if (_pBoard->getCharFromOriginalScreen(_pos.x, _pos.y) == SpecialCharacters::LADDER)
-			return true;
-		return false;
-	}
-	bool checkHammer() {
-		if (_pBoard->getCharFromOriginalScreen(_pos.x, _pos.y) == SpecialCharacters::HAMMER)
-			return true;
-		return false;
-	}
-	bool checkPauline() {
-		if (_pBoard->getCharFromOriginalScreen(_pos.x, _pos.y) == SpecialCharacters::PAULINE)
-			return true;
-		return false;
-	}
-	bool checkDkong() {
-		if (_pBoard->getCharFromOriginalScreen(_pos.x, _pos.y) == SpecialCharacters::KONG)
-			return true;
-		return false;
-	}
+    // Erase the enemy if it is on a ladder
+    void eraseOnLadder() {
+        _pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::LADDER);
+        draw(SpecialCharacters::LADDER);
+    }
+
+    // Erase the enemy if it is on a hammer
+    void eraseOnHammer() {
+        _pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::HAMMER);
+        draw(SpecialCharacters::HAMMER);
+    }
+
+    // Erase the enemy if it is on Donkey Kong
+    void eraseOnKong() {
+        _pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::KONG);
+        draw(SpecialCharacters::KONG);
+    }
+
+    // Erase the enemy if it is on Pauline
+    void eraseOnPauline() {
+        _pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::PAULINE);
+        draw(SpecialCharacters::PAULINE);
+    }
+
+    // Get the current position of the enemy
+    Pos getPos() {
+        return _pos;
+    }
+
+    // Check if the enemy is on a ladder
+    bool checkLadder() {
+        return _pBoard->getCharFromOriginalScreen(_pos.x, _pos.y) == SpecialCharacters::LADDER;
+    }
+
+    // Check if the enemy is on a hammer
+    bool checkHammer() {
+        return _pBoard->getCharFromOriginalScreen(_pos.x, _pos.y) == SpecialCharacters::HAMMER;
+    }
+
+    // Check if the enemy is on Pauline
+    bool checkPauline() {
+        return _pBoard->getCharFromOriginalScreen(_pos.x, _pos.y) == SpecialCharacters::PAULINE;
+    }
+
+    // Check if the enemy is on Donkey Kong
+    bool checkDkong() {
+        return _pBoard->getCharFromOriginalScreen(_pos.x, _pos.y) == SpecialCharacters::KONG;
+    }
 };

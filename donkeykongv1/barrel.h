@@ -16,6 +16,7 @@ public:
 	barrel(int fallCounter = 0, bool exist = false, Pos newPos = { 0, 0 }, Direction newDir = { 0, 0 }, board* Board = nullptr)
 		: fallCounter(fallCounter), exist(exist), Enemy(newDir, newPos, Board, SpecialCharacters::BARREL) {}
 
+	// Check if hammer it specific barrel
 	bool hammerHitB(Pos marioPos, int dirX, int& gameScore);
 
 	// Get fall counter value

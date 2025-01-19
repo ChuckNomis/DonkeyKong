@@ -61,6 +61,7 @@ public:
         }
     }
 
+    // Get mario position
     Pos getMarioPos() {
         return marioPos;
     }
@@ -71,6 +72,7 @@ public:
         dir.y = y;
     }
 
+    // Get dir x of mario
     int getDirX(){
         return dir.x;
     }

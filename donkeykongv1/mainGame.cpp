@@ -296,7 +296,7 @@ void mainGame::itsHammerTime(int& gameScore) {
 		updateLegend();
 	}
 }
-
+// Prints the Legend
 void mainGame::legendsNeverDie(board* _pBoard) {
 	Pos lPos = _pBoard->searchChar(SpecialCharacters::LEGEND);
 	gotoxy(lPos.x, lPos.y);
@@ -306,6 +306,7 @@ void mainGame::legendsNeverDie(board* _pBoard) {
 	legendPos = lPos;
 	std::cout << "Lives:" << marioLives << " Score:" << gameScore;
 }
+// Update the legend 
 void mainGame::updateLegend() {
 	gotoxy(legendPos.x, legendPos.y);
 	std::cout << "Lives:" << marioLives << " Score:" << gameScore;

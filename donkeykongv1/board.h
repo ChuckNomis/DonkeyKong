@@ -271,7 +271,7 @@ class board {
 	};
 public:
 	
-
+	// Sets the current board to the score board state
 	void setScoreBoard();
 
 	// choose screen
@@ -302,15 +302,19 @@ public:
 	// Sets the current board to the win state
 	void setWin();
 
-	
+	// Sets the current board to choose a screen state
 	void setChooseScreen();
 
+	// Sets the current board to screen error state
 	void setScreenError();
 
+	// Sets the current board to no files Error state
 	void setNoFilesError();
-
+	 
+	// Sets and fix the current screen
 	bool setScreen(int i);
 
+	// Checks if a screen is valid 
 	bool isScreenOk(int i);
 
 	// Prints the current board to the console
@@ -328,12 +332,16 @@ public:
 	// Searches for a specific character on the board
 	Pos searchChar(char ch) const;
 
+	// Fix the current screen so all the components are valid
 	void fixBoard();
 
+	// Fix a sepcific char on the screen ( deletes the bad ones )
 	void fixChar(char c);
 
+	// Delets flying ghosts
 	void fixGhosts();
 
+	// Gets a vector full of all the ghosts location
 	std::vector<Pos> getGhostsLocations();
 
 };

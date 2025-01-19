@@ -96,6 +96,7 @@ bool mario::isMarioHitBarrel() const {
 	}
 	return false;
 }
+// Check if Mario collides with a ghost
 bool mario::isMarioHitGhost() const {
 	if (pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y) == SpecialCharacters::GHOST) {
 		return true;
