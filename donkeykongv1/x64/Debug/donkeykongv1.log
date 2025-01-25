@@ -1,15 +1,2 @@
-﻿  Enemy.cpp
-  Ghost.cpp
-  GhostGroup.cpp
-  barrel.cpp
-  barrelGroup.cpp
-  board.cpp
-  main.cpp
-  mainGame.cpp
-  mario.cpp
-  menu.cpp
-  Generating Code...
-C:\Users\nadav\Documents\GitHub\DonkeyKong\donkeykongv1\mainGame.cpp(287,1): warning C4715: 'mainGame::setALL': not all control paths return a value
-C:\Users\nadav\Documents\GitHub\DonkeyKong\donkeykongv1\barrelGroup.cpp(41,1): warning C4715: 'barrelGroup::hammerHitBG': not all control paths return a value
-C:\Users\nadav\Documents\GitHub\DonkeyKong\donkeykongv1\GhostGroup.cpp(59,1): warning C4715: 'GhostGroup::hammerHitGG': not all control paths return a value
+﻿  BigGhost.cpp
   donkeykongv1.vcxproj -> C:\Users\nadav\Documents\GitHub\DonkeyKong\x64\Debug\donkeykongv1.exe

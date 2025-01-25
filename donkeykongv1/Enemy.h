@@ -64,6 +64,9 @@ public:
     Pos getPos() {
         return _pos;
     }
+    Direction getDir() {
+        return _dir;
+    }
 
     // Check if the enemy is on a ladder
     bool checkLadder() {
@@ -83,5 +86,15 @@ public:
     // Check if the enemy is on Donkey Kong
     bool checkDkong() {
         return _pBoard->getCharFromOriginalScreen(_pos.x, _pos.y) == SpecialCharacters::KONG;
+    }
+    // Flips the diraction of the ghost
+    void flipDir() {
+        _dir.x *= -1;
+    }
+    // Get random dir.x
+    int getRandomDirx(){
+        int x = (rand() % 2 == 0) ? -1 : 1;
+        return x;
+
     }
 };

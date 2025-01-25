@@ -4,7 +4,8 @@ void Ghost::move(){
 	_dir.x *= chooseBiasedRandomDir();
 	int newX = _pos.x + _dir.x;
 	int newY = _pos.y + _dir.y;
-	if (_pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::GHOST||
+	if (_pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::GHOST ||
+		_pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::BIG_GHOST ||
 		_pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::BORDER){
 		flipDir();
 	}

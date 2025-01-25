@@ -8,16 +8,16 @@
 
 
 //Get the locations of all the ghosts on the screen
-std::vector<Pos> board::getGhostsLocations() {
-	std::vector<Pos> ghostPos;
+std::vector<Pos> board::getCharLocations(char c) {
+	std::vector<Pos> CharPos;
 	for (int i = 0; i < MAX_Y; i++) {
 		for (int j = 0; j < MAX_X; j++) {
-			if (currentScreen[i][j] == SpecialCharacters::GHOST) {
-				ghostPos.push_back({ j,i });
+			if (currentScreen[i][j] == c) {
+				CharPos.push_back({j,i});
 			}
 		}
 	}
-	return ghostPos;
+	return CharPos;
 }
 
 // Function to choose a screen from a list of files

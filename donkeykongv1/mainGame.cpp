@@ -5,8 +5,7 @@
 #include "mainGame.h"
 #include "board.h"
 #include "utils.h"
-#include "barrel.h"
-#include "barrelGroup.h"
+
 
 // Main game loop
 int mainGame::startGame(int screenNumber, int numOfFiles) {
@@ -56,6 +55,7 @@ int mainGame::startGame(int screenNumber, int numOfFiles) {
 					}
 					_BG.drawBarrels();
 					_GG.drawGhosts();
+					_BGG.drawBigGhosts();
 
 					// Check if Mario is hit by a barrel
 					if (_mario.isMarioHitBarrel()) {
@@ -151,10 +151,14 @@ int mainGame::startGame(int screenNumber, int numOfFiles) {
 					}
 
 					// Move and erase barrels
+
 					_BG.eraseBarrels();
 					_GG.eraseGhosts();
+					_BGG.eraseBigGhosts();
+					GhostCollision();
 					_BG.moveBarrels();
 					_GG.moveGhosts();
+					_BGG.moveBigGhosts();
 
 					// Handle jumping logic
 					if (jumps == 2) {
@@ -196,7 +200,20 @@ int mainGame::startGame(int screenNumber, int numOfFiles) {
 	}
 
 }
-
+void mainGame::GhostCollision() {
+	for (BigGhost& _bg : _BGG._BigGhostGroup) {
+		for (Ghost& _g : _GG._ghostGroup) {
+			int newBGX = _bg.getPos().x + _bg.getDir().x;
+			int newBGY = _bg.getPos().y + _bg.getDir().y;
+			int newGX = _g.getPos().x + _g.getDir().x;
+			int newGY = _g.getPos().y + _g.getDir().y;
+			if (newBGX==newGX&&newBGY==newGY) {
+				_bg.flipDir();
+				_g.flipDir();
+			}
+		}
+	}
+}
 //Switch to error screen 
 void mainGame::errorScreenNotGood(int screenNumber) {
 	_board.setScreenError();
@@ -212,13 +229,11 @@ void mainGame::errorScreenNotGood(int screenNumber) {
 		}
 	}
 }
-
 // Display the number of lives left
 void mainGame::printLives() const{
 	gotoxy(12, 2);
 	std::cout << marioLives;
 }
-
 // Pause the game until ESC is pressed again
 void mainGame::pauseGame() const {
 	while (true) {
@@ -230,7 +245,6 @@ void mainGame::pauseGame() const {
 		}
 	}
 }
-
 // Display the win screen
 void mainGame::gameWin(int const gameScore) {
 	_board.setWin();
@@ -246,7 +260,6 @@ void mainGame::gameWin(int const gameScore) {
 		}
 	}
 }
-
 // Display the game over screen
 void mainGame::gameOver(int const gameScore) {
 	_board.setLose();
@@ -262,7 +275,6 @@ void mainGame::gameOver(int const gameScore) {
 		}
 	}
 }
-
 // Set all game objects on the board
 bool mainGame::setALL() {
 	Pos donkeyKongPos = _board.searchChar(SpecialCharacters::KONG);
@@ -279,20 +291,28 @@ bool mainGame::setALL() {
 	_mario.setMarioOnBoard(_board, marioPos);
 	_mario.setDir(0, 0);
 
-	std::vector<Pos> ghostPos = _board.getGhostsLocations();
+	std::vector<Pos> ghostPos = _board.getCharLocations(SpecialCharacters::GHOST);
 	_GG.clearAll();
 	for (Pos pos : ghostPos) {
 		_GG.setGhostOnBoard(_board, pos);
 	}
+
+	std::vector<Pos> BigGhostPos = _board.getCharLocations(SpecialCharacters::BIG_GHOST);
+	_BGG.clearAll();
+	for (Pos pos : BigGhostPos) {
+		_BGG.setBigGhostOnBoard(_board, pos);
+	}
+
 }
-
-
 // its Hammer Time !!!
 void mainGame::itsHammerTime(int& gameScore) {
 	if (_BG.hammerHitBG(_mario.getMarioPos(), _mario.getDirX(), gameScore)){
 		updateLegend();
 	}
 	if(_GG.hammerHitGG(_mario.getMarioPos(), _mario.getDirX(), gameScore)){
+		updateLegend();
+	}
+	if (_BGG.hammerHitBGG(_mario.getMarioPos(), _mario.getDirX(), gameScore)) {
 		updateLegend();
 	}
 }

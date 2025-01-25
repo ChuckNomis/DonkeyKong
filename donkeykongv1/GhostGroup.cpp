@@ -14,7 +14,7 @@ void GhostGroup::setGhostOnBoard(board& board, Pos ghostPos) {
 	_ghostGroup.push_back(mewGhost);
 }
 // Moves all the ghosts in the group
-void  GhostGroup::moveGhosts() {
+void GhostGroup::moveGhosts() {
 	for (Ghost& ghost : _ghostGroup) {
 		ghost.move();
 	}

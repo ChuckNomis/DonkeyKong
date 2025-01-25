@@ -13,11 +13,12 @@ enum SpecialCharacters {
 	PAULINE = '$', // Pauline character
 	SPACE = ' ', // Space character
 	BORDER = 'Q', // Border character
-	EXPLOSION = 'X', // Explosion character
+	EXPLOSION = '*', // Explosion character
 	MARIO_ON_LADDER = '%', // Mario on ladder character
 	GHOST = 'x', // Ghost character
 	HAMMER = 'p', // Hammer character 
-	LEGEND = 'L'
+	LEGEND = 'L', // Legend character
+	BIG_GHOST = 'X', // Big Ghost character
 };
 // Enumeration for key codes
 enum KeyCode {
@@ -40,6 +41,9 @@ void ShowConsoleCursor(bool showFlag);
 // Structure to represent a position (x, y) on the console or board
 struct Pos {
 	int x, y; // x: horizontal position, y: vertical position
+	bool operator==(const Pos& other) {
+		return(this->x == other.x && this->y == other.y);
+	}
 };
 
 // Structure to represent direction for movement (x, y)

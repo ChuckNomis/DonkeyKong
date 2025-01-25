@@ -131,6 +131,8 @@
   <ItemGroup>
     <ClCompile Include="barrel.cpp" />
     <ClCompile Include="barrelGroup.cpp" />
+    <ClCompile Include="BigGhost.cpp" />
+    <ClCompile Include="BigGhostGroup.cpp" />
     <ClCompile Include="board.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Ghost.cpp" />
@@ -144,6 +146,8 @@
   <ItemGroup>
     <ClInclude Include="barrel.h" />
     <ClInclude Include="barrelGroup.h" />
+    <ClInclude Include="BigGhost.h" />
+    <ClInclude Include="BigGhostGroup.h" />
     <ClInclude Include="board.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Ghost.h" />

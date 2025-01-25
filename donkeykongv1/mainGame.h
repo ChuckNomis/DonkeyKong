@@ -5,6 +5,7 @@
 #include "board.h"
 #include "barrel.h"
 #include "GhostGroup.h"
+#include "BigGhostGroup.h"
 // The mainGame class manages the overall game logic and states
 class mainGame
 {
@@ -15,6 +16,7 @@ class mainGame
     mario _mario;              // Mario character object
     barrelGroup _BG;           // Group of barrels to manage barrel logic
     GhostGroup _GG;            // Group of ghosts to manage ghost logic
+    BigGhostGroup _BGG;        // Group of Big Ghosts to manage big ghost logic
 
 public:
     // Checks if Mario has no remaining lives
@@ -64,4 +66,6 @@ public:
 
     // Update the legend 
     void updateLegend();
+
+    void GhostCollision();
 };

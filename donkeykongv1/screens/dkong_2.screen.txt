@@ -1,25 +1,25 @@
 QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
 Q L                                                                            Q
 Q                                                                              Q
-Q                                                 $                            Q
+Q                                            @    $                            Q
 Q                                           =========                          Q
 Q                                               H                              Q
 Q                                               H                              Q
-Q                            x       &       x  H                              Q
+Q                            x       &          H            p                 Q
 Q                   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       Q
 Q                                                        H                     Q
 Q                                                        H                     Q
 Q                                                        H                     Q
-Q                  @        p         x                  H         x           Q
-Q        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Q
-Q                         H                                                    Q
-Q                         H                                                    Q
-Q                         H                                                    Q
-Q                  x      H                                      x             Q
+Q                           p         x                  H         x          XQ
+Q        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Q
+Q                         H                                   H                Q
+Q                         H                                   H                Q
+Q                         H                                   H                Q
+Q         x        x      H                                   H                Q
 Q     >>>>>>>>>>>>>>>>>>>>>>>                     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<Q
 Q           H                                                   H              Q
 Q           H                                                   H              Q
 Q           H                                                   H              Q
-Q           H                  p          @                     H              Q
+Q           H                  p                                H              Q
 Q==============================================================================Q
 QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ 

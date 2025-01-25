@@ -342,7 +342,7 @@ public:
 	void fixGhosts();
 
 	// Gets a vector full of all the ghosts location
-	std::vector<Pos> getGhostsLocations();
+	std::vector<Pos> getCharLocations(char c);
 
 };
 

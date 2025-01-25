@@ -9,9 +9,9 @@
 #include <cstdlib> // For rand()
 
 class GhostGroup {
-    std::vector<Ghost> _ghostGroup; // Vector to hold the ghosts
 
 public:
+    std::vector<Ghost> _ghostGroup; // Vector to hold the ghosts
     // Clears all ghosts from the group
     void clearAll() {
         _ghostGroup.clear();
