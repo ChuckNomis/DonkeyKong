@@ -65,16 +65,7 @@ void BigGhost::move() {
 		_pos.y += _dir.y;
 	}
 }
-// Chooses a biased random direction for the ghost
-int BigGhost::chooseBiasedRandomDir() {
-	int randomValue = rand() % 100; // Generate a random number between 0 and 99
-	if (randomValue < 95) {         // 95% chance for 1
-		return 1;
-	}
-	else {                        // 5% chance for -1
-		return -1;
-	}
-}
+
 int BigGhost::chooseBiasedRandomForClimbingLadder() {
 	int randomValue = rand() % 100; // Generate a random number between 0 and 99
 	if (randomValue < 30) {         // 95% chance for 1
@@ -84,51 +75,3 @@ int BigGhost::chooseBiasedRandomForClimbingLadder() {
 		return -1;
 	}
 }
-//Check if Hammer hit this ghost
-bool BigGhost::hammerHitG(Pos marioPos, int dirX) {
-	if (dirX == -1) {
-		if (_pBoard->getCharFromCurrentBoard(_pos.x + 1, _pos.y) == SpecialCharacters::MARIO ||
-			_pBoard->getCharFromCurrentBoard(_pos.x + 1, _pos.y) == SpecialCharacters::MARIO_ON_LADDER ||
-			_pBoard->getCharFromCurrentBoard(_pos.x + 2, _pos.y) == SpecialCharacters::MARIO ||
-			_pBoard->getCharFromCurrentBoard(_pos.x + 2, _pos.y) == SpecialCharacters::MARIO_ON_LADDER) {
-
-
-			if (checkLadder()) {
-				eraseOnLadder();
-			}
-			else if (checkHammer()) {
-				eraseOnHammer();
-			}
-			else if (checkPauline()) {
-				eraseOnPauline();
-			}
-			else {
-				erase();
-			}
-			return true;
-		}
-	}
-	else if (dirX == 1) {
-		if (_pBoard->getCharFromCurrentBoard(_pos.x - 1, _pos.y) == SpecialCharacters::MARIO ||
-			_pBoard->getCharFromCurrentBoard(_pos.x - 1, _pos.y) == SpecialCharacters::MARIO_ON_LADDER ||
-			_pBoard->getCharFromCurrentBoard(_pos.x - 2, _pos.y) == SpecialCharacters::MARIO ||
-			_pBoard->getCharFromCurrentBoard(_pos.x - 2, _pos.y) == SpecialCharacters::MARIO_ON_LADDER) {
-			if (checkLadder()) {
-				eraseOnLadder();
-			}
-			else if (checkHammer()) {
-				eraseOnHammer();
-			}
-			else if (checkPauline()) {
-				eraseOnPauline();
-			}
-			else {
-				erase();
-			}
-			return true;
-		}
-	}
-	return false;
-
-}
-

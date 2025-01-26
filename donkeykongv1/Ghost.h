@@ -10,9 +10,9 @@ class Ghost : public Enemy
 {
 public:
 	// Constructor
-	Ghost(Direction newDir, Pos newPos, board* Board) : Enemy(newDir, newPos, Board, SpecialCharacters::GHOST) {}
+	Ghost(Direction newDir, Pos newPos, board* Board,char c = SpecialCharacters::GHOST) : Enemy(newDir, newPos, Board, c) {}
 	// Move func
-	void move();
+	virtual void move();
 	// Checks if Hammer hit this ghost
 	bool hammerHitG(Pos marioPos, int dirX);
 	// Choose a Random number between 

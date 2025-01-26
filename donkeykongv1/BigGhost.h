@@ -4,19 +4,15 @@
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
-#include "Enemy.h"
-class BigGhost : public Enemy
+#include "Ghost.h"
+class BigGhost : public Ghost
 {
 public:
 	// Constructor
-	BigGhost(Direction newDir, Pos newPos, board* Board): Enemy(newDir, newPos, Board, SpecialCharacters::BIG_GHOST){}
+	BigGhost(Direction newDir, Pos newPos, board* Board): Ghost(newDir, newPos, Board,SpecialCharacters::BIG_GHOST){}
 	// Move func
-	void move();
-	// Checks if Hammer hit this ghost
-	bool hammerHitG(Pos marioPos, int dirX);
-	// Choose a Random number between 
-	int chooseBiasedRandomDir();
+	virtual void move();
+	// Choosing a biased random direction for the ghost
 	int chooseBiasedRandomForClimbingLadder();
-	
 };
 
