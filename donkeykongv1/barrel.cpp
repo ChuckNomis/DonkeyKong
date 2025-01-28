@@ -123,6 +123,7 @@ void barrel::move() {
 	if (_pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::BORDER ||
 		_pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR_RIGHT ||
 		_pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR_LEFT ||
+		_pBoard->getCharFromCurrentBoard(newX, newY) == SpecialCharacters::FLOOR ||
 		newX == 0 || newX == 79 || newY == 24 || newY == 0)
 	{
 		_dir = { 0, 0 }; // Stop movement
