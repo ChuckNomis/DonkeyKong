@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AutoGame.cpp" />
     <ClCompile Include="barrel.cpp" />
     <ClCompile Include="barrelGroup.cpp" />
     <ClCompile Include="BigGhost.cpp" />
@@ -139,11 +140,15 @@
     <ClCompile Include="GhostGroup.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainGame.cpp" />
+    <ClCompile Include="ManualGame.cpp" />
     <ClCompile Include="mario.cpp" />
     <ClCompile Include="menu.cpp" />
+    <ClCompile Include="Results.cpp" />
+    <ClCompile Include="Steps.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AutoGame.h" />
     <ClInclude Include="barrel.h" />
     <ClInclude Include="barrelGroup.h" />
     <ClInclude Include="BigGhost.h" />
@@ -153,8 +158,11 @@
     <ClInclude Include="Ghost.h" />
     <ClInclude Include="GhostGroup.h" />
     <ClInclude Include="mainGame.h" />
+    <ClInclude Include="ManualGame.h" />
     <ClInclude Include="mario.h" />
     <ClInclude Include="menu.h" />
+    <ClInclude Include="Results.h" />
+    <ClInclude Include="Steps.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

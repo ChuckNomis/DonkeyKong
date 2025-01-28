@@ -9,6 +9,7 @@
 // The mainGame class manages the overall game logic and states
 class mainGame
 {
+protected:
     int gameScore = 0;         // Game Scroe 
     int marioLives = 3;        // Tracks Mario's remaining lives
     Pos legendPos;             // The position of the legend
@@ -44,7 +45,7 @@ public:
     void pauseGame() const;
 
     // Starts the main game loop
-    int startGame(int screenNumber,int numOfFiles);
+    virtual int startGame(int screenNumber,int numOfFiles);
 
     // Handles the game-over state
     void gameOver(int const gameScore);

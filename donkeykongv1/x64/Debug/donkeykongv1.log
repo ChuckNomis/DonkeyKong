@@ -1,8 +1,2 @@
-﻿  BigGhost.cpp
-  BigGhostGroup.cpp
-  mainGame.cpp
-  menu.cpp
-  Generating Code...
-C:\Users\nadav\Documents\GitHub\DonkeyKong\donkeykongv1\mainGame.cpp(306,1): warning C4715: 'mainGame::setALL': not all control paths return a value
-C:\Users\nadav\Documents\GitHub\DonkeyKong\donkeykongv1\BigGhostGroup.cpp(60,1): warning C4715: 'BigGhostGroup::hammerHitBGG': not all control paths return a value
+﻿  menu.cpp
   donkeykongv1.vcxproj -> C:\Users\nadav\Documents\GitHub\DonkeyKong\x64\Debug\donkeykongv1.exe

@@ -11,7 +11,7 @@
 class Menu {
 public:
     // Starts the menu interaction loop
-    void start();
+	void start(bool isLoad,bool isSilent,bool isSave);
 
 	// Get all the file names in the screens folder
 	int getAllBoardFileNames(std::vector<std::string>& vec_to_fill);
