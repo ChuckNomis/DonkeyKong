@@ -10,7 +10,7 @@
 // Handles the explosion of the barrel and checks if Mario is within the explosion radius
 
 //Check if Hammer hit this barrel
-bool barrel::hammerHitB(Pos marioPos, int dirX, int& gameScore) {
+bool barrel::hammerHitB(Pos marioPos, int dirX, int& gameScore,bool isSilent) {
 	if (dirX == -1) {
 		if (_pBoard->getCharFromCurrentBoard(_pos.x + 1, _pos.y) == SpecialCharacters::MARIO ||
 			_pBoard->getCharFromCurrentBoard(_pos.x + 1, _pos.y) == SpecialCharacters::MARIO_ON_LADDER ||
@@ -21,13 +21,13 @@ bool barrel::hammerHitB(Pos marioPos, int dirX, int& gameScore) {
 			resetFallCounter();
 			gameScore += 100;
 			if (checkLadder()) {
-				eraseOnLadder();
+				eraseOnLadder(isSilent);
 			}
 			else if (checkHammer()) {
-				eraseOnHammer();
+				eraseOnHammer(isSilent);
 			}
 			else if (checkPauline()) {
-				eraseOnPauline();
+				eraseOnPauline(isSilent);
 			}
 			else {
 				erase();
@@ -46,13 +46,13 @@ bool barrel::hammerHitB(Pos marioPos, int dirX, int& gameScore) {
 			gameScore += 100;
 
 			if (checkLadder()) {
-				eraseOnLadder();
+				eraseOnLadder(isSilent);
 			}
 			else if (checkHammer()) {
-				eraseOnHammer();
+				eraseOnHammer(isSilent);
 			}
 			else if (checkPauline()) {
-				eraseOnPauline();
+				eraseOnPauline(isSilent);
 			}
 			else {
 				erase();
@@ -63,7 +63,7 @@ bool barrel::hammerHitB(Pos marioPos, int dirX, int& gameScore) {
 	return false;
 }
 
-bool barrel::explode() {
+bool barrel::explode(bool isSilent) {
 	bool marioDead = false;
 	setExist(false);
 	resetFallCounter();
@@ -73,7 +73,9 @@ bool barrel::explode() {
 		for (int j = _pos.y - 2; j < _pos.y + 3; j++) {
 			if (i > 0 && i < 80 && j < 23) {
 				gotoxy(i, j);
-				std::cout << static_cast<char>(SpecialCharacters::EXPLOSION);
+				if (!isSilent) {
+					std::cout << static_cast<char>(SpecialCharacters::EXPLOSION);
+				}
 
 				// Check if Mario is hit by the explosion
 				if (_pBoard->getCharFromCurrentBoard(i, j) == SpecialCharacters::MARIO)
@@ -83,15 +85,20 @@ bool barrel::explode() {
 	}
 
 	erase(); // Erase the barrel
-	draw(SpecialCharacters::EXPLOSION); // Draw explosion character
-	Sleep(15);
-
+	if (!isSilent) {
+		draw(SpecialCharacters::EXPLOSION); // Draw explosion character
+	}
+	if (!isSilent) {
+		Sleep(15);
+	}
 	// Restore the board to its previous state
 	for (int i = _pos.x - 2; i < _pos.x + 3; i++) {
 		for (int j = _pos.y - 2; j < _pos.y + 3; j++) {
 			if (i > 0 && i < 80 && j < 23) {
 				gotoxy(i, j);
-				std::cout << (_pBoard->getCharFromCurrentBoard(i, j));
+				if (!isSilent) {
+					std::cout << (_pBoard->getCharFromCurrentBoard(i, j));
+				}
 			}
 		}
 	}

@@ -9,7 +9,7 @@ class ManualGame : public mainGame
 public:
 	// Constructor to initialize the ManualGame object
 	ManualGame(bool isSave) : isSave(isSave) {}
-	virtual int startGame(int screenNumber, int numOfFiles);
+	int startGame(int screenNumber, int numOfFiles);
 
 };
 

@@ -20,34 +20,34 @@ void GhostGroup::moveGhosts() {
 	}
 }
 // Draws all the ghosts on the board
-void GhostGroup::drawGhosts() {
+void GhostGroup::drawGhosts(bool isSilent) {
 	for (Ghost& ghost : _ghostGroup) {
-		ghost.draw();
+		ghost.draw(isSilent);
 	}
 }
 // Erases all the ghosts from the board
-void GhostGroup::eraseGhosts() {
+void GhostGroup::eraseGhosts(bool isSilent) {
 	for (Ghost& ghost : _ghostGroup) {
 		if (ghost.checkLadder()) {
-			ghost.eraseOnLadder();
+			ghost.eraseOnLadder(isSilent);
 		}
 		else if(ghost.checkHammer()){
-			ghost.eraseOnHammer();
+			ghost.eraseOnHammer(isSilent);
 		}
 		else if (ghost.checkDkong()) {
-			ghost.eraseOnKong();
+			ghost.eraseOnKong(isSilent);
 		}
 		else if (ghost.checkPauline()) {
-			ghost.eraseOnPauline();
+			ghost.eraseOnPauline(isSilent);
 		}
 		else {
 			ghost.erase();
 		}
 	}
 }
-bool GhostGroup::hammerHitGG(Pos marioPos, int dirX, int& gameScore) {
+bool GhostGroup::hammerHitGG(Pos marioPos, int dirX, int& gameScore,bool isSilent) {
 	for (auto it = _ghostGroup.begin(); it != _ghostGroup.end(); ) {
-		if (it->hammerHitG(marioPos, dirX)) {
+		if (it->hammerHitG(marioPos, dirX,isSilent)) {
 			it = _ghostGroup.erase(it); // Erase and get the next valid iterator
 			gameScore += 300;
 			return true;

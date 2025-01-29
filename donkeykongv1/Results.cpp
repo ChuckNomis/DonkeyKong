@@ -15,6 +15,7 @@ Results Results::loadResults(const std::string& filename) {
 		results.addResult(iteration, static_cast<ResultValue>(result));
 	}
 	results_file >> results.resScore;
+	results_file >> results.resLives;
 	results_file.close();
 	return results;
 }
@@ -26,6 +27,7 @@ void Results::saveResults(const std::string& filename) const {
 		results_file << '\n' << result.first << ' ' << result.second;
 	}
 	results_file << '\n' << resScore;
+	results_file << '\n' << resLives;
 	results_file.close();
 }
 

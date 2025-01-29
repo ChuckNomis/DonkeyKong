@@ -17,34 +17,6 @@ class board {
 	// Current board state used for rendering on-screen
 	char currentBoard[MAX_Y][MAX_X + 1]; // +1 for null terminator
 	char currentScreen[MAX_Y][MAX_X + 1]; // +1 for null terminator
-	const char* gameBoard[MAX_Y] = {
-	// 01234567890123456789012345678901234567890123456789012345678901234567890123456789
-	  "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
-	  "Q                                                                              Q", // 1
-	  "Q    Life :                                     $                              Q", // 2
-	  "Q                                           =========                          Q", // 3
-	  "Q                                               H                              Q", // 4
-	  "Q                                               H                              Q", // 5
-	  "Q                                               H     &                        Q", // 6
-	  "Q                         <<<<<<<<<<<<<<<<<<<<<<<<<<<<<                        Q", // 7
-	  "Q                             H                                                Q", // 8
-	  "Q                             H                                                Q", // 9
-	  "Q                             H                                                Q", // 10
-	  "Q                   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>               Q", // 11
-	  "Q                                                    H                         Q", // 12
-	  "Q                                                    H                         Q", // 13
-	  "Q                                                    H                         Q", // 14
-	  "Q             <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<        Q", // 15
-	  "Q                      H                                                       Q", // 16
-	  "Q                      H                                                       Q", // 17
-	  "Q                      H                                                       Q", // 18
-	  "Q             >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       Q", // 19
-	  "Q                                                            H                 Q", // 20
-	  "Q                                                            H                 Q", // 21
-	  "Q                                                            H                 Q", // 22
-	  "Q==============================================================================Q", // 23
-	  "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
-	};
 	const char* winBoard[MAX_Y]= {
    //01234567890123456789012345678901234567890123456789012345678901234567890123456789
 	"QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
@@ -153,6 +125,34 @@ class board {
 		 "Q                                                                              Q", // 19
 		 "Q                                                                              Q", // 20
 		 "Q                        Press ESC to go back to the menu                      Q", // 21
+		 "Q                                                                              Q", // 22
+		 "Q==============================================================================Q", // 23
+		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
+	};
+	const char* endLoadBoard[MAX_Y] = {
+		//01234567890123456789012345678901234567890123456789012345678901234567890123456789
+		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", // 0
+		 "Q==============================================================================Q", // 1
+		 "Q                                                                              Q", // 2
+		 "Q                                                                              Q", // 3
+		 "Q                                                                              Q", // 4
+		 "Q                                                                              Q", // 5
+		 "Q                    ||    ALL FILES HAVE BEEN LOADED    ||                    Q", // 6
+		 "Q                                                                              Q", // 7
+		 "Q                                                                              Q", // 9
+		 "Q                                                                              Q", // 9
+		 "Q                                                                              Q", // 10
+		 "Q                                                                              Q", // 11
+		 "Q                                                                              Q", // 12
+		 "Q                                                                              Q", // 13
+		 "Q                                                                              Q", // 14
+		 "Q                                                                              Q", // 15
+		 "Q                                                                              Q", // 16
+		 "Q                                                                              Q", // 17
+		 "Q                                                                              Q", // 18
+		 "Q                                                                              Q", // 19
+		 "Q                                                                              Q", // 20
+		 "Q                                                                              Q", // 21
 		 "Q                                                                              Q", // 22
 		 "Q==============================================================================Q", // 23
 		 "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"  // 24
@@ -290,14 +290,14 @@ public:
 	// Sets the current board to the menu state
 	void setMenu();
 
-	// Sets the current board to the game state
-	void setGame();
-
 	// Sets the current board to the guide state
 	void setGuide();
 
 	// Sets the current board to the lose state
 	void setLose();
+
+	// Sets the current board to the end load state
+	void setEndLoad();
 
 	// Sets the current board to the win state
 	void setWin();

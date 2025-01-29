@@ -12,6 +12,7 @@ int ManualGame::startGame(int screenNumber, int numOfFiles) {
 		randomSeed = static_cast<long>(std::chrono::system_clock::now().time_since_epoch().count());
 		Steps steps;
 		Results results;
+		results.changeLives(marioLives);
 		steps.setRandomSeed(randomSeed);
 		if (!_board.isScreenOk(screenNumber)) {
 			errorScreenNotGood(screenNumber);
@@ -43,14 +44,14 @@ int ManualGame::startGame(int screenNumber, int numOfFiles) {
 
 					// Draw Mario's current state (on ladder or normal)
 					if (_mario.checkLadder()) {
-						_mario.drawOnLadder();
+						_mario.drawOnLadder(false);
 					}
 					else {
-						_mario.draw();
+						_mario.draw(false);
 					}
-					_BG.drawBarrels();
-					_GG.drawGhosts();
-					_BGG.drawBigGhosts();
+					_BG.drawBarrels(false);
+					_GG.drawGhosts(false);
+					_BGG.drawBigGhosts(false);
 
 					// Check if Mario is hit by a barrel
 					if (_mario.isMarioHitBarrel()) {
@@ -75,7 +76,7 @@ int ManualGame::startGame(int screenNumber, int numOfFiles) {
 							pauseGame();
 						}
 						if (std::tolower(key) == KeyCode::KEY_HAMMER && _mario.isHammerTime()) {
-							itsHammerTime(gameScore);
+							itsHammerTime(gameScore, false);
 						}
 						_mario.keyPressed(key);
 						if (std::tolower(key) == KeyCode::KEY_UP && !_mario.isMarioFalling()) {
@@ -88,7 +89,7 @@ int ManualGame::startGame(int screenNumber, int numOfFiles) {
 					}
 
 					// Check Mario's ladder state
-					_mario.isMarioOnLastLadder(downLadder, ladder);
+					_mario.isMarioOnLastLadder(downLadder, ladder, false);
 					_mario.isMarioOnFirstLadder(downLadder, ladder);
 
 					// Handle falling logic
@@ -99,7 +100,7 @@ int ManualGame::startGame(int screenNumber, int numOfFiles) {
 					}
 
 					// Check if barrels are falling
-					if (_BG.barrelsFalling()) {
+					if (_BG.barrelsFalling(false)) {
 						marioLoseLife();
 						results.addResult(gameIteration, Results::loseLife);
 						break;
@@ -110,7 +111,7 @@ int ManualGame::startGame(int screenNumber, int numOfFiles) {
 						_mario.setDirY(0);
 						fall = false;
 						if (fallCounter >= 5) {
-							_mario.draw();
+							_mario.draw(false);
 							Sleep(10);
 							marioLoseLife();
 							results.addResult(gameIteration, Results::loseLife);
@@ -124,7 +125,7 @@ int ManualGame::startGame(int screenNumber, int numOfFiles) {
 
 					// Erase Mario's previous position
 					if (_mario.checkLadder()) {
-						_mario.eraseOnLadder();
+						_mario.eraseOnLadder(false);
 					}
 					else {
 						_mario.erase();
@@ -157,9 +158,9 @@ int ManualGame::startGame(int screenNumber, int numOfFiles) {
 
 					// Move and erase barrels
 
-					_BG.eraseBarrels();
-					_GG.eraseGhosts();
-					_BGG.eraseBigGhosts();
+					_BG.eraseBarrels(false);
+					_GG.eraseGhosts(false);
+					_BGG.eraseBigGhosts(false);
 					GhostCollision();
 					_BG.moveBarrels();
 					_GG.moveGhosts();

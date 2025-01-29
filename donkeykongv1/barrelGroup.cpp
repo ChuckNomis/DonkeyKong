@@ -7,7 +7,7 @@
 #include "board.h"
 
 // Checks if any barrel is falling and processes them
-bool barrelGroup::barrelsFalling() {
+bool barrelGroup::barrelsFalling(bool isSilent) {
 	bool deadMario = false;
 	for (barrel& b : _barrelGroup) {
 		if (b.isExist()) {
@@ -18,7 +18,7 @@ bool barrelGroup::barrelsFalling() {
 			}
 			else {
 				if (b.getFallCounter() >= 8) {
-					deadMario = (b.explode());
+					deadMario = (b.explode(isSilent));
 				}
 				else {
 					b.resetFallCounter();
@@ -30,10 +30,10 @@ bool barrelGroup::barrelsFalling() {
 	return deadMario;
 }
 
-bool barrelGroup::hammerHitBG(Pos marioPos,int dirX,int& gameScore) {
+bool barrelGroup::hammerHitBG(Pos marioPos,int dirX,int& gameScore,bool isSilent) {
 	for (barrel& b : _barrelGroup) {
 		if (b.isExist()) {
-			if (b.hammerHitB(marioPos, dirX, gameScore)) {
+			if (b.hammerHitB(marioPos, dirX, gameScore,isSilent)) {
 				return true;
 			}
 		}
@@ -41,20 +41,20 @@ bool barrelGroup::hammerHitBG(Pos marioPos,int dirX,int& gameScore) {
 }
 
 // Erases barrels from the board
-void barrelGroup::eraseBarrels() {
+void barrelGroup::eraseBarrels(bool isSilent) {
 	for (barrel& b : _barrelGroup) {
 		if (b.isExist()) {
 			if (b.checkLadder()) {
-				b.eraseOnLadder();
+				b.eraseOnLadder(isSilent);
 			}
 			else if (b.checkDkong()) {
-				b.eraseOnKong();
+				b.eraseOnKong(isSilent);
 			}
 			else if (b.checkHammer()) {
-				b.eraseOnHammer();
+				b.eraseOnHammer(isSilent);
 			}
 			else if (b.checkPauline()) {
-				b.eraseOnPauline();
+				b.eraseOnPauline(isSilent);
 			}
 			else {
 				b.erase();
@@ -73,10 +73,10 @@ void barrelGroup::moveBarrels() {
 }
 
 // Draws all the barrels on the board
-void barrelGroup::drawBarrels() {
+void barrelGroup::drawBarrels(bool isSilent) {
 	for (barrel& b : _barrelGroup) {
 		if (b.isExist()) {
-			b.draw();
+			b.draw(isSilent);
 		}
 	}
 }

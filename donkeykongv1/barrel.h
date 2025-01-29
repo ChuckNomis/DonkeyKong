@@ -17,7 +17,7 @@ public:
 		: fallCounter(fallCounter), exist(exist), Enemy(newDir, newPos, Board, SpecialCharacters::BARREL) {}
 
 	// Check if hammer it specific barrel
-	bool hammerHitB(Pos marioPos, int dirX, int& gameScore);
+	bool hammerHitB(Pos marioPos, int dirX, int& gameScore,bool isSilent);
 
 	// Get fall counter value
 	int getFallCounter() const {
@@ -73,5 +73,5 @@ public:
 	}
 
 	// Handle barrel explosion
-	bool explode();
+	bool explode(bool isSilent);
 };

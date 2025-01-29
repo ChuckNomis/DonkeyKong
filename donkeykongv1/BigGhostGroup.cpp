@@ -19,25 +19,25 @@ void  BigGhostGroup::moveBigGhosts() {
 	}
 }
 // Draws all the ghosts on the board
-void BigGhostGroup::drawBigGhosts() {
+void BigGhostGroup::drawBigGhosts(bool isSilent) {
 	for (BigGhost& ghost : _BigGhostGroup) {
-		ghost.draw();
+		ghost.draw(isSilent);
 	}
 }
 // Erases all the ghosts from the board
-void BigGhostGroup::eraseBigGhosts() {
+void BigGhostGroup::eraseBigGhosts(bool isSilent) {
 	for (BigGhost& ghost : _BigGhostGroup) {
 		if (ghost.checkLadder()) {
-			ghost.eraseOnLadder();
+			ghost.eraseOnLadder(isSilent);
 		}
 		else if (ghost.checkHammer()) {
-			ghost.eraseOnHammer();
+			ghost.eraseOnHammer(isSilent);
 		}
 		else if (ghost.checkDkong()) {
-			ghost.eraseOnKong();
+			ghost.eraseOnKong(isSilent);
 		}
 		else if (ghost.checkPauline()) {
-			ghost.eraseOnPauline();
+			ghost.eraseOnPauline(isSilent);
 		}
 		else {
 			ghost.erase();
@@ -46,9 +46,9 @@ void BigGhostGroup::eraseBigGhosts() {
 }
 
 
-bool BigGhostGroup::hammerHitBGG(Pos marioPos, int dirX, int& gameScore) {
+bool BigGhostGroup::hammerHitBGG(Pos marioPos, int dirX, int& gameScore,bool isSilent) {
 	for (auto it = _BigGhostGroup.begin(); it != _BigGhostGroup.end(); ) {
-		if (it->hammerHitG(marioPos, dirX)) {
+		if (it->hammerHitG(marioPos, dirX,isSilent)) {
 			it = _BigGhostGroup.erase(it); // Erase and get the next valid iterator
 			gameScore += 400;
 			return true;

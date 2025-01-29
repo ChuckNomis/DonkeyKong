@@ -19,19 +19,19 @@ public:
     void spawnBarrel(int i);
 
     // Checks if any barrels are currently falling
-    bool barrelsFalling();
+    bool barrelsFalling(bool isSilent);
 
     // Erases all barrels from the board
-    void eraseBarrels();
+    void eraseBarrels(bool isSilent);
 
     // Moves all barrels according to their current logic
     void moveBarrels();
 
     // Draws all barrels on the board
-    void drawBarrels();
+    void drawBarrels(bool isSilent);
 
     // Resets all barrels to their initial state
     void resetAll();
 
-    bool hammerHitBG(Pos marioPos,int dirX, int& gameScore);
+    bool hammerHitBG(Pos marioPos,int dirX, int& gameScore, bool isSilent);
 };

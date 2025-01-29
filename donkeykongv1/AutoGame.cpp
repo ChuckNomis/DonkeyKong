@@ -1,14 +1,17 @@
 #include "AutoGame.h"
-int AutoGame::startGame(int screenNumber, int numOfFiles) {
+void AutoGame::startGame(int screenNumber, int numOfFiles) {
 	int filesToLoad = numOfFiles - screenNumber + 1;
 	bool marioWin = false;
 	bool isGameOver = false;
 	marioLives = 3;
-
+	bool midExit = false;
 	while (filesToLoad > 0 && !isGameOver) {
 		_board.setScreen(screenNumber);
 		Steps steps = Steps::loadSteps("dkong_" + std::to_string(screenNumber) + "steps.txt");
 		Results results = Results::loadResults("dkong_" + std::to_string(screenNumber) + "results.txt");
+		gameScore = results.getScore();
+		marioLives = results.getLives();
+		size_t nextDeath = results.getNextDeathIteration();
 		long randomSeed = steps.getRandomSeed();
 		if (!_board.isScreenOk(screenNumber)) {
 			errorScreenNotGood(screenNumber);
@@ -42,27 +45,47 @@ int AutoGame::startGame(int screenNumber, int numOfFiles) {
 
 					// Draw Mario's current state (on ladder or normal)
 					if (_mario.checkLadder()) {
-						_mario.drawOnLadder();
+						_mario.drawOnLadder(isSilent);
 					}
 					else {
 						if (!isSilent) {
-							_mario.draw();
+							_mario.draw(isSilent);
 						}
 					}
 					if (!isSilent) {
-						_BG.drawBarrels();
-						_GG.drawGhosts();
-						_BGG.drawBigGhosts();
+						_BG.drawBarrels(isSilent);
+						_GG.drawGhosts(isSilent);
+						_BGG.drawBigGhosts(isSilent);
 					}
 
 					// Check if Mario is hit by a barrel
 					if (_mario.isMarioHitBarrel()) {
 						marioLoseLife();
+						if (nextDeath != gameIteration) {
+							system("cls");
+							std::cout << "Mario death iteration " << gameIteration << " doesnt match the result death iteration " << nextDeath << std::endl;
+							std::cout << "In screen " << screenNumber << std::endl;
+							return;
+						}
+						else {
+							results.popResult();
+							nextDeath = results.getNextDeathIteration();
+						}
 						break;
 					}
 					// Check if mario is hit by a ghost
 					if (_mario.isMarioHitGhost()) {
 						marioLoseLife();
+						if (nextDeath != gameIteration) {
+							system("cls");
+							std::cout << "Mario death iteration " << gameIteration << " doesnt match the result death iteration " << nextDeath << std::endl;
+							std::cout << "In screen " << screenNumber << std::endl;
+							return;
+						}
+						else {
+							results.popResult();
+							nextDeath = results.getNextDeathIteration();
+						}
 						break;
 					}
 
@@ -70,7 +93,7 @@ int AutoGame::startGame(int screenNumber, int numOfFiles) {
 					if (steps.isNextStepOnIteration(gameIteration)) {
 						char key = steps.popStep();
 						if (std::tolower(key) == KeyCode::KEY_HAMMER && _mario.isHammerTime()) {
-							itsHammerTime(gameScore);
+							itsHammerTime(gameScore,isSilent);
 						}
 						_mario.keyPressed(key);
 						if (std::tolower(key) == KeyCode::KEY_UP && !_mario.isMarioFalling()) {
@@ -83,7 +106,7 @@ int AutoGame::startGame(int screenNumber, int numOfFiles) {
 					}
 
 					// Check Mario's ladder state
-					_mario.isMarioOnLastLadder(downLadder, ladder);
+					_mario.isMarioOnLastLadder(downLadder, ladder, isSilent);
 					_mario.isMarioOnFirstLadder(downLadder, ladder);
 
 					// Handle falling logic
@@ -94,8 +117,18 @@ int AutoGame::startGame(int screenNumber, int numOfFiles) {
 					}
 
 					// Check if barrels are falling
-					if (_BG.barrelsFalling()) {
+					if (_BG.barrelsFalling(isSilent)) {
 						marioLoseLife();
+						if (nextDeath != gameIteration) {
+							system("cls");
+							std::cout << "Mario death iteration " << gameIteration << " doesnt match the result death iteration " << nextDeath << std::endl;
+							std::cout << "In screen " << screenNumber << std::endl;
+							return;
+						}
+						else {
+							results.popResult();
+							nextDeath = results.getNextDeathIteration();
+						}
 						break;
 					}
 
@@ -105,10 +138,20 @@ int AutoGame::startGame(int screenNumber, int numOfFiles) {
 						fall = false;
 						if (fallCounter >= 5) {
 							if (!isSilent) {
-								_mario.draw();
+								_mario.draw(isSilent);
 								Sleep(10);
 							}
 							marioLoseLife();
+							if (nextDeath != gameIteration) {
+								system("cls");
+								std::cout << "Mario death iteration " << gameIteration << " doesnt match the result death iteration " << nextDeath << std::endl;
+								std::cout << "In screen " << screenNumber << std::endl;
+								return;
+							}
+							else {
+								results.popResult();
+								nextDeath = results.getNextDeathIteration();
+							}
 							break;
 						}
 						else {
@@ -120,7 +163,7 @@ int AutoGame::startGame(int screenNumber, int numOfFiles) {
 
 					// Erase Mario's previous position
 					if (_mario.checkLadder()) {
-						_mario.eraseOnLadder();
+						_mario.eraseOnLadder(isSilent);
 					}
 					else {
 						_mario.erase();
@@ -140,19 +183,40 @@ int AutoGame::startGame(int screenNumber, int numOfFiles) {
 					// Check again if Mario is hit by a barrel
 					if (_mario.isMarioHitBarrel()) {
 						marioLoseLife();
+						if (nextDeath != gameIteration) {	
+							system("cls");
+							std::cout << "Mario death iteration " <<gameIteration<<" doesnt match the result death iteration " << nextDeath << std::endl;
+							std::cout << "In screen " << screenNumber << std::endl;
+							return;
+						}
+						else {
+							results.popResult();
+							nextDeath = results.getNextDeathIteration();
+						}
 						break;
 					}
 					// Check again if Mario is hit by a ghost
 					if (_mario.isMarioHitGhost()) {
+						
 						marioLoseLife();
+						if (nextDeath != gameIteration) {	
+							system("cls");
+							std::cout << "Mario death iteration - " << gameIteration << ", doesnt match the result death iteration - " << nextDeath << std::endl;
+							std::cout << "In screen " << screenNumber << std::endl;
+							return;
+						}
+						else {
+							results.popResult();
+							nextDeath = results.getNextDeathIteration();
+						}
 						break;
 					}
 
 					// Move and erase barrels
 
-					_BG.eraseBarrels();
-					_GG.eraseGhosts();
-					_BGG.eraseBigGhosts();
+					_BG.eraseBarrels(isSilent);
+					_GG.eraseGhosts(isSilent);
+					_BGG.eraseBigGhosts(isSilent);
 					GhostCollision();
 					_BG.moveBarrels();
 					_GG.moveGhosts();
@@ -166,35 +230,34 @@ int AutoGame::startGame(int screenNumber, int numOfFiles) {
 					if (jumps == 1) {
 						jumps++;
 					}
-
+					if (nextDeath == gameIteration) {
+						results.popResult();
+						nextDeath = results.getNextDeathIteration();
+						system("cls");
+						std::cout << "Mario was supose to be dead in this iteration - " << gameIteration << std::endl;
+						std::cout << "In screen " << screenNumber << std::endl;
+						return;
+					}
+					
+					if (results.isFinishedBy(gameIteration) && !results.isMoreDeaths()) {
+						system("cls");
+						std::cout << "Screen was supose to be finshed in this iteration  - " << gameIteration << std::endl;
+						std::cout << "In screen " << screenNumber << std::endl;
+						return;
+					}
 					gameIteration++;
 				}
-			}
 
-			if (marioWin) {
-				screenNumber++;
-				filesToLoad--;
-				gameScore += 500;
 			}
-			else {
-				isGameOver = true;
-			}
+			screenNumber++;
+			filesToLoad--;
+		
 		}
 
-	}
-	int tempScore;
-	// End game states
-	if (isGameOver) {
-		gameOver(gameScore);
-		tempScore = gameScore;
-		gameScore = 0;
-		return tempScore;
-	}
-	else {
-		gameWin(gameScore);
-		tempScore = gameScore;
-		gameScore = 0;
-		return tempScore;
-	}
 
+	}
+	
+	_board.setEndLoad();
+	_board.print();
+	return;
 }

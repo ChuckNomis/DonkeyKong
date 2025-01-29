@@ -14,7 +14,7 @@ public:
 	// Move func
 	virtual void move();
 	// Checks if Hammer hit this ghost
-	bool hammerHitG(Pos marioPos, int dirX);
+	bool hammerHitG(Pos marioPos, int dirX,bool isSilent);
 	// Choose a Random number between 
 	int chooseBiasedRandomDir();
 };

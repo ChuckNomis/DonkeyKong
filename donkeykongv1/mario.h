@@ -30,7 +30,7 @@ class mario
     board* pBoard;
 
     // Draw Mario or other characters on the board at his current position
-    void draw(char c) const {
+    void Draw(char c) const {
         gotoxy(marioPos.x, marioPos.y); 
         std::cout << c; 
     }
@@ -80,28 +80,34 @@ public:
     // Check if Mario is currently falling
     bool isMarioFalling() const;
 
-    // Draw Mario at his current position on the board
-    void draw() const {
+    // Draw Mario at his current position on the board       
+    void draw(bool isSilent) const {
         pBoard->changePixelInCurrBoard(marioPos, SpecialCharacters::MARIO);
-        draw(ch);
+        if (!isSilent) {
+            Draw(ch);
+        }
     }
 
     // Draw Mario while on a ladder
-    void drawOnLadder() const {
+    void drawOnLadder(bool isSilent) const {      
         pBoard->changePixelInCurrBoard(marioPos, SpecialCharacters::LADDER);
-        draw(SpecialCharacters::MARIO_ON_LADDER);
+        if (!isSilent) {
+            Draw(SpecialCharacters::MARIO_ON_LADDER);
+        }
     }
 
     // Erase Mario from his current position
     void erase() {
         pBoard->changePixelInCurrBoard(marioPos, SpecialCharacters::SPACE);
-        draw(SpecialCharacters::SPACE);
+        Draw(SpecialCharacters::SPACE);
     }
 
     // Erase Mario from a ladder position
-    void eraseOnLadder() {
+    void eraseOnLadder(bool isSilent) {
         pBoard->changePixelInCurrBoard(marioPos, SpecialCharacters::LADDER);
-        draw(SpecialCharacters::LADDER);
+        if (!isSilent) {
+            Draw(SpecialCharacters::LADDER);
+        }
     }
 
     // Handle Mario moving up (jumping or climbing a ladder)
@@ -128,7 +134,7 @@ public:
     }
 
     // Check if Mario is on the last rung of a ladder
-    void isMarioOnLastLadder(bool& downLadder, bool& ladder);
+    void isMarioOnLastLadder(bool& downLadder, bool& ladder,bool isSilent);
 
     // Check if Mario is on the first rung of a ladder
     void isMarioOnFirstLadder(bool& downLadder, bool& ladder);

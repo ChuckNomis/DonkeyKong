@@ -17,7 +17,6 @@
 
 // Method to initialize and handle the menu interactions
 void Menu::start(bool isLoad, bool isSilent, bool isSave) {
-
 	int screenNumber = 1;   // Current screen number
 	int currScore;          // Current score
 	board _board;       // Instance of the board to manage menu and guide displays

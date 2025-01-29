@@ -27,12 +27,12 @@ public:
     void moveBigGhosts();
 
     // Draws all ghosts in the group on the board
-    void drawBigGhosts();
+    void drawBigGhosts(bool isSilent);
 
     // Erases all ghosts from the board
-    void eraseBigGhosts();
+    void eraseBigGhosts(bool isSilent);
 
     // Checks if the hammer hits any big ghosts, updating the score if so
-    bool hammerHitBGG(Pos marioPos, int dirX, int& gameScore);
+    bool hammerHitBGG(Pos marioPos, int dirX, int& gameScore,bool isSilent);
 };
 

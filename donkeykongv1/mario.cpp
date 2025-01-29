@@ -50,12 +50,12 @@ void mario::isMarioOnFirstLadder(bool& downLadder, bool& ladder) {
 }
 
 // Check if Mario leaves the last ladder and stops climbing
-void mario::isMarioOnLastLadder(bool& downLadder, bool& ladder) {
+void mario::isMarioOnLastLadder(bool& downLadder, bool& ladder, bool isSilent) {
 	if ((pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y - 1) == SpecialCharacters::FLOOR_RIGHT ||
 		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y - 1) == SpecialCharacters::FLOOR_LEFT ||
 		pBoard->getCharFromCurrentBoard(marioPos.x, marioPos.y - 1) == SpecialCharacters::FLOOR) &&
 		ladder == true && downLadder == false) {
-		eraseOnLadder(); // Erase Mario's position on the ladder
+		eraseOnLadder(isSilent); // Erase Mario's position on the ladder
 		marioPos.y -= 2; // Move Mario up 2 spaces
 		dir = { 0, 0 }; // Stop movement
 		ladder = false;

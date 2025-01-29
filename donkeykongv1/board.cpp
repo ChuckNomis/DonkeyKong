@@ -143,20 +143,20 @@ void board::setNoFilesError() {
 	}
 }
 
-// Function to set the board to the game state
-void board::setGame() {
-    // Loop through all rows and copy the game board to the current board
-    for (int i = 0; i < MAX_Y; i++) {
-        memcpy(currentBoard[i], gameBoard[i], MAX_X + 1);  // Copy each row with an additional null terminator
-    }
-}
-
 // Function to set the board to the guide state
 void board::setGuide() {
     // Loop through all rows and copy the guide board to the current board
     for (int i = 0; i < MAX_Y; i++) {
         memcpy(currentBoard[i], guideBoard[i], MAX_X + 1);  // Copy each row with an additional null terminator
     }
+}
+
+// Function to set the board to the end load state
+void board::setEndLoad() {
+	// Loop through all rows and copy the guide board to the current board
+	for (int i = 0; i < MAX_Y; i++) {
+		memcpy(currentBoard[i], endLoadBoard[i], MAX_X + 1);  // Copy each row with an additional null terminator
+	}
 }
 
 // Function to set the board to the choose screen state

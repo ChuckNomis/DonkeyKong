@@ -13,7 +13,7 @@ protected:
     char c;                   // Character representing the enemy
 
     // Draw the enemy at its current position
-    void draw(char c) const {
+    void Draw(char c) const {
         gotoxy(_pos.x, _pos.y);
         std::cout << c;
     }
@@ -25,39 +25,51 @@ public:
     }
 
     // Draw the enemy on the board
-    void draw() {
+    void draw(bool isSilent) {
+        if (!isSilent) {
+        Draw(c);
+        }
         _pBoard->changePixelInCurrBoard(_pos, c);
-        draw(c);
+        
     }
 
     // Erase the enemy from the board
     void erase() {
         _pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::SPACE);
-        draw(SpecialCharacters::SPACE);
+
+        Draw(SpecialCharacters::SPACE);
     }
 
     // Erase the enemy if it is on a ladder
-    void eraseOnLadder() {
+    void eraseOnLadder(bool isSilent) {
         _pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::LADDER);
-        draw(SpecialCharacters::LADDER);
+        if (!isSilent) {
+            Draw(SpecialCharacters::LADDER);
+        }
     }
 
     // Erase the enemy if it is on a hammer
-    void eraseOnHammer() {
+    void eraseOnHammer(bool isSilent) {
         _pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::HAMMER);
-        draw(SpecialCharacters::HAMMER);
+        if (!isSilent) {
+            Draw(SpecialCharacters::HAMMER);
+        }
     }
 
     // Erase the enemy if it is on Donkey Kong
-    void eraseOnKong() {
+    void eraseOnKong(bool isSilent) {
         _pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::KONG);
-        draw(SpecialCharacters::KONG);
+        if (!isSilent) {
+            Draw(SpecialCharacters::KONG);
+        }
     }
 
     // Erase the enemy if it is on Pauline
-    void eraseOnPauline() {
+    void eraseOnPauline(bool isSilent) {
         _pBoard->changePixelInCurrBoard(_pos, SpecialCharacters::PAULINE);
-        draw(SpecialCharacters::PAULINE);
+        if (!isSilent) {
+            Draw(SpecialCharacters::PAULINE);
+        }
     }
 
     // Get the current position of the enemy

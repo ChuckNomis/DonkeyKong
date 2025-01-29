@@ -30,11 +30,11 @@ public:
     void moveGhosts();
 
     // Draws all ghosts in the group on the board
-    void drawGhosts();
+    void drawGhosts(bool isSilent);
 
     // Erases all ghosts from the board
-    void eraseGhosts();
+    void eraseGhosts(bool isSilent);
 
     // Checks if the hammer hits any ghosts, updating the score if so
-    bool hammerHitGG(Pos marioPos, int dirX, int& gameScore);
+    bool hammerHitGG(Pos marioPos, int dirX, int& gameScore,bool isSilent);
 };

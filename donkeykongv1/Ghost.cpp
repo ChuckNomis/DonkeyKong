@@ -30,7 +30,7 @@ int Ghost::chooseBiasedRandomDir() {
 	}
 }
 //Check if Hammer hit this ghost
-bool Ghost::hammerHitG(Pos marioPos, int dirX) {
+bool Ghost::hammerHitG(Pos marioPos, int dirX,bool isSilent) {
 	if (dirX == -1) {
 		if (_pBoard->getCharFromCurrentBoard(_pos.x + 1, _pos.y) == SpecialCharacters::MARIO ||
 			_pBoard->getCharFromCurrentBoard(_pos.x + 1, _pos.y) == SpecialCharacters::MARIO_ON_LADDER ||
@@ -39,13 +39,13 @@ bool Ghost::hammerHitG(Pos marioPos, int dirX) {
 
 
 			if (checkLadder()) {
-				eraseOnLadder();
+				eraseOnLadder(isSilent);
 			}
 			else if (checkHammer()) {
-				eraseOnHammer();
+				eraseOnHammer(isSilent);
 			}
 			else if (checkPauline()) {
-				eraseOnPauline();
+				eraseOnPauline(isSilent);
 			}
 			else {
 				erase();
@@ -59,13 +59,13 @@ bool Ghost::hammerHitG(Pos marioPos, int dirX) {
 			_pBoard->getCharFromCurrentBoard(_pos.x - 2, _pos.y) == SpecialCharacters::MARIO ||
 			_pBoard->getCharFromCurrentBoard(_pos.x - 2, _pos.y) == SpecialCharacters::MARIO_ON_LADDER) {
 			if (checkLadder()) {
-				eraseOnLadder();
+				eraseOnLadder(isSilent);
 			}
 			else if (checkHammer()) {
-				eraseOnHammer();
+				eraseOnHammer(isSilent);
 			}
 			else if (checkPauline()) {
-				eraseOnPauline();
+				eraseOnPauline(isSilent);
 			}
 			else {
 				erase();

@@ -8,7 +8,7 @@ class AutoGame : public mainGame
 public:
 	// Constructor to initialize the AutoGame object
 	AutoGame(bool isSilent) : isSilent(isSilent) {}
-	virtual int startGame(int screenNumber, int numOfFiles);
+	void startGame(int screenNumber, int numOfFiles);
 
 };
 

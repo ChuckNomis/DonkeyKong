@@ -44,9 +44,6 @@ public:
     // Pauses the game until the user resumes
     void pauseGame() const;
 
-    // Starts the main game loop
-    virtual int startGame(int screenNumber,int numOfFiles);
-
     // Handles the game-over state
     void gameOver(int const gameScore);
 
@@ -60,7 +57,7 @@ public:
 	bool setALL();
 
     // Checks for hammer hit on ghosts or barrels
-    void itsHammerTime(int& gameScore);
+    void itsHammerTime(int& gameScore,bool isSilent);
 
     // Prints the Legend
     void legendsNeverDie(board* _pBoard);
